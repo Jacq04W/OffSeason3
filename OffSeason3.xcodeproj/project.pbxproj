@@ -28,6 +28,7 @@
 		091C627D2A24DE4B00AA5981 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 091C627C2A24DE4B00AA5981 /* FirebaseInAppMessagingSwift-Beta */; };
 		091C627F2A24DE4B00AA5981 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 091C627E2A24DE4B00AA5981 /* FirebaseMessaging */; };
 		091C62812A24DE4B00AA5981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 091C62802A24DE4B00AA5981 /* FirebaseStorage */; };
+		091C62832A24E40900AA5981 /* MapView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62822A24E40900AA5981 /* MapView .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		091C62562A24DD1200AA5981 /* OffSeason3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffSeason3UITests.swift; sourceTree = "<group>"; };
 		091C62582A24DD1200AA5981 /* OffSeason3UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffSeason3UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		091C62652A24DD9F00AA5981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		091C62822A24E40900AA5981 /* MapView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			children = (
 				091C623B2A24DD1100AA5981 /* OffSeason3App.swift */,
 				091C623D2A24DD1100AA5981 /* LoginView.swift */,
+				091C62822A24E40900AA5981 /* MapView .swift */,
 				091C623F2A24DD1200AA5981 /* Assets.xcassets */,
 				091C62412A24DD1200AA5981 /* Preview Content */,
 			);
@@ -305,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091C62832A24E40900AA5981 /* MapView .swift in Sources */,
 				091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */,
 				091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */,
 			);

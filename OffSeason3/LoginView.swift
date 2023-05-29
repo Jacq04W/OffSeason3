@@ -82,12 +82,13 @@ struct LoginView: View {
             .tint(Color.orange)
             .font(.title2)
             .padding(.top)
-//            .navigationBarTitleDisplayMode(.inline)
-//            .navigationDestination(for: String.self){ view in
-//                if view == "ListView"{
-//                    ListView()
-//                }
-//            }
+            .navigationBarTitleDisplayMode(.inline)
+            // how to properly naviaget to a new view
+            .navigationDestination(for: String.self){ view in
+                if view == "MapView"{
+                    MapView()
+                }
+            }
         }// nav stack
         .alert(alertMessage, isPresented: $showingAlert){
             Button("OK",role:.cancel){
@@ -104,7 +105,8 @@ struct LoginView: View {
             }
         }
         .fullScreenCover(isPresented: $presentSheet){
-//            ListView()
+MapView()
+            
         }
         
     }
