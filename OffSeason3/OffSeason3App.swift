@@ -26,12 +26,12 @@ struct Snacktacku_arApp: App {
         FirebaseApp.configure()
     }
 //@StateObject var locationManager = LocationManager()
-//@StateObject var spotVm = SpotViewModel()
+@StateObject var gameVm = GameViewModel()
     var body: some Scene {
         WindowGroup {
             LoginView()
 //            LoginView()
-//                .environmentObject(spotVm)
+                .environmentObject(gameVm)
 //                .environmentObject(locationManager)
 
                  

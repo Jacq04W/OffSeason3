@@ -19,6 +19,10 @@ struct MapView: View {
         NavigationStack {
             VStack{
                 Text("P")
+                
+                
+                
+                 
             }
             //            List(spots){spot in
             //                NavigationLink{
@@ -46,18 +50,17 @@ struct MapView: View {
                         }
                     }
                 }
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button{
-                        sheetIsPresented.toggle()
-                    }
-                label: {
-                    Image(systemName: "plus")
-                }
+                ToolbarItemGroup(placement: .bottomBar){
+                    Spacer()
+                CreateButton
+                    
+                    
                 }
             }
             .sheet(isPresented: $sheetIsPresented) {
                 NavigationStack{
-                    //                   SpotDetailView(spot: Spot())
+                    TestaddingDataView(game: Game())
+                    
                 }
             }
         }
@@ -72,3 +75,27 @@ struct ListView_Previews: PreviewProvider {
     }
 }
 
+
+
+
+private extension MapView {
+    var CreateButton: some View {
+        Button{
+            sheetIsPresented.toggle()
+                }label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 50)).foregroundColor(.red)
+                        .shadow(color: Color.black.opacity (0.4), radius: 20,
+                                 x: 0, y: 15)
+                }
+//                    .offset(y:-25
+//                    )
+            
+        
+        
+    
+    
+    
+}
+
+}
