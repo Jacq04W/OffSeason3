@@ -5,13 +5,38 @@
 //  Created by Jacquese Whitson  on 5/29/23.
 //
 
+import Firebase
+import FirebaseCore
+import FirebaseFirestoreSwift
 import SwiftUI
+import MapKit
+import PhotosUI
+import WeatherKit
 
 struct TestaddingDataView: View {
+    
+    struct Annotation : Identifiable{
+        let id = UUID().uuidString
+        var name : String
+        var address : String
+        var coordinate : CLLocationCoordinate2D
+    }
+    // ViewModela
     @EnvironmentObject var gameVm : GameViewModel
+    @EnvironmentObject var locationVm : LocationManager
+
+    //data
     @State var game : Game
+    @State private var annotations: [Annotation] = []
+//misc
     @State private var showSearchPage = false
     @Environment (\.dismiss) private var dismiss
+    @State private var showingAsSheet = false
+
+    //maps
+@State private var mapRegion = MKCoordinateRegion ()
+    let regionSize = 500.0
+    
     var body: some View {
         NavigationStack{
             ScrollView {
@@ -32,14 +57,48 @@ struct TestaddingDataView: View {
                                                 Image(systemName: "magnifyingglass")
                                             }
                                         
-                                            
+                                             
                                             
                                         }
+                            
+                            Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
+                                annotation in
+                                MapMarker(coordinate: annotation.coordinate)
+                            }.frame(height: 250)
+                            
+                                .onChange(of:game){ _ in
+                                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                                    mapRegion.center = game.coordinate
+                                }
+                                
+                            
+                            
+                            
+                            
                         }
                        
                     }
                 }
             }
+        }
+        .onAppear {
+            
+            if game.id != nil { // If we have a spot, center map on the spot
+                mapRegion = MKCoordinateRegion (center: game.coordinate,
+                                                latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+            } else {
+                
+                
+                Task{
+    mapRegion = MKCoordinateRegion(center:
+locationVm.location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize,
+    longitudinalMeters: regionSize)
+                }
+                }
+            annotations = [Annotation (name: game.name, address: game.address,
+            coordinate: game.coordinate)]
+            
+            
         }
         .sheet(isPresented: $showSearchPage, content: {
             PlaceLookupView( game: $game)
@@ -70,6 +129,8 @@ struct Testadding_data_view_Previews: PreviewProvider {
     static var previews: some View {
         TestaddingDataView(game:Game())
             .environmentObject(GameViewModel())
+            .environmentObject(LocationManager())
+
     }
 }
 

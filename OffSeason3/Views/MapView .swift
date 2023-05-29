@@ -8,6 +8,8 @@
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
+import MapKit
+import CoreLocation
 
 
 struct MapView: View {
@@ -16,6 +18,11 @@ struct MapView: View {
     @Environment(\.dismiss) private var dismiss
      @State private var sheetIsPresented = false
     @EnvironmentObject var locationVm : LocationManager
+    @State private var mapRegion = MKCoordinateRegion ()
+    let regionSize = 500.0
+
+    
+    
     var body: some View {
         NavigationStack {
             VStack{
