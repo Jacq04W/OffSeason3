@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C623B2A24DD1100AA5981 /* OffSeason3App.swift */; };
-		091C623E2A24DD1100AA5981 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C623D2A24DD1100AA5981 /* ContentView.swift */; };
+		091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C623D2A24DD1100AA5981 /* LoginView.swift */; };
 		091C62402A24DD1200AA5981 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091C623F2A24DD1200AA5981 /* Assets.xcassets */; };
 		091C62432A24DD1200AA5981 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091C62422A24DD1200AA5981 /* Preview Assets.xcassets */; };
 		091C624D2A24DD1200AA5981 /* OffSeason3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C624C2A24DD1200AA5981 /* OffSeason3Tests.swift */; };
@@ -50,7 +50,7 @@
 /* Begin PBXFileReference section */
 		091C62382A24DD1100AA5981 /* OffSeason3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OffSeason3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		091C623B2A24DD1100AA5981 /* OffSeason3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffSeason3App.swift; sourceTree = "<group>"; };
-		091C623D2A24DD1100AA5981 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		091C623D2A24DD1100AA5981 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		091C623F2A24DD1200AA5981 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		091C62422A24DD1200AA5981 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		091C62482A24DD1200AA5981 /* OffSeason3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OffSeason3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				091C623B2A24DD1100AA5981 /* OffSeason3App.swift */,
-				091C623D2A24DD1100AA5981 /* ContentView.swift */,
+				091C623D2A24DD1100AA5981 /* LoginView.swift */,
 				091C623F2A24DD1200AA5981 /* Assets.xcassets */,
 				091C62412A24DD1200AA5981 /* Preview Content */,
 			);
@@ -305,7 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				091C623E2A24DD1100AA5981 /* ContentView.swift in Sources */,
+				091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */,
 				091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

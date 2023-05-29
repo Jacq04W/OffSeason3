@@ -29,7 +29,7 @@ struct Snacktacku_arApp: App {
 //@StateObject var spotVm = SpotViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
 //            LoginView()
 //                .environmentObject(spotVm)
 //                .environmentObject(locationManager)
