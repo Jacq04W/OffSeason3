@@ -12,13 +12,20 @@ import FirebaseFirestoreSwift
 
 struct MapView: View {
     // how to put the collection of data from firebase into a variable
-//    @FirestoreQuery(collectionPath: "spots") var spots: [Spot]
+    @FirestoreQuery(collectionPath: "games") var games: [Game]
     @Environment(\.dismiss) private var dismiss
      @State private var sheetIsPresented = false
     var body: some View {
         NavigationStack {
             VStack{
-                Text("P")
+                List(games){game in
+                    NavigationLink{
+                        GameDetailsView(game: game)
+                    } label: {
+                        Text(game.name)
+
+                    }
+                }
                 
                 
                 

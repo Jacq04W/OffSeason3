@@ -43,6 +43,44 @@ class GameViewModel: ObservableObject {
         }
     }
     
+    
+    
+    func joinEvent( game: Game) async -> Bool {
+          let db = Firestore.firestore()
+          
+          // Ensure we have a player ID
+        
+          // Ensure we have an event ID
+          guard let gameID = game.id else {
+              print("🤬 ERROR: Could not get event ID.")
+              return false
+          }
+          
+          // Define the path to the player's events collection
+          let collectionString = "games/\(gameID)"
+          
+          do {
+              // Check if the player is already joined to the event
+              let document = try await db.collection(collectionString).document(gameID).getDocument()
+              
+              if document.exists {
+                  print("😎 Player is already joined to the event.")
+                  return true
+              } else {
+                  // Add the player to the event
+              try await db.collection(collectionString).document(gameID).setData(["joined": true], merge: true)
+                  print("😎 Player joined the event successfully!")
+                  return true
+              }
+          } catch {
+              print("🤬 ERROR: Could not join event. \(error.localizedDescription)")
+              return false
+          }
+      }
+    
+    
+    
+    
 //func saveImage(game: Game,photo: Photo,image: UIImage) async -> Bool {
 //        guard let gameId = game.id else {
 //            print("🤬 ERROR: Spot ID == nil")
