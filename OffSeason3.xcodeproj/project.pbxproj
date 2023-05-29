@@ -34,6 +34,9 @@
 		091C628B2A24E9C500AA5981 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C628A2A24E9C500AA5981 /* Game.swift */; };
 		091C62902A24EE3C00AA5981 /* Testadding data view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C628F2A24EE3C00AA5981 /* Testadding data view.swift */; };
 		091C62922A25061300AA5981 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62912A25061300AA5981 /* LocationViewModel.swift */; };
+		091C62942A25151D00AA5981 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62932A25151D00AA5981 /* Place.swift */; };
+		091C62962A25154000AA5981 /* PlaceLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62952A25154000AA5981 /* PlaceLookupView.swift */; };
+		091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62972A2515A600AA5981 /* PlaceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		091C628A2A24E9C500AA5981 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		091C628F2A24EE3C00AA5981 /* Testadding data view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testadding data view.swift"; sourceTree = "<group>"; };
 		091C62912A25061300AA5981 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		091C62932A25151D00AA5981 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		091C62952A25154000AA5981 /* PlaceLookupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceLookupView.swift; sourceTree = "<group>"; };
+		091C62972A2515A600AA5981 /* PlaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,7 @@
 		091C628C2A24EA5400AA5981 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				091C62952A25154000AA5981 /* PlaceLookupView.swift */,
 				091C62842A24E7AA00AA5981 /* EventDetailsView.swift */,
 				091C623D2A24DD1100AA5981 /* LoginView.swift */,
 				091C62822A24E40900AA5981 /* MapView .swift */,
@@ -184,6 +191,7 @@
 		091C628D2A24EA5D00AA5981 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				091C62932A25151D00AA5981 /* Place.swift */,
 				091C628A2A24E9C500AA5981 /* Game.swift */,
 			);
 			path = Models;
@@ -192,6 +200,7 @@
 		091C628E2A24EA6400AA5981 /* ViewModels  */ = {
 			isa = PBXGroup;
 			children = (
+				091C62972A2515A600AA5981 /* PlaceViewModel.swift */,
 				091C62882A24E90A00AA5981 /* GameViewModel.swift */,
 				091C62912A25061300AA5981 /* LocationViewModel.swift */,
 			);
@@ -349,10 +358,13 @@
 			files = (
 				091C62892A24E90A00AA5981 /* GameViewModel.swift in Sources */,
 				091C62902A24EE3C00AA5981 /* Testadding data view.swift in Sources */,
+				091C62962A25154000AA5981 /* PlaceLookupView.swift in Sources */,
+				091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */,
 				091C62852A24E7AA00AA5981 /* EventDetailsView.swift in Sources */,
 				091C628B2A24E9C500AA5981 /* Game.swift in Sources */,
 				091C62832A24E40900AA5981 /* MapView .swift in Sources */,
 				091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */,
+				091C62942A25151D00AA5981 /* Place.swift in Sources */,
 				091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */,
 				091C62922A25061300AA5981 /* LocationViewModel.swift in Sources */,
 			);

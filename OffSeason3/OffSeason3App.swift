@@ -30,6 +30,7 @@ struct Snacktacku_arApp: App {
 
     var body: some Scene {
         WindowGroup {
+//            PlaceLookupView(Game:Game())
             LoginView()
                 .environmentObject(gameVm)
                 .environmentObject(locationManager)

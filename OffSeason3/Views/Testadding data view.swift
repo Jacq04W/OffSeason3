@@ -10,10 +10,10 @@ import SwiftUI
 struct TestaddingDataView: View {
     @EnvironmentObject var gameVm : GameViewModel
     @State var game : Game
-    
+    @State private var showSearchPage = false
     @Environment (\.dismiss) private var dismiss
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ScrollView {
                 ZStack {
                     VStack{
@@ -26,6 +26,11 @@ struct TestaddingDataView: View {
                                        TextFields
                                                 .padding()
                                             
+                                            Button{
+                                                showSearchPage.toggle()
+                                            } label: {
+                                                Image(systemName: "magnifyingglass")
+                                            }
                                         
                                             
                                             
@@ -36,6 +41,9 @@ struct TestaddingDataView: View {
                 }
             }
         }
+        .sheet(isPresented: $showSearchPage, content: {
+            PlaceLookupView( game: $game)
+        })
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Save"){
