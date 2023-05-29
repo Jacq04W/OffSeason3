@@ -15,6 +15,7 @@ struct MapView: View {
     @FirestoreQuery(collectionPath: "games") var games: [Game]
     @Environment(\.dismiss) private var dismiss
      @State private var sheetIsPresented = false
+    @EnvironmentObject var locationVm : LocationManager
     var body: some View {
         NavigationStack {
             VStack{
@@ -27,6 +28,9 @@ struct MapView: View {
                     }
                 }
                 
+                
+                
+                Text("Location : \(locationVm.location?.coordinate.latitude ?? 0.0), \(locationVm.location?.coordinate.longitude ?? 0.0 ) ")
                 
                 
                  
@@ -79,6 +83,7 @@ struct MapView: View {
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
+            .environmentObject(LocationManager())
     }
 }
 
