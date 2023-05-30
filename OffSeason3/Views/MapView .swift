@@ -18,23 +18,28 @@ struct MapView: View {
     @Environment(\.dismiss) private var dismiss
      @State private var sheetIsPresented = false
     @EnvironmentObject var locationVm : LocationManager
+    @EnvironmentObject var mapVm : MapViewModel
+    @EnvironmentObject var gameVm : GameViewModel
+
     @State private var mapRegion = MKCoordinateRegion ()
     let regionSize = 500.0
 
-    
+
     
     var body: some View {
         NavigationStack {
             VStack{
-                List(games){game in
-                    NavigationLink{
-                        GameDetailsView(game: game)
-                    } label: {
-                        Text(game.name)
-
-                    }
-                }
-                
+//                List(games){game in
+//                    NavigationLink{
+//                        GameDetailsView(game: game)
+//                    } label: {
+//                        Text(game.name)
+//
+//                    }
+//                }
+//
+                mapLayer
+                    .ignoresSafeArea()
                 
                 
                 Text("Location : \(locationVm.location?.coordinate.latitude ?? 0.0), \(locationVm.location?.coordinate.longitude ?? 0.0 ) ")
@@ -55,7 +60,9 @@ struct MapView: View {
             //            .navigationTitle("Snack Spots")
             //            .navigationBarTitleDisplayMode(.inline)
             
-            
+    .sheet(item: $gameVm.selectedGame){game in
+        GameDetailsView(game: game)
+            }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button("Sign Out"){
@@ -91,6 +98,10 @@ struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
             .environmentObject(LocationManager())
+            .environmentObject(MapViewModel())
+            .environmentObject(GameViewModel())
+
+
     }
 }
 
@@ -117,4 +128,36 @@ private extension MapView {
     
 }
 
+    
+    
+    var mapLayer : some View{
+
+       Map(coordinateRegion: $mapVm.mapRegion,
+                       annotationItems: games,
+                       annotationContent: { location in
+                       MapAnnotation(coordinate: location.coordinate){
+                           // shows what pins are goiing to be on map ↓
+                               LocationMapPin()
+                           // how to make something bigger if its toggled↓
+                               .scaleEffect(mapVm.gameLocation == location ? 1 : 0.7)
+                               .onTapGesture {
+                                   // how to make the pins touchable and show the location that you tapped ↓
+                                   gameVm.selectedGame = location
+                                  mapVm.showNextGame(location)
+                                   
+                            }
+                       }
+                   })
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

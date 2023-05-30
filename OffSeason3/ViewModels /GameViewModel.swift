@@ -14,6 +14,8 @@ import FirebaseStorage
 @MainActor
 class GameViewModel: ObservableObject {
     @Published var game = Game()
+    @Published var selectedGame: Game? = nil
+
     func saveGame(game:Game) async -> Bool{
         let db = Firestore.firestore()
         if let id = game.id { // update the data that alrsady here
