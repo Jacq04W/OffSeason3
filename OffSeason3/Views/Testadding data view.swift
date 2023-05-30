@@ -51,11 +51,11 @@ struct TestaddingDataView: View {
                             TextFields
                                 .padding()
                                         }
-                            mapLayer
-                                .onChange(of:game){ _ in
-                                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                                    mapRegion.center = game.coordinate
-                                }
+//                            mapLayer
+//                                .onChange(of:game){ _ in
+//                                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+//                                    mapRegion.center = game.coordinate
+//                                }
                                 
     
                         }
@@ -84,22 +84,15 @@ locationVm.location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 
             PlaceLookupView(game: $game)
         })
         .toolbar{
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Save"){
-                    Task{
-                        let success = await
-                        gameVm.saveGame(game: game)
-                        if success {
-                            dismiss()
-                        }
-                        else {
-                            print("🤬Error: Couldnt save Game")
-                        }
-                    }
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Button("Back"){
+                dismiss()
                 }
             }
-            
-            
+            ToolbarItemGroup(placement: .automatic) {
+                saveButton
+                
+            }
         }
         
     }
@@ -117,7 +110,7 @@ struct Testadding_data_view_Previews: PreviewProvider {
 
 
 private extension TestaddingDataView {
-    
+    // new code⚡️
     var mapLayer : some View {
         Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
             annotation in
@@ -125,8 +118,10 @@ private extension TestaddingDataView {
         }.frame(height: 250)
             .cornerRadius(20)
     }
-
     
+    
+
+    // new code⚡️
     var TextFields : some View  {
         VStack{
 TextField("Event name", text: $game.name )
@@ -202,7 +197,8 @@ TextField("Address", text: $game.address)
     
     
     
-    
+    // new code⚡️
+
     
     var coverPhoto : some View {
         Image ("temp1")
@@ -225,4 +221,58 @@ TextField("Address", text: $game.address)
                     .cornerRadius(20))
            
     }
+
+    
+    
+    // new code⚡️
+    var saveButton : some View {
+        Button("Save"){
+            Task{
+                let success = await
+                gameVm.saveGame(game: game)
+                if success {
+                    dismiss()
+                }
+                else {
+                    print("🤬Error: Couldnt save Game")
+                }
+            }
+        }
+    }
+    
+    // new code⚡️
+
+    // new code⚡️
+   
+    // new code⚡️
+   
+    // new code⚡️
+    // new code⚡️
+
+    // new code⚡️
+
+    // new code⚡️
+
+    // new code⚡️
+
+    // new code⚡️
+
+    // new code⚡️
+
+    // new code⚡️
+
+    // new code⚡️
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

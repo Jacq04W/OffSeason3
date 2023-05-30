@@ -13,73 +13,98 @@ import CoreLocation
 
 
 struct MapView: View {
-    // how to put the collection of data from firebase into a variable
+    // data
     @FirestoreQuery(collectionPath: "games") var games: [Game]
-    @Environment(\.dismiss) private var dismiss
-     @State private var sheetIsPresented = false
+    
+    // view models
     @EnvironmentObject var locationVm : LocationManager
     @EnvironmentObject var mapVm : MapViewModel
     @EnvironmentObject var gameVm : GameViewModel
+    @EnvironmentObject private var weatherViewModel: WeatherViewModel
 
+    
+// maps
     @State private var mapRegion = MKCoordinateRegion ()
     let regionSize = 500.0
 
+    // showing sheets
+@Environment(\.dismiss) private var dismiss
+@State var presentnotificationSheet = false
+    @State var presentWeatherSheet = false
+    @State var sheetIsPresented = false
 
+    @State var presentHelpSheet = false
+    @State var presentfilterSheet = false
+    @State var presentCreateSheet = false
     
     var body: some View {
         NavigationStack {
-            VStack{
+            ZStack{
                 mapLayer
                     .ignoresSafeArea()
 
                 
-                Text("Location : \(locationVm.location?.coordinate.latitude ?? 0.0), \(locationVm.location?.coordinate.longitude ?? 0.0 ) ")
+        
                 
                 
                  
+            }.toolbar{
+                ToolbarItemGroup(placement: .bottomBar) {
+                    VStack {
+                        HStack(spacing: 12){
+                            FilterButton
+                            Spacer()
+                            CreateButton
+                                .offset(x:20,y:-20)
+                        }.padding(.bottom,30)
+                    }
+                }
+                ToolbarItemGroup(placement: .cancellationAction) {
+                    VStack{
+                        NotificationButton
+                        HelpButton
+                    }
+                    .padding(.top,60)
+                    
+                }
+                ToolbarItemGroup(placement: .primaryAction) {
+                    HStack(spacing: 2){
+                        ActivegamesButton
+                        WeatherButton
+                        
+                    }
+                }
             }
-            //            List(spots){spot in
-            //                NavigationLink{
-            //                    SpotDetailView(spot: spot)
-            //                }
-            //            label:{
-            //                Text(spot.name)
-            //                    .font(.title2)
-            //            }
-            //            }
-            //            .listStyle(.plain)
-            //            .navigationTitle("Snack Spots")
-            //            .navigationBarTitleDisplayMode(.inline)
             
     .sheet(item: $gameVm.selectedGame){game in
         GameDetailsView(game: game)
             .presentationDetents([.fraction(0.60)])
             }
-            .toolbar{
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button("Sign Out"){
-                        do {
-                            try Auth.auth().signOut()
-                            print("🪵⏩ log out successful ")
-                            dismiss()
-                        } catch{
-                            print("🤬 Error: Could sign out")
-                        }
-                    }
-                }
-                ToolbarItemGroup(placement: .bottomBar){
-                    Spacer()
-                CreateButton
-                    
-                    
-                }
-            }
+        
             .sheet(isPresented: $sheetIsPresented) {
                 NavigationStack{
                     TestaddingDataView(game: Game())
                     
                 }
             }
+            .sheet(isPresented: self.$presentfilterSheet){
+                filterspage()
+                    .presentationDetents([.fraction(0.09)])
+              }
+            .sheet(isPresented: self.$presentHelpSheet){
+              HelpPage()
+                  
+              }
+            
+            .sheet(isPresented: self.$presentWeatherSheet){
+             WeatherPage()
+                   
+            }
+            .sheet(isPresented: self.$presentnotificationSheet){
+               NotificationPage()
+                
+            }
+
         }
 //
         
@@ -92,6 +117,8 @@ struct ListView_Previews: PreviewProvider {
             .environmentObject(LocationManager())
             .environmentObject(MapViewModel())
             .environmentObject(GameViewModel())
+            .environmentObject(WeatherViewModel())
+
 
 
     }
@@ -100,7 +127,42 @@ struct ListView_Previews: PreviewProvider {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 private extension MapView {
+    // new code ⚡️
     var CreateButton: some View {
         Button{
             sheetIsPresented.toggle()
@@ -110,18 +172,9 @@ private extension MapView {
                         .shadow(color: Color.black.opacity (0.4), radius: 20,
                                  x: 0, y: 15)
                 }
-//                    .offset(y:-25
-//                    )
-            
-        
-        
-    
-    
-    
 }
 
-    
-    
+    // new code ⚡️
     var mapLayer : some View{
 
        Map(coordinateRegion: $mapVm.mapRegion,
@@ -145,7 +198,109 @@ private extension MapView {
         
         
     }
+   
+    // new code ⚡️
+    var NotificationButton:  some View {
+        Button(action: { self.presentnotificationSheet.toggle() }) {
+            Image(systemName: "bell.circle.fill").font(.system(size: 35))
+                .foregroundColor(.blue)
+                .shadow(color: Color.black.opacity (0.4), radius: 20,
+                         x: 0, y: 15)
+            
+        }
+        
+    }
+    // new code ⚡️
+    var ActivegamesButton: some View {
+        Button{
+            
+        }label: {
+            HStack {
+                Image(systemName: "figure.run.circle.fill")
+                Text("Active:") .font(.title3)
+                    .bold()
+//                Spacer()
+
+                Text("4")
+
+            }
+        }.buttonStyle(.plain)
+            .padding()
+            .frame(width: 160,height: 40)
+            .background(.thinMaterial).cornerRadius(90)
+            .shadow(color: Color.black.opacity (0.4), radius: 20,
+                     x: 0, y: 15)
+    }
     
+    // new code ⚡️
+    var WeatherButton: some View {
+        Button{
+            self.presentWeatherSheet.toggle()
+        }label: {
+            HStack{
+                Image(systemName: "cloud")
+                Text(weatherViewModel.currentTemperature.dropLast()).font(.system(size: 17))
+                    .foregroundColor(.black)
+            }.foregroundColor(.black)
+                .buttonStyle(.plain)
+                .padding()
+                .frame(width: .infinity, height: 40)
+                .background(.thinMaterial).cornerRadius(90)
+                .shadow(color: Color.black.opacity (0.4), radius: 20,
+                         x: 0, y: 15)
+        }
+//        Text(weatherViewModel.currentTemperature.dropLast())
+//            .font(.system(size:72))
+//            .fontWeight(.light)
+        
+    }
+        
+    // new code ⚡️
+    var HelpButton: some View {
+        Button{
+            self.presentHelpSheet.toggle()
+        }label: {
+            ZStack{
+                Circle()
+                    .frame(width: 50, height: 45)
+                    .foregroundColor(.red)
+
+                Image(systemName: "cross.case").font(.system(size: 20))
+//                    .fill(.ultraThinMaterial)
+                    .foregroundColor(.white)
+            }
+             
+        }.shadow(color: Color.black.opacity (0.4), radius: 20,
+                 x: 0, y: 15)
+    }
+    
+    // new code ⚡️
+    var FilterButton: some View {
+        Button{
+            self.presentfilterSheet.toggle()
+        }label: {
+            Image(systemName: "line.3.horizontal.decrease.circle.fill").font(.system(size: 35)).foregroundColor(.black)
+        }
+    }
+                // new code ⚡️
+    var CraftButton: some View {
+        Button{
+                    self.presentCreateSheet.toggle()
+                }label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 50)).foregroundColor(.red)
+                        .shadow(color: Color.black.opacity (0.4), radius: 20,
+                                    x: 0, y: 15)
+                }
+//                    .offset(y:-25
+//                    )
+            
+        
+        
+    
+    
+    
+}
     
     
     

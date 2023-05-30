@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		090090DD2A25362E00DB4D40 /* MapsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090DC2A25362E00DB4D40 /* MapsViewModel.swift */; };
 		090090E22A25377100DB4D40 /* LocationMapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E12A25377100DB4D40 /* LocationMapPin.swift */; };
+		090090E42A2660CD00DB4D40 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E32A2660CD00DB4D40 /* WeatherViewModel.swift */; };
+		090090E62A2663C500DB4D40 /* filterspage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E52A2663C500DB4D40 /* filterspage.swift */; };
+		090090E82A2663F200DB4D40 /* HelpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E72A2663F200DB4D40 /* HelpPage.swift */; };
+		090090EA2A2663FA00DB4D40 /* WeatherPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E92A2663FA00DB4D40 /* WeatherPage.swift */; };
+		090090EC2A26640000DB4D40 /* NotificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090EB2A26640000DB4D40 /* NotificationPage.swift */; };
 		091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C623B2A24DD1100AA5981 /* OffSeason3App.swift */; };
 		091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C623D2A24DD1100AA5981 /* LoginView.swift */; };
 		091C62402A24DD1200AA5981 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091C623F2A24DD1200AA5981 /* Assets.xcassets */; };
@@ -61,6 +66,11 @@
 /* Begin PBXFileReference section */
 		090090DC2A25362E00DB4D40 /* MapsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewModel.swift; sourceTree = "<group>"; };
 		090090E12A25377100DB4D40 /* LocationMapPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapPin.swift; sourceTree = "<group>"; };
+		090090E32A2660CD00DB4D40 /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		090090E52A2663C500DB4D40 /* filterspage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filterspage.swift; sourceTree = "<group>"; };
+		090090E72A2663F200DB4D40 /* HelpPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPage.swift; sourceTree = "<group>"; };
+		090090E92A2663FA00DB4D40 /* WeatherPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherPage.swift; sourceTree = "<group>"; };
+		090090EB2A26640000DB4D40 /* NotificationPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPage.swift; sourceTree = "<group>"; };
 		091C62382A24DD1100AA5981 /* OffSeason3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OffSeason3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		091C623B2A24DD1100AA5981 /* OffSeason3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffSeason3App.swift; sourceTree = "<group>"; };
 		091C623D2A24DD1100AA5981 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -133,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				091C62652A24DD9F00AA5981 /* GoogleService-Info.plist */,
+				091C623B2A24DD1100AA5981 /* OffSeason3App.swift */,
 				091C623A2A24DD1100AA5981 /* OffSeason3 */,
 				091C624B2A24DD1200AA5981 /* OffSeason3Tests */,
 				091C62552A24DD1200AA5981 /* OffSeason3UITests */,
@@ -153,7 +164,6 @@
 		091C623A2A24DD1100AA5981 /* OffSeason3 */ = {
 			isa = PBXGroup;
 			children = (
-				091C623B2A24DD1100AA5981 /* OffSeason3App.swift */,
 				090090E02A25375A00DB4D40 /* Components */,
 				091C628C2A24EA5400AA5981 /* Views */,
 				091C628E2A24EA6400AA5981 /* ViewModels  */,
@@ -192,11 +202,15 @@
 		091C628C2A24EA5400AA5981 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				091C62952A25154000AA5981 /* PlaceLookupView.swift */,
-				091C62842A24E7AA00AA5981 /* GameDetailsView.swift */,
 				091C623D2A24DD1100AA5981 /* LoginView.swift */,
 				091C62822A24E40900AA5981 /* MapView .swift */,
 				091C628F2A24EE3C00AA5981 /* Testadding data view.swift */,
+				091C62842A24E7AA00AA5981 /* GameDetailsView.swift */,
+				091C62952A25154000AA5981 /* PlaceLookupView.swift */,
+				090090E52A2663C500DB4D40 /* filterspage.swift */,
+				090090E72A2663F200DB4D40 /* HelpPage.swift */,
+				090090EB2A26640000DB4D40 /* NotificationPage.swift */,
+				090090E92A2663FA00DB4D40 /* WeatherPage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +230,7 @@
 				091C62972A2515A600AA5981 /* PlaceViewModel.swift */,
 				090090DC2A25362E00DB4D40 /* MapsViewModel.swift */,
 				091C62882A24E90A00AA5981 /* GameViewModel.swift */,
+				090090E32A2660CD00DB4D40 /* WeatherViewModel.swift */,
 				091C62912A25061300AA5981 /* LocationViewModel.swift */,
 			);
 			path = "ViewModels ";
@@ -373,8 +388,11 @@
 				090090E22A25377100DB4D40 /* LocationMapPin.swift in Sources */,
 				091C62892A24E90A00AA5981 /* GameViewModel.swift in Sources */,
 				091C62902A24EE3C00AA5981 /* Testadding data view.swift in Sources */,
+				090090EC2A26640000DB4D40 /* NotificationPage.swift in Sources */,
+				090090E42A2660CD00DB4D40 /* WeatherViewModel.swift in Sources */,
 				091C62962A25154000AA5981 /* PlaceLookupView.swift in Sources */,
 				090090DD2A25362E00DB4D40 /* MapsViewModel.swift in Sources */,
+				090090EA2A2663FA00DB4D40 /* WeatherPage.swift in Sources */,
 				091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */,
 				091C62852A24E7AA00AA5981 /* GameDetailsView.swift in Sources */,
 				091C628B2A24E9C500AA5981 /* Game.swift in Sources */,
@@ -382,7 +400,9 @@
 				091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */,
 				091C62942A25151D00AA5981 /* Place.swift in Sources */,
 				091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */,
+				090090E62A2663C500DB4D40 /* filterspage.swift in Sources */,
 				091C62922A25061300AA5981 /* LocationViewModel.swift in Sources */,
+				090090E82A2663F200DB4D40 /* HelpPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
