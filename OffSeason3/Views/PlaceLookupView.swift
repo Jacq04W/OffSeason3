@@ -26,7 +26,7 @@ struct PlaceLookupView: View {
                         .font(.callout)
                 }.onTapGesture {
                     // allows you to click on the list and upddate the data
-                    game.name = place.name
+                    game.locationName = place.name
                     game.address = place.address
                     game.latitude = place.latitude
                     game.longitude = place.longitude

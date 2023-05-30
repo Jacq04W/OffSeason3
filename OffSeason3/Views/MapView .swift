@@ -29,18 +29,9 @@ struct MapView: View {
     var body: some View {
         NavigationStack {
             VStack{
-//                List(games){game in
-//                    NavigationLink{
-//                        GameDetailsView(game: game)
-//                    } label: {
-//                        Text(game.name)
-//
-//                    }
-//                }
-//
                 mapLayer
                     .ignoresSafeArea()
-                
+
                 
                 Text("Location : \(locationVm.location?.coordinate.latitude ?? 0.0), \(locationVm.location?.coordinate.longitude ?? 0.0 ) ")
                 
@@ -62,6 +53,7 @@ struct MapView: View {
             
     .sheet(item: $gameVm.selectedGame){game in
         GameDetailsView(game: game)
+            .presentationDetents([.fraction(0.60)])
             }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
@@ -133,9 +125,10 @@ private extension MapView {
     var mapLayer : some View{
 
        Map(coordinateRegion: $mapVm.mapRegion,
-                       annotationItems: games,
-                       annotationContent: { location in
-                       MapAnnotation(coordinate: location.coordinate){
+           showsUserLocation: true,
+           annotationItems: games,
+           annotationContent: { location in
+           MapAnnotation(coordinate: location.coordinate){
                            // shows what pins are goiing to be on map ↓
                                LocationMapPin()
                            // how to make something bigger if its toggled↓

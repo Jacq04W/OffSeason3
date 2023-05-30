@@ -67,10 +67,9 @@ struct TestaddingDataView: View {
         .onAppear {
             if game.id != nil { // If we have a spot, center map on the spot
                 mapRegion = MKCoordinateRegion (center: game.coordinate,
-                                                latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+                                                latitudinalMeters: regionSize,
+                                                longitudinalMeters: regionSize)
             } else {
-                
-                
                 Task{
     mapRegion = MKCoordinateRegion(center:
 locationVm.location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize,
@@ -80,10 +79,9 @@ locationVm.location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: 
             annotations = [Annotation (name: game.name, address: game.address,
             coordinate: game.coordinate)]
             
-            
         }
         .sheet(isPresented: $showSearchPage, content: {
-            PlaceLookupView( game: $game)
+            PlaceLookupView(game: $game)
         })
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {

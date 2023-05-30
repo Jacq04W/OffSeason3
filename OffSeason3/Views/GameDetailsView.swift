@@ -41,7 +41,7 @@ struct GameDetailsView: View {
         ZStack {
         ScrollView{
                     VStack {
-                        eventName
+                        gameName
                         VStack(alignment:.leading){
                             locationName
                             startDate
@@ -65,7 +65,7 @@ struct GameDetailsView: View {
                                     HStack{
                                         Image("temp1")
                                             .resizable()
-                                            .scaledToFill ()
+                                        .scaledToFill ()
                                             .frame(width: 120, height:120)
                                             .clipped()
                                         
@@ -353,7 +353,7 @@ private extension GameDetailsView {
     }
     
     // new code⚡️
-    var eventName : some View {
+    var gameName : some View {
         Text(game.name)
             .lineLimit(1)
             .bold()
