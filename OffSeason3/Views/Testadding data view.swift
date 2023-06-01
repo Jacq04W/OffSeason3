@@ -35,7 +35,10 @@ struct TestaddingDataView: View {
 @State private var mapRegion = MKCoordinateRegion ()
     let regionSize = 500.0
     @State private var showMap = false
-
+    
+    // ImagePicker
+    @State var shouldShowImagePicker = false
+    @State var image: UIImage?
     var body: some View {
         NavigationStack{
             ScrollView {
@@ -63,7 +66,8 @@ struct TestaddingDataView: View {
                     }
                 }
             }
-        }
+        } .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
+            ImagePicker(image: $image)}
         .onAppear {
             if game.id != nil { // If we have a spot, center map on the spot
                 mapRegion = MKCoordinateRegion (center: game.coordinate,
@@ -120,41 +124,41 @@ private extension TestaddingDataView {
     }
     
     
-
+    
     // new code⚡️
     var TextFields : some View  {
         VStack{
-TextField("Event name", text: $game.name )
+            TextField("Event name", text: $game.name )
                 .textFieldStyle (.roundedBorder)
                 .overlay {
-                RoundedRectangle (cornerRadius: 5)
-                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-            }
-TextField("Summary",text:$game.summary)
+                    RoundedRectangle (cornerRadius: 5)
+                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                }
+            TextField("Summary",text:$game.summary)
                 .textFieldStyle (.roundedBorder)
                 .overlay {
-                RoundedRectangle (cornerRadius: 5)
-                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-            }
-TextField("Description", text: $game.description)
-.textFieldStyle (.roundedBorder)
-.overlay {
-RoundedRectangle (cornerRadius: 5)
-.stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-}
+                    RoundedRectangle (cornerRadius: 5)
+                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                }
+            TextField("Description", text: $game.description)
+                .textFieldStyle (.roundedBorder)
+                .overlay {
+                    RoundedRectangle (cornerRadius: 5)
+                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                }
             
             
             Button("Location"){
-showSearchPage.toggle()
-    showMap.toggle()
-
-                }.frame(width: 360,height:40)
+                showSearchPage.toggle()
+                showMap.toggle()
+                
+            }.frame(width: 360,height:40)
                 .textFieldStyle (.roundedBorder)
-                    .overlay {
+                .overlay {
                     RoundedRectangle (cornerRadius: 5)
-                    .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
                 }
-
+            
             
             
             if !game.locationName.isEmpty && !game.address.isEmpty {
@@ -169,23 +173,23 @@ showSearchPage.toggle()
                 
                 
                 Text("Confirm your location is correct")
-                          .bold()
-                          .font(.title2)
+                    .bold()
+                    .font(.title2)
                 Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
                     annotation in
                     MapMarker(coordinate: annotation.coordinate)
                 }.frame(height: 250)
                 
             }
-         
             
-TextField("Address", text: $game.address)
-.autocorrectionDisabled()
-                            .textFieldStyle (.roundedBorder)
-                        .overlay {
-                                                RoundedRectangle (cornerRadius: 5)
-                                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-                                            }
+            
+            TextField("Address", text: $game.address)
+                .autocorrectionDisabled()
+                .textFieldStyle (.roundedBorder)
+                .overlay {
+                    RoundedRectangle (cornerRadius: 5)
+                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                }
         }
     }
     
@@ -198,7 +202,7 @@ TextField("Address", text: $game.address)
     
     
     // new code⚡️
-
+    
     
     var coverPhoto : some View {
         Image ("temp1")
@@ -209,7 +213,7 @@ TextField("Address", text: $game.address)
             .clipped()
             .overlay(
                 HStack{
-                    Button{}
+                    Button{shouldShowImagePicker.toggle()}
                 label:{
                     Image(systemName: "photo")
                     Text("Cover Photos")
@@ -219,9 +223,11 @@ TextField("Address", text: $game.address)
                     .padding()
                     .background(.orange)
                     .cornerRadius(20))
-           
+        
     }
-
+       
+       
+    
     
     
     // new code⚡️

@@ -29,6 +29,7 @@ struct GameDetailsView: View {
 //
     // imoport data
     @State var game: Game
+    
     @EnvironmentObject var gameVm : GameViewModel
     @FirestoreQuery(collectionPath: "games") var games : [Game]
     

@@ -9,6 +9,7 @@
 import SwiftUI
 import Firebase
 import FirebaseCore
+import WeatherKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_application: UIApplication,
@@ -24,6 +25,9 @@ struct Snacktacku_arApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     init(){
         FirebaseApp.configure()
+       
+        UITabBar.appearance().backgroundColor = UIColor( Color(.black))
+        
     }
 @StateObject var locationManager = LocationManager()
 @StateObject var gameVm = GameViewModel()

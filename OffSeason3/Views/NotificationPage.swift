@@ -14,11 +14,13 @@ struct NotificationPage: View {
                         VStack {
                            
                         Spacer()
-                            Button {
-                            } label: {
+                           
                                 List {
                                     HStack {
                                        
+                                        Button {
+                                        } label: {
+                                        
                                         VStack(alignment: .leading) {
                                             //Game name
                                            

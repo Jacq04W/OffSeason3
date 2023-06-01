@@ -105,7 +105,7 @@ struct LoginView: View {
             }
         }
         .fullScreenCover(isPresented: $presentSheet){
-MapView()
+            MapView()
             
         }
         

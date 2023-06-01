@@ -10,10 +10,12 @@ import Firebase
 import FirebaseFirestoreSwift
 import MapKit
 import CoreLocation
+import WeatherKit
 
 
 struct MapView: View {
     // data
+   
     @FirestoreQuery(collectionPath: "games") var games: [Game]
     
     // view models
@@ -22,6 +24,10 @@ struct MapView: View {
     @EnvironmentObject var gameVm : GameViewModel
     @EnvironmentObject private var weatherViewModel: WeatherViewModel
 
+    
+    
+    
+    
     
 // maps
     @State private var mapRegion = MKCoordinateRegion ()
@@ -60,11 +66,13 @@ struct MapView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .cancellationAction) {
-                    VStack{
+                    
+                   
                         NotificationButton
-                        HelpButton
-                    }
-                    .padding(.top,60)
+                      
+                    
+                    HelpButton
+                    
                     
                 }
                 ToolbarItemGroup(placement: .primaryAction) {
@@ -92,7 +100,7 @@ struct MapView: View {
                     .presentationDetents([.fraction(0.09)])
               }
             .sheet(isPresented: self.$presentHelpSheet){
-              HelpPage()
+          HelpPage()
                   
               }
             
