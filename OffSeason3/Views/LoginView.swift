@@ -17,7 +17,7 @@ struct LoginView: View {
     @State private var buttonsDisabled = false
     @FocusState private var focusFiel : Field?
 
-    
+    var player: Player
 
     enum Field{
         case email,password
@@ -30,7 +30,7 @@ struct LoginView: View {
                 .scaledToFit()
                 .padding()
             Group{
-                TextField("Email", text: $email)
+                TextField("Email", text:$email)
                     .keyboardType (.emailAddress)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
@@ -159,6 +159,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(player:Player())
     }
 }

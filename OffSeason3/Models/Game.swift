@@ -24,12 +24,18 @@ struct Game: Identifiable,Codable,Equatable {
     var summary = ""
     var description = ""
     var startDate = Date()
+//    var PostedON = Date()
+
     var startTime = ""
     var endTime = ""
     var phoneNumber = ""
     var latitude = 0.0
     var longitude = 0.0
-//    var participants: [Player] = []
+//    var participants: [Player]
+
+    
+//    var participants = [Player]
+//    var participants: [Player ] = []
     // this refer to here whenever we need a coordinate to refer to
     var coordinate: CLLocationCoordinate2D{
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -49,7 +55,11 @@ struct Game: Identifiable,Codable,Equatable {
             "startTime": startTime,
             "endTime": endTime,
             "phoneNumber": phoneNumber,
-            "summary": summary
+            "summary": summary,
+//            "postedOn": Timestamp(date: Date())
+            
+//            "participants" : participants
+            
         ]
     }
 }

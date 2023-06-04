@@ -29,7 +29,10 @@ struct GameDetailsView: View {
 //
     // imoport data
     @State var game: Game
-    
+    @State var player: Player
+
+    @EnvironmentObject var playerVm : PlayerViewModel
+
     @EnvironmentObject var gameVm : GameViewModel
     @FirestoreQuery(collectionPath: "games") var games : [Game]
     
@@ -141,10 +144,7 @@ struct GameDetailsView: View {
                             }
                     }
                     
-                    
-                    
-                   
-                        
+    
                 }
                 //                .padding()
               
@@ -153,34 +153,15 @@ struct GameDetailsView: View {
                     VStack {
                     
                     Spacer()
-                    Button{
-                        Task{
-                    let success = await gameVm.joinEvent(game: game)
-                            if success {
-                                dismiss()
-                            } else {
-                                print("🤬 Error: Saving spot")
-                            }
-                        }
-                        
-                        
-                        
-                        
-                        
-                    }
-                label:{
-                    Text("Join Game")
-                        .bold()
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                        .frame(width: 350, height: 70)
-                        .background(.orange)
-                        .clipShape(Capsule())
-                    
-                }
+                       joinGame
                 }
             }
-            }
+        }
+             //   .onAppear{
+//            // if crash ch8.12 @ 7min
+//    $games.path = "games/\(game.id ?? "")/players"
+//            print("The games Path \(games.path)")
+//        }
             
        }
     }
@@ -189,10 +170,12 @@ struct GameDetailsView: View {
 
     struct LaFitness: PreviewProvider {
         static var previews: some View {
-            GameDetailsView(game: Game( name: "Test Run", hostName: "Mike.F", locationName: "LA Fitness", address: "660 Woodward ", category: "BAsketball", summary: "MY kickback come turnuo", description: "This is a pickup game. we are playing 4v4 so make sure yiu have your sqaud with you or find other people to play with spns[dib[sehin]ofewinf]oief]oiwehnf]owhenf]oihwnefoije'ofje]ofj]oefj]eoifh]oeifj[owefjho[weijio]ewhjoiefhjehiw", startDate: Date(), startTime: "12.pm", endTime: "1am`", phoneNumber: "313-472-3545", latitude: 0.0, longitude: 0.0))
+            GameDetailsView(game: Game( name: "Test Run", hostName: "Mike.F", locationName: "LA Fitness", address: "660 Woodward ", category: "BAsketball", summary: "MY kickback come turnuo", description: "This is a pickup game. we are playing 4v4 so make sure yiu have your sqaud with you or find other people to play with spns[dib[sehin]ofewinf]oief]oiwehnf]owhenf]oihwnefoije'ofje]ofj]oefj]eoifh]oeifj[owefjho[weijio]ewhjoiefhjehiw", startDate: Date(), startTime: "12.pm", endTime: "1am`", phoneNumber: "313-472-3545", latitude: 0.0, longitude: 0.0), player: Player())
 //                .environmentObject(LocationManager())
 //                .environmentObject(MapViewModel())
                 .environmentObject(GameViewModel())
+                .environmentObject(PlayerViewModel())
+
 //                .environmentObject(WeatherViewModel())
         }
     }
@@ -362,7 +345,29 @@ private extension GameDetailsView {
     }
     
     // new code⚡️
-
+    var joinGame : some View {
+        Button{
+            Task{
+                let success = await playerVm.addPlayer(game: game, player: player)
+                if success {
+                    dismiss()
+                } else {
+                    print("🤬 Error: Saving spot")
+                }
+            }
+            
+        }
+    label:{
+        Text("Join Game")
+            .bold()
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .frame(width: 350, height: 70)
+            .background(.orange)
+            .clipShape(Capsule())
+        
+    }
+    }
     
     // new code⚡️
 

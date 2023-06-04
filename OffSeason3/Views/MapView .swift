@@ -15,7 +15,6 @@ import WeatherKit
 
 struct MapView: View {
     // data
-   
     @FirestoreQuery(collectionPath: "games") var games: [Game]
     
     // view models
@@ -24,11 +23,6 @@ struct MapView: View {
     @EnvironmentObject var gameVm : GameViewModel
     @EnvironmentObject private var weatherViewModel: WeatherViewModel
 
-    
-    
-    
-    
-    
 // maps
     @State private var mapRegion = MKCoordinateRegion ()
     let regionSize = 500.0
@@ -48,11 +42,6 @@ struct MapView: View {
             ZStack{
                 mapLayer
                     .ignoresSafeArea()
-
-                
-        
-                
-                
                  
             }.toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
@@ -85,7 +74,7 @@ struct MapView: View {
             }
             
     .sheet(item: $gameVm.selectedGame){game in
-        GameDetailsView(game: game)
+        GameDetailsView(game: game, player: Player())
             .presentationDetents([.fraction(0.60)])
             }
         

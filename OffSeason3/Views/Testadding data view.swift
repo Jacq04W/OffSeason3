@@ -37,6 +37,7 @@ struct TestaddingDataView: View {
     @State private var showMap = false
     
     // ImagePicker
+    @State private var selectedPhoto: PhotosPickerItem?
     @State var shouldShowImagePicker = false
     @State var image: UIImage?
     var body: some View {
@@ -72,7 +73,7 @@ struct TestaddingDataView: View {
             if game.id != nil { // If we have a spot, center map on the spot
                 mapRegion = MKCoordinateRegion (center: game.coordinate,
                                                 latitudinalMeters: regionSize,
-                                                longitudinalMeters: regionSize)
+                                             longitudinalMeters: regionSize)
             } else {
                 Task{
     mapRegion = MKCoordinateRegion(center:

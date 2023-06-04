@@ -47,14 +47,17 @@ class GameViewModel: ObservableObject {
     
     
     
-    func joinEvent( game: Game) async -> Bool {
+    func joinEvent(player:Player, game: Game) async -> Bool {
           let db = Firestore.firestore()
           
           // Ensure we have a player ID
-        
+        guard let playerID = player.id else {
+            print("🤬 ERROR: Could not get player ID.")
+            return false
+        }
           // Ensure we have an event ID
           guard let gameID = game.id else {
-              print("🤬 ERROR: Could not get event ID.")
+              print("🤬 ERROR: Could not get game ID.")
               return false
           }
           
@@ -62,6 +65,8 @@ class GameViewModel: ObservableObject {
           let collectionString = "games/\(gameID)"
           
           do {
+              
+                 
               // Check if the player is already joined to the event
               let document = try await db.collection(collectionString).document(gameID).getDocument()
               
