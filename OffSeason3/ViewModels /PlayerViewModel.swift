@@ -12,9 +12,7 @@ import FirebaseStorage
 
 
 class PlayerViewModel: ObservableObject{
-    @Published var game = Game()
     @Published var player = Player()
-    @Published var selectedGame: Game? = nil
 
     func addPlayer(game:Game,player:Player) async -> Bool{
         let db = Firestore.firestore()
@@ -22,12 +20,12 @@ class PlayerViewModel: ObservableObject{
             print("Error: Game ID == Nil")
             return false
         }
-        let collectionString = "games/\(game.id)/players"
+        let collectionString = "games/\(game.id ?? "")/players"
         
         
         if let id = player.id { // update the data that alrsady here
         do {
-            try await db.collection(collectionString).document(id).setData (player.dictionary)
+        try await db.collection(collectionString).document(id).setData (player.dictionary)
         print ("😎 Player Joined successfully!")
         return true
         } catch {
@@ -43,7 +41,7 @@ class PlayerViewModel: ObservableObject{
 //            // this is to make sure we are updating the the 'spot' on xcode when a new value is inputed, so thay we have a id before its in fb
 //                self.player  = player
 //                self.player.id = documentRef.documentID
-                print("😎 Data added succesfully ")
+                print("😎 Player Joined successfullysuccesfully ")
                 return true
             } catch{
                 print("🤬Error: could not add data \(error.localizedDescription)")
