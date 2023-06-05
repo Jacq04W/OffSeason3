@@ -46,6 +46,10 @@
 		091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62972A2515A600AA5981 /* PlaceViewModel.swift */; };
 		0931D8232A2D06B500780558 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931D8222A2D06B500780558 /* PlayerViewModel.swift */; };
 		09C2E3E72A29348E0099FC03 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2E3E62A29348E0099FC03 /* Player.swift */; };
+		6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */; };
+		6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
+		6C5D26C12A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
+		6C5D26C22A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
 		7864CD172A26DFD700251105 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7864CD162A26DFD700251105 /* ContentView.swift */; };
 		7864CD192A26E0A700251105 /* ExplorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7864CD182A26E0A700251105 /* ExplorePage.swift */; };
 		7864CD1B2A26E11800251105 /* Mygames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7864CD1A2A26E11800251105 /* Mygames.swift */; };
@@ -101,6 +105,9 @@
 		091C62972A2515A600AA5981 /* PlaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		0931D8222A2D06B500780558 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		09C2E3E62A29348E0099FC03 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
+		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
+		6C5D26C32A2E760C00951E79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7864CD152A26CD8E00251105 /* OffSeason3.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OffSeason3.entitlements; sourceTree = "<group>"; };
 		7864CD162A26DFD700251105 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7864CD182A26E0A700251105 /* ExplorePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePage.swift; sourceTree = "<group>"; };
@@ -181,6 +188,7 @@
 		091C623A2A24DD1100AA5981 /* OffSeason3 */ = {
 			isa = PBXGroup;
 			children = (
+				6C5D26C32A2E760C00951E79 /* Info.plist */,
 				7864CD152A26CD8E00251105 /* OffSeason3.entitlements */,
 				090090E02A25375A00DB4D40 /* Components */,
 				091C628C2A24EA5400AA5981 /* Views */,
@@ -235,6 +243,8 @@
 				090090E72A2663F200DB4D40 /* HelpPage.swift */,
 				090090EB2A26640000DB4D40 /* NotificationPage.swift */,
 				090090E92A2663FA00DB4D40 /* WeatherPage.swift */,
+				6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */,
+				6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,6 +397,7 @@
 				091C62662A24DD9F00AA5981 /* GoogleService-Info.plist in Resources */,
 				091C62432A24DD1200AA5981 /* Preview Assets.xcassets in Resources */,
 				091C62402A24DD1200AA5981 /* Assets.xcassets in Resources */,
+				6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5D26C12A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5D26C22A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +436,7 @@
 				7864CD172A26DFD700251105 /* ContentView.swift in Sources */,
 				091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */,
 				091C62852A24E7AA00AA5981 /* GameDetailsView.swift in Sources */,
+				6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */,
 				091C628B2A24E9C500AA5981 /* Game.swift in Sources */,
 				091C62832A24E40900AA5981 /* MapView .swift in Sources */,
 				7864CD1B2A26E11800251105 /* Mygames.swift in Sources */,
@@ -599,6 +613,7 @@
 				DEVELOPMENT_TEAM = 73U243ADJK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OffSeason3/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires access to the users location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app requires access to the users location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -631,6 +646,7 @@
 				DEVELOPMENT_TEAM = 73U243ADJK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OffSeason3/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires access to the users location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app requires access to the users location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
