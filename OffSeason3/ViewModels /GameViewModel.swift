@@ -15,6 +15,7 @@ import FirebaseStorage
 class GameViewModel: ObservableObject {
     @Published var game = Game()
     @Published var selectedGame: Game? = nil
+    @Published var isJoiningGame = false
 
     func saveGame(game:Game) async -> Bool{
         let db = Firestore.firestore()

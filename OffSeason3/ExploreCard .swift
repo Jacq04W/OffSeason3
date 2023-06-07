@@ -24,6 +24,8 @@ struct ExploreCard: View {
             
             ExploreButton
             Button("My Events"){
+                //TODO: SEND US T SEER OUR EVENTS
+
                 dismiss()
             }
             

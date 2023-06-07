@@ -42,6 +42,10 @@ struct MapView: View {
             ZStack{
                 mapLayer
                     .ignoresSafeArea()
+                if gameVm.isJoiningGame {
+                    ExploreCard(game: Game(), player: Player()) .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .bottom)))
+
+                }
                  
             }.toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {

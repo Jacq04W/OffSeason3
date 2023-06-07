@@ -36,7 +36,6 @@ struct GameDetailsView: View {
     @EnvironmentObject var gameVm : GameViewModel
     @FirestoreQuery(collectionPath: "games") var games : [Game]
     
-
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -348,14 +347,18 @@ private extension GameDetailsView {
     // new code⚡️
     var joinGame : some View {
         Button{
-            Task{
-                let success = await playerVm.addPlayer(game: game, player: player)
-                if success {
-                    dismiss()
-                } else {
-                    print("🤬 Error: Saving spot")
+            withAnimation {
+                gameVm.isJoiningGame.toggle()
+                Task{
+                    let success = await playerVm.addPlayer(game: game, player: player)
+                    if success {
+                        dismiss()
+                    } else {
+                        print("🤬 Error: Saving spot")
+                    }
                 }
             }
+           
             
         }
     label:{
