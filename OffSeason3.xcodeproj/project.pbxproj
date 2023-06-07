@@ -160,6 +160,7 @@
 		090090E02A25375A00DB4D40 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				09A4E3132A30FB1500C8C764 /* ExploreCard .swift */,
 				090090E12A25377100DB4D40 /* LocationMapPin.swift */,
 			);
 			path = Components;
@@ -192,7 +193,6 @@
 			children = (
 				6C5D26C32A2E760C00951E79 /* Info.plist */,
 				7864CD152A26CD8E00251105 /* OffSeason3.entitlements */,
-				09A4E3132A30FB1500C8C764 /* ExploreCard .swift */,
 				090090E02A25375A00DB4D40 /* Components */,
 				091C628C2A24EA5400AA5981 /* Views */,
 				091C628E2A24EA6400AA5981 /* ViewModels  */,
