@@ -46,6 +46,7 @@
 		091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62972A2515A600AA5981 /* PlaceViewModel.swift */; };
 		0931D8232A2D06B500780558 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931D8222A2D06B500780558 /* PlayerViewModel.swift */; };
 		09A4E3142A30FB1500C8C764 /* ExploreCard .swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4E3132A30FB1500C8C764 /* ExploreCard .swift */; };
+		09A4E3162A311F7B00C8C764 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4E3152A311F7B00C8C764 /* Photo.swift */; };
 		09C2E3E72A29348E0099FC03 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2E3E62A29348E0099FC03 /* Player.swift */; };
 		6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */; };
 		6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
@@ -106,6 +107,7 @@
 		091C62972A2515A600AA5981 /* PlaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		0931D8222A2D06B500780558 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		09A4E3132A30FB1500C8C764 /* ExploreCard .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExploreCard .swift"; sourceTree = "<group>"; };
+		09A4E3152A311F7B00C8C764 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		09C2E3E62A29348E0099FC03 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				091C62932A25151D00AA5981 /* Place.swift */,
 				091C628A2A24E9C500AA5981 /* Game.swift */,
+				09A4E3152A311F7B00C8C764 /* Photo.swift */,
 				09C2E3E62A29348E0099FC03 /* Player.swift */,
 			);
 			path = Models;
@@ -455,6 +458,7 @@
 				789B16C82A292654007C1AC0 /* ImagePicker.swift in Sources */,
 				789B16C62A2923D9007C1AC0 /* Mygames2.swift in Sources */,
 				090090E82A2663F200DB4D40 /* HelpPage.swift in Sources */,
+				09A4E3162A311F7B00C8C764 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
