@@ -340,6 +340,7 @@ private extension GameDetailsView {
     var gameName : some View {
         Text(game.name)
             .lineLimit(1)
+            .font(Font.custom("SportSpiritAf", size: 30))
             .bold()
             .font(.title)
     }
@@ -360,8 +361,7 @@ private extension GameDetailsView {
     label:{
         Text("Join Game")
             .bold()
-            .font(.largeTitle)
-            .foregroundColor(.white)
+            .font(Font.custom("SportSpiritAf", size: 45))            .foregroundColor(.white)
             .frame(width: 350, height: 70)
             .background(.orange)
             .clipShape(Capsule())

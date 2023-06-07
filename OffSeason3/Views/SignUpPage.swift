@@ -83,7 +83,7 @@ struct SignUpPage: View {
                     .frame(width: 300, height: 50)
                     .background(Color.orange)
                     .cornerRadius(10)
-                    
+                    //TODO: NAVIGATION STACK 
                     NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen){
                         EmptyView()
                     }

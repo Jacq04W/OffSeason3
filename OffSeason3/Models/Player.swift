@@ -19,7 +19,6 @@ struct Player : Identifiable{
     var name = ""
     var userName = ""
     var email = Auth.auth().currentUser?.email ?? ""
-
     var age = ""
     var gender = ""
     

@@ -241,7 +241,8 @@ private extension MapView {
             }.foregroundColor(.black)
                 .buttonStyle(.plain)
                 .padding()
-                .frame(width: .infinity, height: 40)
+                .frame(maxWidth: .infinity)
+                .frame(height: 40)
                 .background(.thinMaterial).cornerRadius(90)
                 .shadow(color: Color.black.opacity (0.4), radius: 20,
                          x: 0, y: 15)

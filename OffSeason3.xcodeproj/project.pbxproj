@@ -45,6 +45,7 @@
 		091C62962A25154000AA5981 /* PlaceLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62952A25154000AA5981 /* PlaceLookupView.swift */; };
 		091C62982A2515A600AA5981 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C62972A2515A600AA5981 /* PlaceViewModel.swift */; };
 		0931D8232A2D06B500780558 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931D8222A2D06B500780558 /* PlayerViewModel.swift */; };
+		09A4E3142A30FB1500C8C764 /* ExploreCard .swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4E3132A30FB1500C8C764 /* ExploreCard .swift */; };
 		09C2E3E72A29348E0099FC03 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2E3E62A29348E0099FC03 /* Player.swift */; };
 		6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */; };
 		6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
@@ -104,6 +105,7 @@
 		091C62952A25154000AA5981 /* PlaceLookupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceLookupView.swift; sourceTree = "<group>"; };
 		091C62972A2515A600AA5981 /* PlaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		0931D8222A2D06B500780558 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		09A4E3132A30FB1500C8C764 /* ExploreCard .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExploreCard .swift"; sourceTree = "<group>"; };
 		09C2E3E62A29348E0099FC03 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				6C5D26C32A2E760C00951E79 /* Info.plist */,
 				7864CD152A26CD8E00251105 /* OffSeason3.entitlements */,
+				09A4E3132A30FB1500C8C764 /* ExploreCard .swift */,
 				090090E02A25375A00DB4D40 /* Components */,
 				091C628C2A24EA5400AA5981 /* Views */,
 				091C628E2A24EA6400AA5981 /* ViewModels  */,
@@ -426,6 +429,7 @@
 			files = (
 				090090E22A25377100DB4D40 /* LocationMapPin.swift in Sources */,
 				091C62892A24E90A00AA5981 /* GameViewModel.swift in Sources */,
+				09A4E3142A30FB1500C8C764 /* ExploreCard .swift in Sources */,
 				091C62902A24EE3C00AA5981 /* Testadding data view.swift in Sources */,
 				090090EC2A26640000DB4D40 /* NotificationPage.swift in Sources */,
 				090090E42A2660CD00DB4D40 /* WeatherViewModel.swift in Sources */,
@@ -610,7 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OffSeason3/Preview Content\"";
-				DEVELOPMENT_TEAM = 73U243ADJK;
+				DEVELOPMENT_TEAM = Q883HJGNY5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OffSeason3/Info.plist;
@@ -621,12 +625,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.OffSeason3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Twomuchcode.OffSeason3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -643,7 +648,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OffSeason3/Preview Content\"";
-				DEVELOPMENT_TEAM = 73U243ADJK;
+				DEVELOPMENT_TEAM = Q883HJGNY5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OffSeason3/Info.plist;
@@ -654,12 +659,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.OffSeason3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Twomuchcode.OffSeason3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
