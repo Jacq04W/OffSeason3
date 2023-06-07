@@ -59,14 +59,8 @@ struct MapView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .cancellationAction) {
-                    
-                   
-                        NotificationButton
-                      
-                    
+                    NotificationButton
                     HelpButton
-                    
-                    
                 }
                 ToolbarItemGroup(placement: .primaryAction) {
                     HStack(spacing: 2){
@@ -218,19 +212,17 @@ private extension MapView {
         }label: {
             HStack {
                 Image(systemName: "figure.run.circle.fill")
-                Text("Active:") .font(.title3)
-                    .bold()
-//                Spacer()
-
-                Text("4")
-
-            }
+                Text("Active:")
+                Text("\(games.count)")
+            }.font(.title3)
+                .bold()
         }.buttonStyle(.plain)
             .padding()
             .frame(width: 160,height: 40)
-            .background(.thinMaterial).cornerRadius(90)
-            .shadow(color: Color.black.opacity (0.4), radius: 20,
-                     x: 0, y: 15)
+            .background(.thinMaterial)
+            .cornerRadius(90)
+            .shadow(color: Color.black.opacity (0.4),
+                    radius: 20, x: 0, y: 15)
     }
     
     // new code ⚡️
@@ -240,6 +232,8 @@ private extension MapView {
         }label: {
             HStack{
                 Image(systemName: "cloud")
+                
+                    .bold()
                 Text(weatherViewModel.currentTemperature.dropLast()).font(.system(size: 17))
                     .foregroundColor(.black)
             }.foregroundColor(.black)
@@ -250,7 +244,7 @@ private extension MapView {
                 .background(.thinMaterial).cornerRadius(90)
                 .shadow(color: Color.black.opacity (0.4), radius: 20,
                          x: 0, y: 15)
-        }
+        }.buttonStyle(.plain)
 //        Text(weatherViewModel.currentTemperature.dropLast())
 //            .font(.system(size:72))
 //            .fontWeight(.light)
