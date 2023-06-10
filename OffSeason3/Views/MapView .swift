@@ -50,6 +50,11 @@ struct MapView: View {
                     .offset(x:150,y:310)
                 }
             }
+            .onAppear{
+                mapVm.mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locationVm.location?.coordinate.latitude ?? 00 , longitude: locationVm.location?.coordinate.longitude ?? 00 ), span:MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                
+                print("appear working ⚡️⚡️⚡️⚡️⚡️")
+            }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
                     VStack {
@@ -183,16 +188,14 @@ private extension MapView {
            annotationItems: games,
            annotationContent: { location in
            MapAnnotation(coordinate: location.coordinate){
-                           // shows what pins are goiing to be on map ↓
                                LocationMapPin()
-                           // how to make something bigger if its toggled↓
-                               .scaleEffect(mapVm.gameLocation == location ? 1 : 0.7)
-                               .onTapGesture {
-                                   // how to make the pins touchable and show the location that you tapped ↓
-                                   gameVm.selectedGame = location
-                                  mapVm.showNextGame(location)
-                                   
-                            }
+            .scaleEffect(mapVm.gameLocation == location ? 1 : 0.7)
+                        .onTapGesture {
+                                // how to make the pins touchable and show the location that you tapped ↓
+                                gameVm.selectedGame = location
+                                mapVm.showNextGame(location)
+                                
+                        }
                        }
                    })
         

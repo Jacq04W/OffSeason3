@@ -61,20 +61,66 @@ struct TestaddingDataView: View {
                         coverPhoto
                         Spacer()
                         VStack{
-                    Section(header:
-                    Text("Customize Your Game")
-                        .bold()
-                        .font(.title)){
-                            TextFields
-                                .padding()
+    Section(header:
+            Text("Customize Your Game").bold()
+        .font(Font.custom("SportSpiritAf", size: 35))){
+                        TextFields
+                        mapLayer
+                        .onChange(of:game){ _ in
+                        annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                        mapRegion.center = game.coordinate
+                    }
                                         }
-//                            mapLayer
+        .padding()
+                            
                         }
                        
                     }
                 }
             }
+        }.onAppear{
+        // otherwise  center the map on the devices location
+                Task {
+                    // make map region shows user lo
+                    mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+                    
+                 
+                }
+            annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+           
+            print("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️")
         }
+        .onChange(of: selectedPhoto){ newValue in
+            Task{
+                do{
+                    if let data = try await newValue?.loadTransferable(type: Data.self){
+                        
+                        if let uiImage = UIImage(data: data){
+
+                            uiImageSelected = uiImage
+                            print("📸Succcesffullly selected image")
+                            newPhoto = Photo() // clears out contents if you add more than 1 photo in a row for this spot
+                            buttonPressed = .photo
+                            
+// use this because if there is no spot we need to save the spot first then continue with the action we just pressed
+                            if game.id == nil {
+                                showSaveAlert.toggle()
+                            } else {
+                                showPhotoSheet.toggle()
+                            }
+                            
+                            
+                        }
+                        
+                    }
+                } catch {
+                    print("🤬Error Selecting Image failed \(error.localizedDescription)")
+                }
+            }
+            print("👾👾👾")
+
+        }
+
 
         .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
             ImagePicker(image: $image)}
@@ -112,11 +158,46 @@ struct Testadding_data_view_Previews: PreviewProvider {
 private extension TestaddingDataView {
     // new code⚡️
     var mapLayer : some View {
-        Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
-            annotation in
-            MapMarker(coordinate: annotation.coordinate)
-        }.frame(height: 250)
-            .cornerRadius(20)
+        VStack{
+            if !game.locationName.isEmpty || !game.address.isEmpty {
+                VStack{
+                    Text("Confirm your location is correct")
+                        .font(Font.custom("SportSpiritAf", size: 20))
+                        .lineLimit(1)
+                        .bold()
+                        .foregroundColor(.orange)
+
+            TextField("Location Name",text:$game.locationName).disabled(true)
+                        .textFieldStyle (.roundedBorder)
+                        .overlay {
+                            RoundedRectangle (cornerRadius: 5)
+                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                        }
+                    
+                    TextField("Address", text: $game.address)
+                        .disabled(true)
+                        .autocorrectionDisabled()
+                        .textFieldStyle (.roundedBorder)
+                        .overlay {
+                            RoundedRectangle (cornerRadius: 5)
+                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                        }
+                    Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
+                        annotation in
+                        MapMarker(coordinate: annotation.coordinate)
+                    }                       .allowsHitTesting(false)
+                        .frame(height: 250)
+                        .cornerRadius(10)
+                    
+                    
+                    
+                }
+//
+                
+                
+            }
+        }
+
 //
     }
     
@@ -126,7 +207,8 @@ private extension TestaddingDataView {
     var TextFields : some View  {
         VStack{
             TextField("Event name", text: $game.name )
-                .textFieldStyle (.roundedBorder)
+                .textFieldStyle (.roundedBorder)            .disableAutocorrection(true)
+
                 .overlay {
                     RoundedRectangle (cornerRadius: 5)
                         .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
@@ -163,55 +245,6 @@ private extension TestaddingDataView {
             
             
             
-            if !game.locationName.isEmpty && !game.address.isEmpty {
-                VStack{
-                    Text("Confirm your location is correct")
-                        .bold()
-                        .font(.title2)
-                    
-                    TextField("Location Name",text:$game.locationName).disabled(true)
-                        .textFieldStyle (.roundedBorder)
-                        .overlay {
-                            RoundedRectangle (cornerRadius: 5)
-                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-                        }
-                    
-                    TextField("Address", text: $game.address)
-                        .autocorrectionDisabled()
-                        .textFieldStyle (.roundedBorder)
-                        .overlay {
-                            RoundedRectangle (cornerRadius: 5)
-                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-                        }
-                    Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
-                        annotation in
-                        MapMarker(coordinate: annotation.coordinate)
-                    }.frame(height: 250)
-                    
-                    
-                    
-                }.onChange(of:game){ _ in
-                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                     mapRegion.center = game.coordinate
-                                                         }
-                .onAppear{
-                    
-                    
-                    
-                    if game.id != nil { // if we have a spot center it on the map
-                        mapRegion = MKCoordinateRegion(center: game.coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
-                    } else {// otherwise  center the map on the devices location
-                        Task {
-                            // make map region shows user lo
-                            mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
-                        }
-                    }
-                    
-                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                    
-                }
-                
-            }
             
             
         }
@@ -223,7 +256,7 @@ private extension TestaddingDataView {
     // new code⚡️
     var coverPhoto : some View {
     
-        Image ("temp1")
+        Image ("cover2")
             .resizable()
             .scaledToFill()
             .frame(width:350,height: 240)
@@ -233,36 +266,14 @@ private extension TestaddingDataView {
                 
                 // this photos picker auto makes a button we have to provide the label
                 PhotosPicker(selection: $selectedPhoto, matching: .images, preferredItemEncoding: .automatic){
-                    Image(systemName: "photo")
-                    Text ("Photo" )
-                }
-                .onChange(of: selectedPhoto){ newValue in
-                    Task{
-                        do{
-                            if let data = try await newValue?.loadTransferable(type: Data.self){
-                                
-                                if let uiImage = UIImage(data: data){
-
-                                    uiImageSelected = uiImage
-                                    print("📸Succcesffullly selected image")
-                                    newPhoto = Photo() // clears out contents if you add more than 1 photo in a row for this spot
-                                    buttonPressed = .photo
-                                    
-        // use this because if there is no spot we need to save the spot first then continue with the action we just pressed
-                                    if game.id == nil {
-                                        showSaveAlert.toggle()
-                                    } else {
-                                        showPhotoSheet.toggle()
-                                    }
-                                    
-                                    
-                                }
-                                
-                            }
-                        } catch {
-                            print("🤬Error Selecting Image failed \(error.localizedDescription)")
-                        }
+                    HStack{Image(systemName: "photo")
+                        Text ("Photo" )
                     }
+                    .padding()                 .frame(height:40)
+
+                    .foregroundColor(.black)
+                    .background(.orange)
+                    .cornerRadius(10)
                 }
             
             

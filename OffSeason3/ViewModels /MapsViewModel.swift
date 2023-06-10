@@ -47,7 +47,7 @@ class MapViewModel : ObservableObject {
     
     
     
-    func showNextGame(_ game: Game){
+    func showNextGame(_ game: Game)  {
         withAnimation(.easeInOut){
             gameLocation = game
             // this will close the list row ↑
