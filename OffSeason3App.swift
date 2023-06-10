@@ -29,15 +29,16 @@ struct Snacktacku_arApp: App {
         UITabBar.appearance().backgroundColor = UIColor( Color(.black))
         
     }
-    @StateObject var playerVm = PlayerViewModel()
-
+    
+@StateObject var playerVm = PlayerViewModel()
 @StateObject var locationManager = LocationManager()
 @StateObject var gameVm = GameViewModel()
 @StateObject var mapVm = MapViewModel()
-    @StateObject var weatherVm = WeatherViewModel()
+@StateObject var weatherVm = WeatherViewModel()
 
     var body: some Scene {
         WindowGroup {
+//            TestPhotos(uiImage: UIImage(named: "temp1") ?? UIImage(), game: Game(), player: Player(), photo: .constant(Photo()))
 //            PlaceLookupView(Game:Game())
             LoginView(player: Player())
                 .environmentObject(gameVm)

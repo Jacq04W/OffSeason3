@@ -46,15 +46,18 @@ struct MapView: View {
                     ExploreCard(game: Game(), player: Player()) .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .bottom)))
 
                 }
-                 
+                ZStack{
+                    CreateButton
+                    .offset(x:150,y:310)
+                }
             }.toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
                     VStack {
                         HStack(spacing: 12){
                             FilterButton
                             Spacer()
-                            CreateButton
-                                .offset(x:20,y:-20)
+//                            CreateButton
+//                                .offset(x:20,y:-20)
                         }.padding(.bottom,30)
                     }
                 }
@@ -71,11 +74,10 @@ struct MapView: View {
                 }
             }
             
-    .sheet(item: $gameVm.selectedGame){game in
-        GameDetailsView(game: game, player: Player())
-            .presentationDetents([.fraction(0.60)])
-            }
-        
+            .sheet(item: $gameVm.selectedGame){game in
+    GameDetailsView(game: game, player: Player())
+        .presentationDetents([.fraction(0.60)])
+        }
             .sheet(isPresented: $sheetIsPresented) {
                 NavigationStack{
                     TestaddingDataView(game: Game())
@@ -90,7 +92,6 @@ struct MapView: View {
           HelpPage()
                   
               }
-            
             .sheet(isPresented: self.$presentWeatherSheet){
              WeatherPage()
                    
@@ -162,13 +163,18 @@ private extension MapView {
         Button{
             sheetIsPresented.toggle()
                 }label: {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 50)).foregroundColor(.red)
-                        .shadow(color: Color.black.opacity (0.4), radius: 20,
-                                 x: 0, y: 15)
+                    ZStack{
+                        Circle()
+                            .fill(.ultraThinMaterial)
+                            .frame(width: 50, height: 50)
+                        Image(systemName: "plus.circle.fill")
+                .font(.system(size: 65)).foregroundColor(.red)
+                            .shadow(color: Color.black.opacity (0.4), radius: 20,
+                                    x: 0, y: 15)
+                    }
                 }
 }
-
+   
     // new code ⚡️
     var mapLayer : some View{
 
