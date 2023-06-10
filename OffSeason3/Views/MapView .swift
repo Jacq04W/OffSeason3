@@ -32,7 +32,6 @@ struct MapView: View {
 @State var presentnotificationSheet = false
     @State var presentWeatherSheet = false
     @State var sheetIsPresented = false
-
     @State var presentHelpSheet = false
     @State var presentfilterSheet = false
     @State var presentCreateSheet = false
@@ -50,7 +49,8 @@ struct MapView: View {
                     CreateButton
                     .offset(x:150,y:310)
                 }
-            }.toolbar{
+            }
+            .toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
                     VStack {
                         HStack(spacing: 12){
@@ -61,6 +61,7 @@ struct MapView: View {
                         }.padding(.bottom,30)
                     }
                 }
+                
                 ToolbarItemGroup(placement: .cancellationAction) {
                     NotificationButton
                     HelpButton
@@ -73,7 +74,6 @@ struct MapView: View {
                     }
                 }
             }
-            
             .sheet(item: $gameVm.selectedGame){game in
     GameDetailsView(game: game, player: Player())
         .presentationDetents([.fraction(0.60)])
@@ -284,7 +284,7 @@ private extension MapView {
             Image(systemName: "line.3.horizontal.decrease.circle.fill").font(.system(size: 35)).foregroundColor(.black)
         }
     }
-                // new code ⚡️
+    // new code ⚡️
     var CraftButton: some View {
         Button{
                     self.presentCreateSheet.toggle()

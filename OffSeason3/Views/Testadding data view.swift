@@ -155,6 +155,10 @@ private extension TestaddingDataView {
                 .overlay {
                     RoundedRectangle (cornerRadius: 5)
                         .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                        .onTapGesture {
+                            showSearchPage.toggle()
+
+                        }
                 }
             
             
