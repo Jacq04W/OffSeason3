@@ -78,7 +78,6 @@ struct TestaddingDataView: View {
 
         .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
             ImagePicker(image: $image)}
-       
         .sheet(isPresented: $showSearchPage, content: {
             PlaceLookupView(game: $game)
         })
@@ -132,7 +131,8 @@ private extension TestaddingDataView {
                     RoundedRectangle (cornerRadius: 5)
                         .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
                 }
-            TextField("Summary",text:$game.summary)
+        TextField("Game type",text:$game.summary)
+            //TODO: MAKE THIS AN ENUM OF THE THE GAMES YOU CAN PICK
                 .textFieldStyle (.roundedBorder)
                 .overlay {
                     RoundedRectangle (cornerRadius: 5)
@@ -164,57 +164,56 @@ private extension TestaddingDataView {
             
             
             if !game.locationName.isEmpty && !game.address.isEmpty {
-                TextField("Location Name",text:$game.locationName).disabled(true)
-                    .textFieldStyle (.roundedBorder)
-                    .overlay {
-                        RoundedRectangle (cornerRadius: 5)
-                            .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                VStack{
+                    Text("Confirm your location is correct")
+                        .bold()
+                        .font(.title2)
+                    
+                    TextField("Location Name",text:$game.locationName).disabled(true)
+                        .textFieldStyle (.roundedBorder)
+                        .overlay {
+                            RoundedRectangle (cornerRadius: 5)
+                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                        }
+                    
+                    TextField("Address", text: $game.address)
+                        .autocorrectionDisabled()
+                        .textFieldStyle (.roundedBorder)
+                        .overlay {
+                            RoundedRectangle (cornerRadius: 5)
+                                .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                        }
+                    Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
+                        annotation in
+                        MapMarker(coordinate: annotation.coordinate)
+                    }.frame(height: 250)
+                    
+                    
+                    
+                }.onChange(of:game){ _ in
+                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                     mapRegion.center = game.coordinate
+                                                         }
+                .onAppear{
+                    
+                    
+                    
+                    if game.id != nil { // if we have a spot center it on the map
+                        mapRegion = MKCoordinateRegion(center: game.coordinate, latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+                    } else {// otherwise  center the map on the devices location
+                        Task {
+                            // make map region shows user lo
+                            mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+                        }
                     }
-                
-                
-                 
-                
-                Text("Confirm your location is correct")
-                    .bold()
-                    .font(.title2)
-                Map(coordinateRegion: $mapRegion,showsUserLocation: true, annotationItems:annotations){
-                    annotation in
-                    MapMarker(coordinate: annotation.coordinate)
-                }.frame(height: 250)
-                    .onAppear {
-                       // If we have a spot, center map on the spot
-                    mapRegion = MKCoordinateRegion (center: game.coordinate,
-                                latitudinalMeters: regionSize,
-                            longitudinalMeters: regionSize)
-                            
-                            annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                             mapRegion.center = game.coordinate
-                     
-                            Task{
-                mapRegion = MKCoordinateRegion(center:
-            locationVm.location?.coordinate ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize,
-                longitudinalMeters: regionSize)
-                            }
-                            
-                        annotations = [Annotation (name: game.name, address: game.address,
-                        coordinate: game.coordinate)]
-                        print("On appera working")
-                    }
-                    .onChange(of:game){ _ in
-                       annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                        mapRegion.center = game.coordinate
-                                                            }
+                    
+                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                    
+                }
                 
             }
             
             
-            TextField("Address", text: $game.address)
-                .autocorrectionDisabled()
-                .textFieldStyle (.roundedBorder)
-                .overlay {
-                    RoundedRectangle (cornerRadius: 5)
-                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
-                }
         }
     }
     
