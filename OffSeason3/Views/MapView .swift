@@ -28,6 +28,8 @@ struct MapView: View {
     let regionSize = 500.0
 
     // showing sheets
+    @State private var showAlert = false
+
 @Environment(\.dismiss) private var dismiss
 @State var presentnotificationSheet = false
     @State var presentWeatherSheet = false
@@ -89,10 +91,14 @@ struct MapView: View {
                     
                 }
             }
-            .sheet(isPresented: self.$presentfilterSheet){
-                filterspage()
-                    .presentationDetents([.fraction(0.09)])
-              }
+            .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert) {
+                Button ("Ok", role: .cancel) {}
+                
+            }
+//            .sheet(isPresented: self.$presentfilterSheet){
+//                filterspage()
+//                    .presentationDetents([.fraction(0.09)])
+//              }
             .sheet(isPresented: self.$presentHelpSheet){
           HelpPage()
                   
@@ -263,7 +269,9 @@ private extension MapView {
     // new code ⚡️
     var HelpButton: some View {
         Button{
-            self.presentHelpSheet.toggle()
+            showAlert.toggle()
+
+//            self.presentHelpSheet.toggle()
         }label: {
             ZStack{
                 Circle()
@@ -282,7 +290,8 @@ private extension MapView {
     // new code ⚡️
     var FilterButton: some View {
         Button{
-            self.presentfilterSheet.toggle()
+            showAlert.toggle()
+//            self.presentfilterSheet.toggle()
         }label: {
             Image(systemName: "line.3.horizontal.decrease.circle.fill").font(.system(size: 35)).foregroundColor(.black)
         }

@@ -32,86 +32,68 @@ struct EditDeleteGame: View {
     @State var shouldShowImagePicker = false
     @State private var uiImageSelected = UIImage()
     
+    
+    // misc
+    
+    @State private var showAlert = false
     var body: some View {
         NavigationStack {
-            VStack{
-        // maybe a multitude of pics
-        // TODO: this should be event.coverPhoto
-        Image("cover2")
-            .resizable()
-            .scaledToFill()
-            .frame(width: 350, height: 113)
-            .cornerRadius(21)
+            VStack {
+                VStack{
+                    coverPhoto        .offset(y:20)
+
+                    HStack{
+                        gameInfo
+                            .padding()
+            }
             .offset(y:-20)
-
-        HStack{
-            VStack{
-                Text(game.name )
-                    .font(.system(size: 25))
-                    .offset(y:-10)
-                    .bold()
-                HStack{
-                    Image(systemName: "calendar")
-                    Text("\(game.startDate)")
-                        .lineLimit(1)
-                    Text("✘12:00 PM")
-                }
-                .font(.system(size: 25))
-
-                HStack(spacing:1){
-                    Image(systemName: "mappin")
-                        .foregroundColor(.gray)
-                    Text(game.address)
-                } .font(.system(size: 25))
-    //                        .offset(y:13)
-
-                .padding(.trailing,10)
-            }
-            .overlay(
-                Text("$50")
-        .font(.system(size: 25))
-        .offset(x:140,y:30)
-        .bold()
-    )
-        }
-        .background(
-        infoCard)
-//        .offset(y:-20)
-
-                    .padding()
-        .background{
-//            infoCard
-        }
-        .offset(y:15)
-    }.background{
-        bigCard
-        
-}
-    .toolbar{
-        ToolbarItemGroup(placement: .primaryAction) {
-            Button{
-                
-            }label: {
-                filterButton
-            }
-        }
-        ToolbarItemGroup(placement: .primaryAction) {
-            Button{
-                
-            }label: {
-                nextButton
-            }
-            
-           
-            
-        }
-        
-        
-        
-        
-       
+            .background(
+            infoCard)
+    //
+            .padding()
+            .offset(y:9)
+                    
+                    
+                    
+                    
+        }.background{
+            bigCard
     }
+                //TODO: ALERT FOR BUTTONS NOT WORKIGN
+             Spacer()
+                photoPicker
+                
+            }.toolbar{
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button{
+                        
+                    }label: {
+                        filterButton
+                    }
+                }
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button{
+                        
+                    }label: {
+                        editButton
+                    }
+                    
+                   
+                    
+                }
+                
+                
+                
+                
+               
+        } .navigationTitle("\(game.name)")
+                .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert) {
+                    Button ("Ok", role: .cancel) {}
+                    
+                }
+
         }
+       
    
     }
     
@@ -126,8 +108,6 @@ struct EditDeleteGame_Previews: PreviewProvider {
             .environmentObject(WeatherViewModel())
     }
 }
-
-
 
 private extension EditDeleteGame {
     
@@ -178,9 +158,10 @@ private extension EditDeleteGame {
     
     
     // new code
-    var nextButton : some View{
+    var editButton : some View{
         Button{
             withAnimation{
+                showAlert.toggle()
 
             }
         }
@@ -205,7 +186,7 @@ private extension EditDeleteGame {
         VStack{
             Button{
                 withAnimation{
-//                    showErrorAlert.toggle()
+                    showAlert.toggle()
                 }
             }
         label:{
@@ -252,10 +233,68 @@ private extension EditDeleteGame {
         }
     }
     // new code
+    var gameInfo : some View  {
+    VStack{
+        Text(game.name )
+            .lineLimit(1)
+            .font(Font.custom("SportSpiritAf", size: 35))
+            .offset(y:-10)
+        HStack{
+            let gameDay = game.startDate.formatted(date:.abbreviated,time:.omitted)
+            
+            Image(systemName: "calendar")
+            Text("\(gameDay)")
+            
+                .font(.system(size: 25))
+                .lineLimit(1)
+            Text("✘12:00 PM")
+        }
+        .font(.system(size: 25))
+        
+        HStack(spacing:1){
+            Image(systemName: "mappin")
+                .foregroundColor(.gray)
+            Text(game.address)
+                .lineLimit(1)
+            //TODO: create tickets
+            Text("$50")
+                .font(Font.custom("SportSpiritAf", size: 29))
+                .offset(x:25)
+                .bold()
+            
+        } .font(.system(size: 25))
+        //
+    }
+}
 
     // new code
-
+    var coverPhoto : some View {
+        VStack{
+            Image("cover2")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 350, height: 113)
+                .cornerRadius(21)
+                .offset(y:-20)
+        }
+    }
     // new code
+    var photoPicker :some View  {
+        VStack{
+            PhotosPicker(selection: $selectedPhoto, matching: .images, preferredItemEncoding: .automatic){
+                HStack{Image(systemName: "photo")
+                    Text ("Add More Photos" )
+                }
+                .padding()
+                .frame(width:350,height:60)
+                
+                .foregroundColor(.black)
+                .background(.orange)
+                .cornerRadius(10)
+            }
+        }
+    }
+
 
     // new code
 

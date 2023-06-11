@@ -44,8 +44,6 @@ struct ExplorePage: View {
                 
             }.headerProminence(.increased)
             
-            
-            
                 .navigationTitle("Explore")
             
         }
