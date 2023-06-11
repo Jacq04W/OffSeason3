@@ -47,7 +47,7 @@ struct MapView: View {
                 }
                 ZStack{
                     CreateButton
-                    .offset(x:150,y:310)
+                    .offset(x:140,y:310)
                 }
             }
             .onAppear{

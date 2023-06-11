@@ -24,89 +24,95 @@ struct LoginView: View {
     }
     @FocusState private var focusField: Field?
     var body: some View {
-        VStack{
-            Image("logo")
-                .resizable()
-                .scaledToFit()
-                .padding()
-            Group{
-                TextField("Email", text:$email)
-                    .keyboardType (.emailAddress)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .submitLabel(.next)
-                    .focused($focusField, equals: .email)
-                    .onSubmit{
-                      focusField = .password
-                    }
-                    .onChange(of: email){ _ in
-                        enablebuttons()
-                    }
-            
-                SecureField("password", text: $password)
-                    .textInputAutocapitalization(.never)
-                    .submitLabel(.done)
-                    .focused($focusField, equals: .password)
-                    .onSubmit{
-                        focusField = nil
-                        
-                    }
-                    .onChange(of: password){ _ in
-                        enablebuttons()
-                    }
-                
-            }
-            .textFieldStyle(.roundedBorder)
-            .overlay{
-                RoundedRectangle(cornerRadius: 5)
-                .stroke(.gray.opacity(0.5),lineWidth:2)
-            }
-            .padding(.horizontal)
-            HStack{
-                Button{
-                    register()
-                } label : {
-                    Text("Sign Up")
-                }
-                .padding(.trailing)
-                Button{
-                    login()
+        ZStack {
+//            Color.black
+            VStack{
+                ZStack{
+                    Image("logo1")
+                        .resizable()
+                        .scaledToFit()
+                        .padding()
                     
-                } label : {
-                    Text("Log in")
                 }
-                .padding(.leading)
-            }//Hstsack
-            .disabled(buttonsDisabled)
-            .buttonStyle(.borderedProminent)
-            .tint(Color.orange)
-            .font(.title2)
-            .padding(.top)
-            .navigationBarTitleDisplayMode(.inline)
-            // how to properly naviaget to a new view
-            .navigationDestination(for: String.self){ view in
-                if view == "MapView"{
-                    MapView()
-                }
-            }
-        }// nav stack
-        .alert(alertMessage, isPresented: $showingAlert){
-            Button("OK",role:.cancel){
-                 
-            }
-        }// alert
-        
-        .onAppear{
-            // if logged in when the app runs, navigate to the new screen
-            if Auth.auth().currentUser != nil {
-                print ("🪵 Login successful !")
-               presentSheet = true
+                Group{
+                    TextField("Email", text:$email)
+                        .keyboardType (.emailAddress)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                        .submitLabel(.next)
+                        .focused($focusField, equals: .email)
+                        .onSubmit{
+                          focusField = .password
+                        }
+                        .onChange(of: email){ _ in
+                            enablebuttons()
+                        }
                 
-            }
-        }
-        .fullScreenCover(isPresented: $presentSheet){
-            MapView()
+                    SecureField("password", text: $password)
+                        .textInputAutocapitalization(.never)
+                        .submitLabel(.done)
+                        .focused($focusField, equals: .password)
+                        .onSubmit{
+                            focusField = nil
+                            
+                        }
+                        .onChange(of: password){ _ in
+                            enablebuttons()
+                        }
+                    
+                }
+                .textFieldStyle(.roundedBorder)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 5)
+                    .stroke(.gray.opacity(0.5),lineWidth:2)
+                }
+                .padding(.horizontal)
+                HStack{
+                    Button{
+                        register()
+                    } label : {
+                        Text("Sign Up")
+                    }
+                    .padding(.trailing)
+                    Button{
+                        login()
+                        
+                    } label : {
+                        Text("Log in")
+                    }
+                    .padding(.leading)
+                }//Hstsack
+                .disabled(buttonsDisabled)
+                .buttonStyle(.borderedProminent)
+                .tint(Color.orange)
+                .font(.title2)
+                .padding(.top)
+                .navigationBarTitleDisplayMode(.inline)
+                // how to properly naviaget to a new view
+                .navigationDestination(for: String.self){ view in
+                    if view == "MapView"{
+                        MapView()
+                    }
+                }
+            }// nav stack
+            .alert(alertMessage, isPresented: $showingAlert){
+                Button("OK",role:.cancel){
+                     
+                }
+            }// alert
             
+            .onAppear{
+                // if logged in when the app runs, navigate to the new screen
+                if Auth.auth().currentUser != nil {
+                    print ("🪵 Login successful !")
+                   presentSheet = true
+                    
+                }
+            }
+            .fullScreenCover(isPresented: $presentSheet){
+                MapView()
+                
+        }
         }
         
     }
