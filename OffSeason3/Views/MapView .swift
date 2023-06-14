@@ -39,7 +39,7 @@ struct MapView: View {
     @State var presentCreateSheet = false
     @State var showSignUpSheet = false
     @State var createPlayerSheet = false
-    @State var firstLogin = true
+    @AppStorage("firstLogin") var firstLogin = true
     var player : Player
     
     
@@ -150,7 +150,7 @@ private extension MapView {
 //            sheetIsPresented.toggle()
 //            createPlayerSheet.toggle()
 
-            if player.firstName == "" {
+            if firstLogin{
                  createPlayerSheet.toggle()
                  firstLogin = false
 
