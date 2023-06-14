@@ -91,7 +91,7 @@ struct LoginView: View {
                 // how to properly naviaget to a new view
                 .navigationDestination(for: String.self){ view in
                     if view == "MapView"{
-                        MapView()
+                        MapView( player: Player())
                     }
                 }
             }// nav stack
@@ -110,7 +110,7 @@ struct LoginView: View {
                 }
             }
             .fullScreenCover(isPresented: $presentSheet){
-                MapView()
+                MapView(player: Player())
                 
         }
         }

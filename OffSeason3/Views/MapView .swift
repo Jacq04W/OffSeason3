@@ -37,6 +37,11 @@ struct MapView: View {
     @State var presentHelpSheet = false
     @State var presentfilterSheet = false
     @State var presentCreateSheet = false
+    @State var showSignUpSheet = false
+    @State var createPlayerSheet = false
+    @State var firstLogin = true
+    var player : Player
+    
     
     var body: some View {
         NavigationStack {
@@ -63,8 +68,6 @@ struct MapView: View {
                         HStack(spacing: 12){
                             FilterButton
                             Spacer()
-//                            CreateButton
-//                                .offset(x:20,y:-20)
                         }.padding(.bottom,30)
                     }
                 }
@@ -82,16 +85,18 @@ struct MapView: View {
                 }
             }
             .sheet(item: $gameVm.selectedGame){game in
-    GameDetailsView(game: game, player: Player())
-        .presentationDetents([.fraction(0.60)])
+                NavigationStack{
+                    GameDetailsView(game: game, player: Player())
+                        
+                }.presentationDetents([.fraction(0.60)])
         }
             .sheet(isPresented: $sheetIsPresented) {
                 NavigationStack{
-                    TestaddingDataView(game: Game())
+                    TestaddingDataView(game: Game(), player: player)
                     
                 }
             }
-            .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert) {
+            .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert){
                 Button ("Ok", role: .cancel) {}
                 
             }
@@ -107,6 +112,10 @@ struct MapView: View {
              WeatherPage()
                    
             }
+            .sheet(isPresented: $createPlayerSheet){
+                SignUpPage(player:Player())
+                      
+               }
             .sheet(isPresented: self.$presentnotificationSheet){
                NotificationPage()
                 
@@ -120,7 +129,7 @@ struct MapView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView( player: Player())
             .environmentObject(LocationManager())
             .environmentObject(MapViewModel())
             .environmentObject(GameViewModel())
@@ -130,49 +139,24 @@ struct ListView_Previews: PreviewProvider {
 
     }
 }
+ 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 private extension MapView {
     // new code ⚡️
     var CreateButton: some View {
         Button{
-            sheetIsPresented.toggle()
+//            sheetIsPresented.toggle()
+//            createPlayerSheet.toggle()
+
+            if player.firstName == "" {
+                 createPlayerSheet.toggle()
+                 firstLogin = false
+
+            } else {
+                sheetIsPresented.toggle()
+            }
                 }label: {
                     ZStack{
                         Circle()
@@ -197,9 +181,14 @@ private extension MapView {
                                LocationMapPin()
             .scaleEffect(mapVm.gameLocation == location ? 1 : 0.7)
                         .onTapGesture {
-                                // how to make the pins touchable and show the location that you tapped ↓
+
+                            if Auth.auth().currentUser?.email == nil {
+                                showSignUpSheet.toggle()
+                            } else {
+                                
                                 gameVm.selectedGame = location
                                 mapVm.showNextGame(location)
+                            }
                                 
                         }
                        }

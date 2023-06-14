@@ -41,6 +41,7 @@ struct Snacktacku_arApp: App {
 //            TestPhotos(uiImage: UIImage(named: "temp1") ?? UIImage(), game: Game(), player: Player(), photo: .constant(Photo()))
 //            PlaceLookupView(Game:Game())
             LoginView(player: Player())
+//            MapView()
                 .environmentObject(gameVm)
                 .environmentObject(locationManager)
                 .environmentObject(mapVm)

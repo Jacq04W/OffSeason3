@@ -31,66 +31,81 @@ struct EditDeleteGame: View {
     @State private var selectedPhoto: PhotosPickerItem?
     @State var shouldShowImagePicker = false
     @State private var uiImageSelected = UIImage()
-    
+    @State private var showPhotoViewSheet = false
+
     
     // misc
-    
+    @Environment(\.dismiss) private var dismiss
+    @State private var confirmDelete = false
     @State private var showAlert = false
     var body: some View {
         NavigationStack {
-            VStack {
-                VStack{
-                    coverPhoto        .offset(y:20)
+            ScrollView {
+                VStack {
+                    VStack{
+                        coverPhoto
+                            .offset(y:20)
 
-                    HStack{
-                        gameInfo
-                            .padding()
-            }
-            .offset(y:-20)
-            .background(
-            infoCard)
-    //
-            .padding()
-            .offset(y:9)
-                    
-                    
-                    
-                    
-        }.background{
-            bigCard
-    }
-                //TODO: ALERT FOR BUTTONS NOT WORKIGN
-             Spacer()
-                photoPicker
-                
-            }.toolbar{
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button{
-                        
-                    }label: {
-                        filterButton
-                    }
+                        HStack{
+                            gameInfo
+                                .padding()
                 }
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button{
+                .offset(y:-20)
+                .background(
+                infoCard)
+        //
+                .padding()
+                .offset(y:9)
                         
-                    }label: {
-                        editButton
+    // images here
+    //                 SpotDetailPhotosScrollView(photos: photos, event: event, player: player)
+                        ZStack{
+                            Spacer()
+                            photoPicker
+                                .offset(y:300)
+                        }
+                        
+            }.background{
+                bigCard
+        }
+                    //TODO: ALERT FOR BUTTONS NOT WORKIGN
+                 Spacer()
+                    
+                    
+                }.toolbar{
+                    ToolbarItemGroup(placement: .primaryAction) {
+                        Button{
+                            
+                        }label: {
+                            filterButton
+                        }
                     }
+                    ToolbarItemGroup(placement: .primaryAction) {
+                        Button{
+                            
+                        }label: {
+                            postButton
+                        }
+                        
+                       
+                        
+                    }
+                    
+                    
+                    
                     
                    
-                    
+            } .navigationTitle("Confirm Details")
+                    .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert) {
+                        Button ("Ok", role: .cancel) {}
+                        
+                    }
+                    .alert("Are you sure you want to delete this event ?",isPresented: $confirmDelete) {
+                        Button ("No", role: .cancel) {}
+                        Button ("Yes", role: .destructive) {}
                 }
-                
-                
-                
-                
-               
-        } .navigationTitle("\(game.name)")
-                .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert) {
-                    Button ("Ok", role: .cancel) {}
-                    
-                }
+              
+            }
 
         }
        
@@ -118,21 +133,10 @@ private extension EditDeleteGame {
         VStack{
             RoundedRectangle(cornerRadius: 21)
                 .fill(LinearGradient(gradient: Gradient(colors: [Color("purp"), Color("wok")]), startPoint: .topLeading, endPoint: .bottom) )
-                .frame(width: 376, height: 217)
+                .frame(width: 370, height: 217)
             
         }
-        .overlay{
-            Button{
-                //Todo: Alow discard event
-            }
-        label:{
-            Image(systemName: "x.circle.fill")
-                .offset(x: 170, y: -145)
-                .font(.system(size: 48))
-                .foregroundColor(.black)
-        }
-            
-        }
+       
     }
     
     // new code
@@ -158,12 +162,21 @@ private extension EditDeleteGame {
     
     
     // new code
-    var editButton : some View{
+    var postButton : some View{
         Button{
-            withAnimation{
-                showAlert.toggle()
+//                showAlert.toggle()
+                Task{
+                    let success = await
+                    gameVm.saveGame(game: game)
+                    if success {
+                        dismiss()
+                    }
+                    else {
+                        print("🤬Error: Couldnt save Game")
+                    }
+                }
 
-            }
+            
         }
     label:{
         ZStack{
@@ -171,7 +184,7 @@ private extension EditDeleteGame {
                 .frame(width: 72, height: 36)
                 .foregroundColor(.orange)
             VStack{
-                Text("Edit")
+                Text("Post")
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -257,10 +270,10 @@ private extension EditDeleteGame {
             Text(game.address)
                 .lineLimit(1)
             //TODO: create tickets
-            Text("$50")
-                .font(Font.custom("SportSpiritAf", size: 29))
-                .offset(x:25)
-                .bold()
+//            Text("$50")
+//                .font(Font.custom("SportSpiritAf", size: 29))
+//                .offset(x:25)
+//                .bold()
             
         } .font(.system(size: 25))
         //
@@ -276,6 +289,20 @@ private extension EditDeleteGame {
                 .frame(width: 350, height: 113)
                 .cornerRadius(21)
                 .offset(y:-20)
+            
+        } .overlay{
+            Button{
+                //Todo: Allow discard event
+                confirmDelete.toggle()
+                
+            }
+        label:{
+            Image(systemName: "x.circle.fill")
+                .offset(x: 168, y: -65)
+                .font(.system(size: 48))
+                .foregroundColor(.black)
+        }
+            
         }
     }
     // new code

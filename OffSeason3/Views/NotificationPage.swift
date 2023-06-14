@@ -6,13 +6,23 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
+import FirebaseFirestoreSwift
+import SwiftUI
+import MapKit
+import PhotosUI
+import WeatherKit
 
 struct NotificationPage: View {
     var body: some View {
                 NavigationStack {
                     ZStack {
                         VStack {
-                           
+                            Button("signout"){
+                                signOut()
+                                print("signed Out")
+                            }
                         Spacer()
                            
                                 List {
@@ -67,6 +77,18 @@ struct NotificationPage: View {
                       
                     }
                 }
+    
+    
+    func signOut() {
+         do {
+             try Auth.auth().signOut()
+             // Handle successful sign-out
+             // For example, navigate to a login screen
+         } catch let signOutError as NSError {
+             // Handle sign-out error
+             print("Error signing out: \(signOutError.localizedDescription)")
+         }
+     }
             }
 
 

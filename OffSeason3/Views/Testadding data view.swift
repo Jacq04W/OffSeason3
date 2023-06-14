@@ -31,6 +31,8 @@ struct TestaddingDataView: View {
     @EnvironmentObject var locationVm : LocationManager
 //data
     @State var game : Game
+    @State var player : Player
+
     @State private var annotations: [Annotation] = []
 //misc
     @State private var showSearchPage = false
@@ -38,8 +40,9 @@ struct TestaddingDataView: View {
     @State private var showingAsSheet = false
     @State private var buttonPressed = ButtonPressed.photo
     @State private var showSaveAlert = false
-    @State private var showPhotoSheet = false
-
+    @State private var showPhotoViewSheet = false
+    @State private var isShowingNext = false
+    @State private var isShowingCreateSheet = false
 
 //maps
 @State private var mapRegion = MKCoordinateRegion ()
@@ -54,99 +57,124 @@ struct TestaddingDataView: View {
     @State private var uiImageSelected = UIImage()
 
     var body: some View {
-        NavigationStack{
             ScrollView {
-                ZStack {
-                    VStack{
-                        coverPhoto
-                        Spacer()
+                    ZStack {
                         VStack{
-    Section(header:
-            Text("Customize Your Game").bold()
-        .font(Font.custom("SportSpiritAf", size: 35))){
-                        TextFields
-                        mapLayer
-                        .onChange(of:game){ _ in
-                        annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                        mapRegion.center = game.coordinate
-                    }
-                                        }
-        .padding()
-                            
+                            coverPhoto
+                            Spacer()
+                            VStack{
+        Section(header:
+                Text("Customize Your Game").bold()
+            .font(Font.custom("SportSpiritAf", size: 35))){
+                            TextFields
+                            mapLayer
+                            .onChange(of:game){ _ in
+                            annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                            mapRegion.center = game.coordinate
                         }
-                       
+                                          
+            }
+            .padding()
+                                
+                            }
+                           
+                        }
+                    }
+                }.toolbar{
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button("Back"){
+                            withAnimation{
+                                
+                                dismiss()
+                            }}
+                    }
+                    ToolbarItemGroup(placement: .automatic) {
+                        Button {
+                            withAnimation{
+                                isShowingNext.toggle()
+//                                dismiss()
+
+                            }
+                        } label: {
+                            Text("Next")
+                        }
+                        .disabled(game.name == "" && game.category == "" && game.locationName == "")
+        //                saveButton
+                        
                     }
                 }
-            }
-        }.onAppear{
-        // otherwise  center the map on the devices location
-                Task {
-                    // make map region shows user lo
-                    mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
-                    
-                 
-                }
-            annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-           
-            print("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️")
-        }
-        .onChange(of: selectedPhoto){ newValue in
-            Task{
-                do{
-                    if let data = try await newValue?.loadTransferable(type: Data.self){
+            
+            .onAppear{
+            // otherwise  center the map on the devices location
+                    Task {
+                        // make map region shows user lo
+                        mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
                         
-                        if let uiImage = UIImage(data: data){
-
-                            uiImageSelected = uiImage
-                            print("📸Succcesffullly selected image")
-                            newPhoto = Photo() // clears out contents if you add more than 1 photo in a row for this spot
-                            buttonPressed = .photo
+                     
+                    }
+                annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+               
+                print("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️")
+            }
+            .onChange(of: selectedPhoto){ newValue in
+                Task{
+                    do{
+                        if let data = try await newValue?.loadTransferable(type: Data.self){
                             
-// use this because if there is no spot we need to save the spot first then continue with the action we just pressed
-                            if game.id == nil {
-                                showSaveAlert.toggle()
-                            } else {
-                                showPhotoSheet.toggle()
+                            if let uiImage = UIImage(data: data){
+
+                                uiImageSelected = uiImage
+                                print("📸Succcesffullly selected image")
+                                newPhoto = Photo() // clears out contents if you add more than 1 photo in a row for this spot
+                                buttonPressed = .photo
+                                
+    // use this because if there is no spot we need to save the spot first then continue with the action we just pressed
+//                                if game.id == nil {
+//                                    showSaveAlert.toggle()
+//                                } else {
+//                                    showPhotoViewSheet.toggle()
+//                                }
+
+                                showPhotoViewSheet.toggle()
+
+                                
                             }
                             
-                            
                         }
-                        
+                    } catch {
+                        print("🤬Error Selecting Image failed \(error.localizedDescription)")
                     }
-                } catch {
-                    print("🤬Error Selecting Image failed \(error.localizedDescription)")
                 }
+                print("👾👾 On change of photos working ")
+
             }
-            print("👾👾👾")
-
-        }
 
 
-        .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-            ImagePicker(image: $image)}
-        .sheet(isPresented: $showSearchPage, content: {
-            PlaceLookupView(game: $game)
-        })
-        .sheet(isPresented: $showPhotoSheet, content: {
-PhotoView(photo: $newPhoto, game: game, uiImage: uiImageSelected)        })
-        .toolbar{
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Button("Back"){
-                dismiss()
-                }
+            .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
+                ImagePicker(image: $image)}
+            .fullScreenCover(isPresented: $isShowingNext, onDismiss: nil) {
+                NavigationStack{
+                    EditDeleteGame(game: game)}
             }
-            ToolbarItemGroup(placement: .automatic) {
-                saveButton
+            .sheet(isPresented: $showSearchPage){
+                PlaceLookupView(game: $game)
+            }
+            .sheet(isPresented: $isShowingCreateSheet){
+SignUpPage(player: player)
                 
             }
-        }
+
+            .sheet(isPresented: $showPhotoViewSheet){
+            PhotoView(photo: $newPhoto, game: game, uiImage: uiImageSelected)}
+        
+        
         
     }
 }
 
 struct Testadding_data_view_Previews: PreviewProvider {
     static var previews: some View {
-        TestaddingDataView(game:Game())
+        TestaddingDataView(game:Game(), player: Player())
             .environmentObject(GameViewModel())
             .environmentObject(LocationManager())
 
@@ -256,6 +284,10 @@ private extension TestaddingDataView {
     // new code⚡️
     var coverPhoto : some View {
     
+//        Image(uiImage: uiImageSelected)
+//            .resizable()
+//            .scaledToFit()
+//        
         Image ("cover2")
             .resizable()
             .scaledToFill()
@@ -269,8 +301,8 @@ private extension TestaddingDataView {
                     HStack{Image(systemName: "photo")
                         Text ("Photo" )
                     }
-                    .padding()                 .frame(height:40)
-
+                    .padding()
+                    .frame(height:40)
                     .foregroundColor(.black)
                     .background(.orange)
                     .cornerRadius(10)
@@ -289,17 +321,22 @@ private extension TestaddingDataView {
     // new code⚡️
     var saveButton : some View {
         Button("Save"){
-            Task{
-                let success = await
-                gameVm.saveGame(game: game)
-                if success {
-                    dismiss()
-                }
-                else {
-                    print("🤬Error: Couldnt save Game")
+            if player.id == nil {
+                isShowingCreateSheet.toggle()
+                
+            } else {
+                Task{
+                    let success = await
+                    gameVm.saveGame(game: game)
+                    if success {
+                        dismiss()
+                    }
+                    else {
+                        print("🤬Error: Couldnt save Game")
+                    }
                 }
             }
-        }
+        }.disabled(game.name == "" && game.category == "" && game.locationName == ""  )
     }
     
     // new code⚡️

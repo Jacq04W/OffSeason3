@@ -39,7 +39,6 @@ struct GameDetailsView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack {
             
         ZStack {
         ScrollView{
@@ -66,24 +65,24 @@ struct GameDetailsView: View {
 
                                 ScrollView(.horizontal) {
                                     HStack{
-                                        Image("temp1")
+                                        Image("cover2")
                                             .resizable()
                                         .scaledToFill ()
                                             .frame(width: 120, height:120)
                                             .clipped()
                                         
-                                        Image("temp1")
+                                        Image("cover2")
                                             .resizable()
                                             .scaledToFill ()
                                             .frame(width: 120, height:120)
                                             .clipped()
                                         
-                                        Image("temp1")
+                                        Image("cover2")
                                             .resizable()
                                             .scaledToFill ()
                                             .frame(width: 120, height:120)
                                             .clipped()
-                                        Image("temp1")
+                                        Image("cover2")
                                             .resizable()
                                             .scaledToFill ()
                                             .frame(width: 120, height:120)
@@ -92,7 +91,7 @@ struct GameDetailsView: View {
                                         
                                     }
                                 }
-                                .cornerRadius(20)
+                                .cornerRadius(10)
                             }
                             
                     
@@ -145,8 +144,6 @@ struct GameDetailsView: View {
                     
     
                 }
-                //                .padding()
-              
                 ZStack{
                     
                     VStack {
@@ -162,7 +159,7 @@ struct GameDetailsView: View {
 //            print("The games Path \(games.path)")
 //        }
             
-       }
+       
     }
 }
 
@@ -181,21 +178,7 @@ struct GameDetailsView: View {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -244,7 +227,6 @@ private extension GameDetailsView {
         }
     }
     
-    
     // new code⚡️
     var moneyButton: some View {
         // new code⚡️
@@ -262,7 +244,6 @@ private extension GameDetailsView {
         }
     }
     
-    
     // new code⚡️
     var favoriteButton : some View {
         Button(action: {
@@ -275,8 +256,6 @@ private extension GameDetailsView {
         })
     }
     
-    
-    
     // new code⚡️
     var xButton : some View  {
         Button(action: {
@@ -288,8 +267,6 @@ private extension GameDetailsView {
             
     })
     }
-    
-    
     
     // new code⚡️
     var locationName : some View {
@@ -349,6 +326,8 @@ private extension GameDetailsView {
         Button{
             withAnimation {
                 gameVm.isJoiningGame.toggle()
+                
+                //TODO: if the current user match the use rwho psoted the event disable the button
                 Task{
                     let success = await playerVm.addPlayer(game: game, player: player)
                     if success {

@@ -29,7 +29,7 @@ struct ContentView: View {
         NavigationView{
              TabView{
                  Group{
-                     MapView()
+                     MapView(player: Player())
                          .tabItem{
                              Label("Home",systemImage: "house.circle")
                             

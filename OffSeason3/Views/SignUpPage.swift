@@ -16,7 +16,12 @@ struct SignUpPage: View {
     @State private var wrongPassword = 0
     @State private var showingLoginScreen = false
     @State private var birthDate = Date.now
-    
+    @State private var isShowingCreateSheet = false
+    @EnvironmentObject var playerVM : PlayerViewModel
+    @Environment(\.dismiss) var dismiss
+    @AppStorage("firstLogin") var firstLogin = true
+
+    @State var player : Player
     var body: some View {
         NavigationView{
             ZStack{
@@ -30,24 +35,32 @@ struct SignUpPage: View {
                     .foregroundColor(.white)
                 
                 VStack{
-                    Text("Sign Up")
-                        .font(Font.custom("SportSpiritAf", size: 40))
-                        .bold()
-                        .padding()
+                    VStack(spacing: -20){
+                        Text("Finish Creating")
+                            .lineLimit(1)
+                            .font(Font.custom("SportSpiritAf", size: 40))
+                            .bold()
+                            .padding()
+                        Text("Profile")
+                            .lineLimit(1)
+                            .font(Font.custom("SportSpiritAf", size: 40))
+                            .bold()
+                            .padding()
+                    }
                     HStack{
-                        TextField ("First Name", text: $username)
+                        TextField ("First Name", text: $player.firstName)
                             .padding ()
                             .frame (width: 150, height: 50)
                             .background (Color.black.opacity (0.05))
                             .cornerRadius (10)
-                        TextField ("Last Name", text: $username)
+                        TextField ("Last Name", text: $player.lastName)
                             .padding ()
                             .frame (width: 150, height: 50)
                             .background (Color.black.opacity (0.05))
                             .cornerRadius (10)
                     }
                     
-                    TextField ("Username", text: $username)
+                    TextField ("Username", text: $player.userName)
                         .padding ()
                         .frame (width: 300, height: 50)
                         .background (Color.black.opacity (0.05))
@@ -61,32 +74,35 @@ struct SignUpPage: View {
                         .padding(.horizontal)
                         .padding(.horizontal)
                     }
+                    
+                    Button ("Submit") {
+//                        authenticateUser(username: username, email: email, password: password)
+                        Task{
+                            let success = await playerVM.savePlayer(player: player)
+                            if success {
+                                isShowingCreateSheet.toggle()
+                                
+                            } else {
+                                print("Error: 🤬Could not create a player gang")
+                            }
+                        }
                         
-                    TextField ("Email", text: $email)
-                        .padding ()
-                        .frame (width: 300, height: 50)
-                        .background (Color.black.opacity (0.05))
-                        .cornerRadius (10)
-                        .border(.red, width: CGFloat(wrongEmail))
-                    
-                    SecureField ("Password", text: $password)
-                        .padding ()
-                        .frame (width: 300, height: 50)
-                        .background (Color.black.opacity (0.05))
-                        .cornerRadius (10)
-                        .border(.red, width: CGFloat(wrongPassword))
-                    
-                    Button ("Login") {
-                        authenticateUser(username: username, email: email, password: password)
+                        
+                        
+                        
                     }
+                    .disabled(player.firstName == "" && player.lastName == "" )
+                    .font(Font.custom("SportSpiritAf", size: 30))
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
-                    .background(Color.orange)
+                    .background(Color.red)
                     .cornerRadius(10)
                     //TODO: NAVIGATION STACK 
-                    NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen){
-                        EmptyView()
-                    }
+                
+                }
+            }.sheet(isPresented: $isShowingCreateSheet) {
+                NavigationStack{
+                    TestaddingDataView(game: Game(),player: player)
                 }
             }
             
@@ -114,7 +130,8 @@ struct SignUpPage: View {
     
     struct SwiftUIView_Previews: PreviewProvider {
         static var previews: some View {
-            SignUpPage()
+            SignUpPage(player:Player())
+                .environmentObject(PlayerViewModel())
         }
     }
 }

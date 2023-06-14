@@ -16,10 +16,11 @@ import WeatherKit
 
 struct Player : Identifiable{
     @DocumentID var id : String?
-    var name = ""
+    var firstName = ""
+    var lastName = ""
     var userName = ""
     var email = Auth.auth().currentUser?.email ?? ""
-    var age = ""
+    var age = Date()
     var gender = ""
     
     
@@ -27,10 +28,11 @@ struct Player : Identifiable{
     
     var dictionary:[String:Any]{
         return [
-            "name" : name,
+            "firstName" : firstName,
+            "lastName" : lastName,
             "userName" : userName,
             "email" : email,
-            "age" : age,
+            "age" : Timestamp(date: age),
             "gender" : gender,
         ]
     }

@@ -45,6 +45,8 @@ struct PhotoView: View {
                         let success =  await gameVm.saveImage(game: game, photo: photo, image: uiImage)
                                     if success {
                                         dismiss()
+                                    } else {
+                                        print("🤬Error: Could not save photo game.id == nil")
                                     }
                                 }
                             
