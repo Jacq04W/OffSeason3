@@ -243,7 +243,8 @@ private extension TestaddingDataView {
     var TextFields : some View  {
         VStack{
             TextField("Event name", text: $game.name )
-                .textFieldStyle (.roundedBorder)            .disableAutocorrection(true)
+                .textFieldStyle (.roundedBorder)
+                .disableAutocorrection(true)
 
                 .overlay {
                     RoundedRectangle (cornerRadius: 5)
@@ -260,6 +261,8 @@ private extension TestaddingDataView {
                 DatePicker(selection: $game.startDate, in:  Date()...Date().addingTimeInterval(6 * 30 * 24 * 60 * 60), displayedComponents: .date) {
                     Text("Start Date:")
                 }.padding(.leading)
+                    .padding(.top,5)
+                    .padding(.bottom,5)
                     .padding(.trailing)
                 .overlay {
                     RoundedRectangle (cornerRadius: 5)
@@ -275,11 +278,34 @@ private extension TestaddingDataView {
                 }
             
             
-            Button("Location"){
+            Button{
                 showSearchPage.toggle()
                 showMap.toggle()
                 
-            }.frame(width: 360,height:40)
+            }
+            label : {
+                HStack{
+                    Text("Location")
+                        .font(Font.custom("SportSpiritAf", size: 35))
+                        .foregroundColor(.red)
+                   
+                    
+                    
+                    
+                }.overlay{
+                    HStack(spacing: 1) {
+                        Text("Tap")
+                            
+                        Image(systemName: "lasso")
+                    }
+                    .font(.system(size: 15))
+                    .foregroundColor(.gray)
+                    .offset(x:130,y:4)
+
+                }
+                    
+            }
+            .frame(width: 360,height:40)
                 .textFieldStyle (.roundedBorder)
                 .overlay {
                     RoundedRectangle (cornerRadius: 5)
@@ -322,10 +348,11 @@ private extension TestaddingDataView {
                         Image(systemName: "photo")
                         Text ("Photo" )
                     }
+                    .bold()
                     .padding()
                     .frame(height:40)
                     .foregroundColor(.black)
-                    .background(.orange)
+                    .background(.ultraThinMaterial)
                     .cornerRadius(10)
                 }
                 // this photos picker auto makes a button we have to provide the label
