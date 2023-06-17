@@ -57,27 +57,32 @@ struct TestaddingDataView: View {
     @State private var uiImageSelected = UIImage()
 
     var body: some View {
-            ScrollView {
+        VStack{
+            
+            
+            if !isShowingNext {
+                
+                ScrollView {
                     ZStack {
                         VStack{
                             coverPhoto
                             Spacer()
                             VStack{
-        Section(header:
-                Text("Customize Your Game").bold()
-            .font(Font.custom("SportSpiritAf", size: 35))){
-                            TextFields
-                            mapLayer
-                            .onChange(of:game){ _ in
-                            annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-                            mapRegion.center = game.coordinate
-                        }
-                                          
-            }
-            .padding()
+                                Section(header:
+                                            Text("Customize Your Game").bold()
+                                    .font(Font.custom("SportSpiritAf", size: 35))){
+                                        TextFields
+                                        mapLayer
+                                            .onChange(of:game){ _ in
+                                                annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                                                mapRegion.center = game.coordinate
+                                            }
+                                        
+                                    }
+                                    .padding()
                                 
                             }
-                           
+                            
                         }
                     }
                 }.toolbar{
@@ -89,73 +94,76 @@ struct TestaddingDataView: View {
                             }}
                     }
                     ToolbarItemGroup(placement: .automatic) {
-                        Button {
-                            withAnimation{
-                                isShowingNext.toggle()
-              //                  dismiss()
-
-                            }
-                        } label: {
-                            Text("Next")
-                        }
-                        .disabled(game.name == "" && game.category == "" && game.locationName == "")
-        //                saveButton
+//                        nextButton
+                        
+                                    saveButton
                         
                     }
                 }
-            
-            .onAppear{
-            // otherwise  center the map on the devices location
+                
+                .onAppear{
+                    // otherwise  center the map on the devices location
                     Task {
                         // make map region shows user lo
                         mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
                         
-                     
+                        
                     }
-                annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
-               
-                print("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️")
-            }
-            .onChange(of: selectedPhoto){ newValue in
-                Task{
-                    do{
-                        if let data = try await newValue?.loadTransferable(type: Data.self){
-                            
-                            if let uiImage = UIImage(data: data){
-
-                                uiImageSelected = uiImage
-                                print("📸Succcesffullly selected image")
-                                newPhoto = Photo() // clears out contents if you add more than 1 photo in a row for this spot
-                                buttonPressed = .photo
+                    annotations = [Annotation(name: game.name, address: game.address, coordinate: game.coordinate)]
+                    
+                    print("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️")
+                }
+                .onChange(of: selectedPhoto){ newValue in
+                    Task{
+                        do{
+                            if let data = try await newValue?.loadTransferable(type: Data.self){
                                 
-    // use this because if there is no spot we need to save the spot first then continue with the action we just pressed
-//                                if game.id == nil {
-//                                    showSaveAlert.toggle()
-//                                } else {
-//                                    showPhotoViewSheet.toggle()
-//                                }
-
-                                showPhotoViewSheet.toggle()
-
+                                if let uiImage = UIImage(data: data){
+                                    
+                                    uiImageSelected = uiImage
+                                    print("📸Succcesffullly selected image")
+                                    newPhoto = Photo() // clears out contents if you add more than 1 photo in a row for this spot
+                                    buttonPressed = .photo
+                                    
+                                    // use this because if there is no spot we need to save the spot first then continue with the action we just pressed
+                                    //                                if game.id == nil {
+                                    //                                    showSaveAlert.toggle()
+                                    //                                } else {
+                                    //                                    showPhotoViewSheet.toggle()
+                                    //                                }
+                                    
+                                    showPhotoViewSheet.toggle()
+                                    
+                                    
+                                }
                                 
                             }
-                            
+                        } catch {
+                            print("🤬Error Selecting Image failed \(error.localizedDescription)")
                         }
-                    } catch {
-                        print("🤬Error Selecting Image failed \(error.localizedDescription)")
                     }
+                    print("👾👾 On change of photos working ")
+                    
                 }
-                print("👾👾 On change of photos working ")
-
+            } else {
+                NavigationStack{
+                EditDeleteGame(game: game)
+                }
+                    .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .bottom)))
+                
             }
-
+        }
+            .alert("This feature is not yet availbale here... Go to next page to add photos  🤟🏿⚡️",isPresented: $showSaveAlert){
+                Button ("Ok", role: .cancel) {}
+                
+            }
 
             .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                 ImagePicker(image: $image)}
-            .fullScreenCover(isPresented: $isShowingNext, onDismiss: nil) {
-                NavigationStack{
-                    EditDeleteGame(game: game)}
-            }
+//            .fullScreenCover(isPresented: $isShowingNext, onDismiss: nil) {
+//                NavigationStack{
+//                    EditDeleteGame(game: game)}
+//            }
             .sheet(isPresented: $showSearchPage){
                 PlaceLookupView(game: $game)
             }
@@ -190,7 +198,7 @@ private extension TestaddingDataView {
             if !game.locationName.isEmpty || !game.address.isEmpty {
                 VStack{
                     Text("Confirm your location is correct")
-                        .font(Font.custom("SportSpiritAf", size: 20))
+                        .font(Font.custom("SportSpiritAf", size: 25))
                         .lineLimit(1)
                         .bold()
                         .foregroundColor(.orange)
@@ -248,6 +256,17 @@ private extension TestaddingDataView {
                     RoundedRectangle (cornerRadius: 5)
                         .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
                 }
+            HStack {
+                DatePicker(selection: $game.startDate, in: ...Date.now, displayedComponents: .date) {
+                    Text("Start Date:")
+                }.padding(.leading)
+                    .padding(.trailing)
+                .overlay {
+                    RoundedRectangle (cornerRadius: 5)
+                        .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
+                }
+//
+            }
             TextField("Description", text: $game.description)
                 .textFieldStyle (.roundedBorder)
                 .overlay {
@@ -295,10 +314,12 @@ private extension TestaddingDataView {
             .cornerRadius(10)
             .clipped()
             .overlay(
-                
-                // this photos picker auto makes a button we have to provide the label
-                PhotosPicker(selection: $selectedPhoto, matching: .images, preferredItemEncoding: .automatic){
-                    HStack{Image(systemName: "photo")
+                HStack{
+                    Button{
+                        showSaveAlert.toggle()
+                    }
+                    label : {
+                        Image(systemName: "photo")
                         Text ("Photo" )
                     }
                     .padding()
@@ -307,7 +328,18 @@ private extension TestaddingDataView {
                     .background(.orange)
                     .cornerRadius(10)
                 }
-            
+                // this photos picker auto makes a button we have to provide the label
+//                PhotosPicker(selection: $selectedPhoto, matching: .images, preferredItemEncoding: .automatic){
+//                    HStack{Image(systemName: "photo")
+//                        Text ("Photo" )
+//                    }
+//                    .padding()
+//                    .frame(height:40)
+//                    .foregroundColor(.black)
+//                    .background(.orange)
+//                    .cornerRadius(10)
+//                }
+//
             
             
             )
@@ -319,27 +351,44 @@ private extension TestaddingDataView {
     
     
     // new code⚡️
-    var saveButton : some View {
-        Button("Save"){
-            if player.id == nil {
-                isShowingCreateSheet.toggle()
-                
-            } else {
+    var saveButton : some View
+    {
+        Button("save"){
+//            if player.id == nil {
+//                isShowingCreateSheet.toggle()
+//                print("🤬Error: NO PLYER ID ")
+//
+//            } else {
                 Task{
                     let success = await
                     gameVm.saveGame(game: game)
                     if success {
-                        dismiss()
+                        withAnimation{
+                            isShowingNext.toggle()
+                            
+                        }
                     }
                     else {
                         print("🤬Error: Couldnt save Game")
                     }
                 }
-            }
+            
         }.disabled(game.name == "" && game.category == "" && game.locationName == ""  )
     }
     
     // new code⚡️
+    var nextButton : some View {
+        Button {
+            withAnimation{
+                isShowingNext.toggle()
+                //                  dismiss()
+                
+            }
+        } label: {
+            Text("Next")
+        }
+        .disabled(game.name == "" && game.category == "" && game.locationName == "")
+    }
 
     // new code⚡️
    

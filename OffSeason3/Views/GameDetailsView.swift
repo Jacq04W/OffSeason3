@@ -37,6 +37,8 @@ struct GameDetailsView: View {
     @FirestoreQuery(collectionPath: "games") var games : [Game]
     
     @Environment(\.dismiss) private var dismiss
+@State private var showAlert = false
+    @State private var noJoin = false
 
     var body: some View {
             
@@ -135,6 +137,14 @@ struct GameDetailsView: View {
                         }
                            
                     }
+                    .alert("This feature is not yet availbale on this version... stay tuned for the  OffSeason V1.1 release 🤟🏿⚡️",isPresented: $showAlert){
+                        Button ("Ok", role: .cancel) {}
+                        
+                    }
+                    .alert("Can not join an event you created ma baby ",isPresented: $noJoin){
+                        Button ("Ok", role: .cancel) {}
+                        
+                    }
                     .toolbar{
                 ToolbarItemGroup(placement: .confirmationAction) {
                           favoriteButton
@@ -197,7 +207,8 @@ private extension GameDetailsView {
     var directionsButton: some View {
         // new code⚡️
         Button{
-            presentationMode.wrappedValue.dismiss()
+            showAlert.toggle()
+//            presentationMode.wrappedValue.dismiss()
         } label: {
             ZStack{
         RoundedRectangle(cornerRadius: 30)
@@ -213,7 +224,9 @@ private extension GameDetailsView {
     var hoursButton: some View {
         // new code⚡️
         Button{
-            presentationMode.wrappedValue.dismiss()
+            showAlert.toggle()
+
+//            presentationMode.wrappedValue.dismiss()
         } label: {
             ZStack{
         RoundedRectangle(cornerRadius: 30)
@@ -231,7 +244,8 @@ private extension GameDetailsView {
     var moneyButton: some View {
         // new code⚡️
         Button{
-            presentationMode.wrappedValue.dismiss()
+            showAlert.toggle()
+
         } label: {
             ZStack{
         RoundedRectangle(cornerRadius: 30)
@@ -288,7 +302,7 @@ private extension GameDetailsView {
         HStack{
             Image(systemName: "calendar")                                    .foregroundColor(.black)
             
-            Text( "on: \(game.startDate.formatted(date: .numeric, time: .omitted))")
+            Text("\(game.startDate.formatted(date: .numeric, time: .omitted))")
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
             
@@ -305,7 +319,7 @@ private extension GameDetailsView {
                 .foregroundColor(.black)
             
             //TODO: maybe change this to the player.name
-            Text("Hosted By: \(game.hostName)")
+            Text("\(game.hostName)")
         }.padding(.bottom)
             .bold()
             .foregroundColor(.gray)
@@ -324,20 +338,31 @@ private extension GameDetailsView {
     // new code⚡️
     var joinGame : some View {
         Button{
-            withAnimation {
-                gameVm.isJoiningGame.toggle()
-                
-                //TODO: if the current user match the use rwho psoted the event disable the button
-                Task{
-                    let success = await playerVm.addPlayer(game: game, player: player)
-                    if success {
-                        dismiss()
-                    } else {
-                        print("🤬 Error: Saving spot")
+            if Auth.auth().currentUser?.email == game.posterEmail {
+                noJoin.toggle()
+            
+            }
+            else {
+                withAnimation {
+                    gameVm.isJoiningGame.toggle()
+                    
+                    
+                    //TODO: if the current user match the use rwho psoted the event disable the button
+                    Task{
+                        let success = await playerVm.addPlayer(game: game, player: player)
+                        if success {
+                            dismiss()
+                        } else {
+                    
+                            print("🤬 Error: joining game")
+                            
+                        }
                     }
                 }
+               
+                
             }
-           
+          
             
         }
     label:{
@@ -349,6 +374,7 @@ private extension GameDetailsView {
             .clipShape(Capsule())
         
     }
+    .disabled(Auth.auth().currentUser?.email == player.email)
     }
     
     // new code⚡️

@@ -60,7 +60,7 @@ struct MapView: View {
             .onAppear{
                 mapVm.mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locationVm.location?.coordinate.latitude ?? 00 , longitude: locationVm.location?.coordinate.longitude ?? 00 ), span:MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
                 
-                print("appear working ⚡️⚡️⚡️⚡️⚡️")
+                print("appear on home page working ⚡️⚡️⚡️⚡️⚡️")
             }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
@@ -170,7 +170,7 @@ private extension MapView {
                 }
 }
    
-    // new code ⚡️
+    // new code ⚡️ 
     var mapLayer : some View{
 
        Map(coordinateRegion: $mapVm.mapRegion,
@@ -182,12 +182,11 @@ private extension MapView {
             .scaleEffect(mapVm.gameLocation == location ? 1 : 0.7)
                         .onTapGesture {
 
-                            if Auth.auth().currentUser?.email == nil {
-                                showSignUpSheet.toggle()
+                        if  firstLogin{
+                        showSignUpSheet.toggle()
                             } else {
-                                
-                                gameVm.selectedGame = location
-                                mapVm.showNextGame(location)
+                gameVm.selectedGame = location
+                mapVm.showNextGame(location)
                             }
                                 
                         }
@@ -286,24 +285,6 @@ private extension MapView {
         }
     }
     // new code ⚡️
-    var CraftButton: some View {
-        Button{
-                    self.presentCreateSheet.toggle()
-                }label: {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 50)).foregroundColor(.red)
-                        .shadow(color: Color.black.opacity (0.4), radius: 20,
-                                    x: 0, y: 15)
-                }
-//                    .offset(y:-25
-//                    )
-            
-        
-        
-    
-    
-    
-}
     
     
     

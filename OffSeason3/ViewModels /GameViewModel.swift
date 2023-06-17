@@ -17,6 +17,11 @@ class GameViewModel: ObservableObject {
     @Published var selectedGame: Game? = nil
     @Published var isJoiningGame = false
 
+    @Published var isDismissing = false
+
+    
+    
+    
     func saveGame(game:Game) async -> Bool{
         let db = Firestore.firestore()
         if let id = game.id { // update the data that alrsady here

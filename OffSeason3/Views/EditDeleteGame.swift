@@ -267,7 +267,7 @@ private extension EditDeleteGame {
         HStack(spacing:1){
             Image(systemName: "mappin")
                 .foregroundColor(.gray)
-            Text(game.address)
+            Text(game.locationName)
                 .lineLimit(1)
             //TODO: create tickets
 //            Text("$50")

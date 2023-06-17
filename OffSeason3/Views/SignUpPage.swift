@@ -49,18 +49,23 @@ struct SignUpPage: View {
                     }
                     HStack{
                         TextField ("First Name", text: $player.firstName)
+                            .autocorrectionDisabled()
+
                             .padding ()
                             .frame (width: 150, height: 50)
                             .background (Color.black.opacity (0.05))
                             .cornerRadius (10)
                         TextField ("Last Name", text: $player.lastName)
+                            .autocorrectionDisabled()
+
                             .padding ()
                             .frame (width: 150, height: 50)
                             .background (Color.black.opacity (0.05))
                             .cornerRadius (10)
                     }
                     
-                    TextField ("Username", text: $player.userName)
+                    TextField("Username", text: $player.userName)
+                        .autocorrectionDisabled()
                         .padding ()
                         .frame (width: 300, height: 50)
                         .background (Color.black.opacity (0.05))
@@ -79,9 +84,11 @@ struct SignUpPage: View {
 //                        authenticateUser(username: username, email: email, password: password)
                         Task{
                             let success = await playerVM.savePlayer(player: player)
-                            if success {
-                                isShowingCreateSheet.toggle()
-                                
+                if success {
+                    withAnimation{
+                        isShowingCreateSheet.toggle()
+                        
+                    }
                             } else {
                                 print("Error: 🤬Could not create a player gang")
                             }
@@ -100,7 +107,13 @@ struct SignUpPage: View {
                     //TODO: NAVIGATION STACK 
                 
                 }
-            }.sheet(isPresented: $isShowingCreateSheet) {
+            }.toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Back"){
+                    }.disabled(player.firstName == "" && player.lastName == "" )
+                }
+            }
+            .sheet(isPresented: $isShowingCreateSheet) {
                 NavigationStack{
                     TestaddingDataView(game: Game(),player: player)
                 }
@@ -109,6 +122,9 @@ struct SignUpPage: View {
         }
         .navigationBarBackButtonHidden(true)
     }
+    
+    
+    
     func authenticateUser(username: String, email: String, password: String){
         if username.lowercased() == "rheyya2022"{
             wrongUsername = 0

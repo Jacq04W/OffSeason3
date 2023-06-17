@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseCore
+import FirebaseFirestoreSwift
+import SwiftUI
+import MapKit
+import PhotosUI
+import WeatherKit
 
 struct ExplorePage: View {
+    @FirestoreQuery(collectionPath: "games") var games : [Game]
     var body: some View {
         NavigationView
         { ZStack{

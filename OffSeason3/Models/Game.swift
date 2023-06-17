@@ -25,7 +25,7 @@ struct Game: Identifiable,Codable,Equatable {
     var description = ""
     var startDate = Date()
 //    var PostedON = Date()
-
+   var posterEmail = Auth.auth().currentUser?.email ?? ""
     var startTime = ""
     var endTime = ""
     var phoneNumber = ""
@@ -56,6 +56,7 @@ struct Game: Identifiable,Codable,Equatable {
             "endTime": endTime,
             "phoneNumber": phoneNumber,
             "summary": summary,
+            "posterEmail" : posterEmail
 //            "postedOn": Timestamp(date: Date())
             
 //            "participants" : participants
