@@ -35,7 +35,8 @@ struct GameDetailsView: View {
 
     @EnvironmentObject var gameVm : GameViewModel
     @FirestoreQuery(collectionPath: "games") var games : [Game]
-    
+    @FirestoreQuery(collectionPath: "games") var players : [Player]
+
     @Environment(\.dismiss) private var dismiss
 @State private var showAlert = false
     @State private var noJoin = false
@@ -109,16 +110,24 @@ struct GameDetailsView: View {
                             .cornerRadius(20)
                                 
                             
-                            Text("Good To Know")
+                            Text("Joined Players")
                                 .bold()
                                 .font(.title)
                             Divider()
                             //TODO: GOOD TO KNOW FORM
-                            Text(game.description)
-                            .padding()
-                            .frame(width: 360,alignment: .topLeading)
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(20)
+                            ForEach(players) { player in
+                                //TODO: fix the freame on this when ther are no players
+                                
+                                VStack{
+                                    Text(player.userName)
+                                        .padding()
+                                        .frame(width: 360,alignment: .topLeading)
+                                        
+                                        .background(.ultraThinMaterial)
+                                        .cornerRadius(20)
+                                }
+                            }
+                            
                             
                 
                         }.padding(.leading)
@@ -128,7 +137,7 @@ struct GameDetailsView: View {
                                 .bold()
                                 .font(.title)
                             Divider()
-
+   
                             Text("ok")
                             .padding()
                             .frame(width: 360, height: 250,alignment: .topLeading)
@@ -137,11 +146,11 @@ struct GameDetailsView: View {
                         }
                            
                     }
-                    .alert("This feature is not yet availbale on this version... stay tuned for the  OffSeason V1.1 release 🤟🏿⚡️",isPresented: $showAlert){
+                    .alert("This feature is not yet available on this version... stay tuned for the  OffSeason V1.1 update 🤟🏿⚡️",isPresented: $showAlert){
                         Button ("Ok", role: .cancel) {}
                         
                     }
-                    .alert("Can not join an event you created ma baby ",isPresented: $noJoin){
+                    .alert("Can not join an event you created ma baby 🤟🏿⚡️ ",isPresented: $noJoin){
                         Button ("Ok", role: .cancel) {}
                         
                     }
@@ -291,6 +300,7 @@ private extension GameDetailsView {
             
             Text(game.locationName)
                 .lineLimit(1)
+                .textSelection(.enabled)
                 .font(.title2)
                 .bold()
         }        .font(.system(size: 20))

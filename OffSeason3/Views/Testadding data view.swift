@@ -257,7 +257,7 @@ private extension TestaddingDataView {
                         .stroke(.gray.opacity(0.5), lineWidth: game.id == nil ? 2 : 0)
                 }
             HStack {
-                DatePicker(selection: $game.startDate, in: ...Date.now, displayedComponents: .date) {
+                DatePicker(selection: $game.startDate, in:  Date()...Date().addingTimeInterval(6 * 30 * 24 * 60 * 60), displayedComponents: .date) {
                     Text("Start Date:")
                 }.padding(.leading)
                     .padding(.trailing)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocationMapPin: View {
+struct FootBallMapPin: View {
     var body: some View {
         VStack(spacing: 0){
             Image(systemName: "football")
@@ -39,6 +39,6 @@ struct LocationMapPin: View {
 
 struct LocationMapPin_Previews: PreviewProvider {
     static var previews: some View {
-        LocationMapPin()
+        FootBallMapPin()
     }
 }

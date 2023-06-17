@@ -14,7 +14,7 @@ import MapKit
 import PhotosUI
 import WeatherKit
 
-struct Player : Identifiable{
+struct Player : Identifiable,Codable{
     @DocumentID var id : String?
     var firstName = ""
     var lastName = ""

@@ -11,7 +11,7 @@ import SwiftUI
 struct ProfilePage: View {
     var body: some View {
        
-        NavigationView{
+        NavigationStack{
             ScrollView{
                 HStack{
                     Image(systemName:"person.circle.fill")
@@ -25,7 +25,7 @@ struct ProfilePage: View {
                         .foregroundColor(.orange)
                         .offset(x:40, y:-20)
                     Button("sign out", action: {
-                    print ("Hello World")
+                    
                         })
                         .font(.system(size:20))
                         .foregroundColor(.red)

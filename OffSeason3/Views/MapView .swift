@@ -178,7 +178,7 @@ private extension MapView {
            annotationItems: games,
            annotationContent: { location in
            MapAnnotation(coordinate: location.coordinate){
-                               LocationMapPin()
+                               FootBallMapPin()
             .scaleEffect(mapVm.gameLocation == location ? 1 : 0.7)
                         .onTapGesture {
 

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		090090DD2A25362E00DB4D40 /* MapsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090DC2A25362E00DB4D40 /* MapsViewModel.swift */; };
-		090090E22A25377100DB4D40 /* LocationMapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E12A25377100DB4D40 /* LocationMapPin.swift */; };
+		090090E22A25377100DB4D40 /* FootBallMapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E12A25377100DB4D40 /* FootBallMapPin.swift */; };
 		090090E42A2660CD00DB4D40 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E32A2660CD00DB4D40 /* WeatherViewModel.swift */; };
 		090090E62A2663C500DB4D40 /* filterspage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E52A2663C500DB4D40 /* filterspage.swift */; };
 		090090E82A2663F200DB4D40 /* HelpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090090E72A2663F200DB4D40 /* HelpPage.swift */; };
@@ -82,7 +82,7 @@
 
 /* Begin PBXFileReference section */
 		090090DC2A25362E00DB4D40 /* MapsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewModel.swift; sourceTree = "<group>"; };
-		090090E12A25377100DB4D40 /* LocationMapPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapPin.swift; sourceTree = "<group>"; };
+		090090E12A25377100DB4D40 /* FootBallMapPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootBallMapPin.swift; sourceTree = "<group>"; };
 		090090E32A2660CD00DB4D40 /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		090090E52A2663C500DB4D40 /* filterspage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filterspage.swift; sourceTree = "<group>"; };
 		090090E72A2663F200DB4D40 /* HelpPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPage.swift; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				09A4E3132A30FB1500C8C764 /* ExploreCard .swift */,
-				090090E12A25377100DB4D40 /* LocationMapPin.swift */,
+				090090E12A25377100DB4D40 /* FootBallMapPin.swift */,
 				098E7B322A3DA12000A53E9C /* GameDetailCard.swift */,
 				09C75A0C2A324B6E0001BF22 /* TestPhotos.swift */,
 			);
@@ -440,7 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C75A0D2A324B6E0001BF22 /* TestPhotos.swift in Sources */,
-				090090E22A25377100DB4D40 /* LocationMapPin.swift in Sources */,
+				090090E22A25377100DB4D40 /* FootBallMapPin.swift in Sources */,
 				09AA70642A35C43B0095752D /* EditDeleteGame.swift in Sources */,
 				091C62892A24E90A00AA5981 /* GameViewModel.swift in Sources */,
 				09A4E3142A30FB1500C8C764 /* ExploreCard .swift in Sources */,
