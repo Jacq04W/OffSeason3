@@ -84,6 +84,8 @@ struct TestaddingDataView: View {
                             }
                             
                         }
+                       
+
                     }
                 }.toolbar{
                     ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -197,11 +199,11 @@ private extension TestaddingDataView {
         VStack{
             if !game.locationName.isEmpty || !game.address.isEmpty {
                 VStack{
-                    Text("Confirm your location is correct")
-                        .font(Font.custom("SportSpiritAf", size: 25))
+                    Text("Correct location ?")
+                        .font(Font.custom("SportSpiritAf", size: 40))
                         .lineLimit(1)
                         .bold()
-                        .foregroundColor(.orange)
+                        .foregroundColor(.black)
 
             TextField("Location Name",text:$game.locationName).disabled(true)
                         .textFieldStyle (.roundedBorder)
