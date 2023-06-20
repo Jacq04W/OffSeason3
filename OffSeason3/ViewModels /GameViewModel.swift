@@ -166,4 +166,32 @@ try await
     } // end func
         
     
+    //TODO: test this make sure it deletes the correct thing 
+    func deleteReview(game: Game) async -> Bool {
+        let db = Firestore.firestore()
+        
+        guard let gameID = game.id else {
+            print("🤬Error: Could not find spot ID")
+            return false
+        }
+        do {
+
+let _ = try await db.collection("games").document(gameID).collection("games").document(gameID).delete()
+            print("🗑️ Document Successfully deleted")
+            return true
+
+
+        } catch {
+            print("🤬Error: removing document \(error.localizedDescription)")
+            return false
+
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
 }// class

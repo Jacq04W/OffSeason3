@@ -96,7 +96,7 @@ struct MapView: View {
                     
                 }
             }
-            .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert){
+            .alert("This feature is not yet available... Stay tuned for the OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert){
                 Button ("Ok", role: .cancel) {}
                 
             }

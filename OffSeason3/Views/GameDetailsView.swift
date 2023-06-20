@@ -40,7 +40,8 @@ struct GameDetailsView: View {
     @Environment(\.dismiss) private var dismiss
 @State private var showAlert = false
     @State private var noJoin = false
-
+    @State private var postedByThisUser = false
+var 😎 = "OKKKK"
     var body: some View {
             
         ZStack {
@@ -121,7 +122,7 @@ struct GameDetailsView: View {
                                 VStack{
                                     Text(player.userName)
                                         .padding()
-                                        .frame(width: 360,alignment: .topLeading)
+                                        .frame(height: 360,alignment: .topLeading)
                                         
                                         .background(.ultraThinMaterial)
                                         .cornerRadius(20)
@@ -137,12 +138,12 @@ struct GameDetailsView: View {
                                 .bold()
                                 .font(.title)
                             Divider()
-   
-                            Text("ok")
-                            .padding()
-                            .frame(width: 360, height: 250,alignment: .topLeading)
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(20)
+   //TODO: Joined player cards 
+//                            Text("ok")
+//                            .padding()
+//                            .frame(width: 360, height: 250,alignment: .topLeading)
+//                            .background(.ultraThinMaterial)
+//                            .cornerRadius(20)
                         }
                            
                     }
@@ -155,6 +156,12 @@ struct GameDetailsView: View {
                         
                     }
                     .toolbar{
+//                        if postedByThisUser{
+//
+//
+//
+//
+//                        }
                 ToolbarItemGroup(placement: .confirmationAction) {
                           favoriteButton
                             xButton

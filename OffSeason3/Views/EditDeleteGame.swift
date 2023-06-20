@@ -38,74 +38,95 @@ struct EditDeleteGame: View {
     @Environment(\.dismiss) private var dismiss
     @State private var confirmDelete = false
     @State private var showAlert = false
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
-                    VStack{
-                        coverPhoto
-                            .offset(y:20)
+                VStack{
+                    
+                    GameDetailCard(game: game)
+                        .onTapGesture {
+                        gameVm.selectedGame = game
 
-                        HStack{
-                            gameInfo
-                                .padding()
-                }
-                .offset(y:-20)
-                .background(
-                infoCard)
-        //
-                .padding()
-                .offset(y:9)
-                        
-    // images here
-    //                 SpotDetailPhotosScrollView(photos: photos, event: event, player: player)
-                        ZStack{
-                            Spacer()
-                            photoPicker
-                                .offset(y:300)
+                        }
+                        .overlay{
+                            Button{
+            //TODO: CHeck this
+                                confirmDelete.toggle()
+                                
+                               
+                                
+                            } label: {
+                                Image(systemName: "x.circle.fill")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(.black)
+                            }
+                            .offset(x:160,y:-130)
                         }
                         
-            }.background{
-                bigCard
-        }
-                    //TODO: ALERT FOR BUTTONS NOT WORKIGN
-                 Spacer()
                     
-                    
-                }.toolbar{
-                    ToolbarItemGroup(placement: .primaryAction) {
-                        Button{
-                            
-                        }label: {
-                            filterButton
-                        }
-                    }
-                    ToolbarItemGroup(placement: .primaryAction) {
-                        Button{
-                            
-                        }label: {
-                            postButton
-                        }
-                        
-                       
-                        
-                    }
-                    
-                    
-                    
-                    
-                   
-            } .navigationTitle("Confirm Details")
-                    .alert("This feature is not yet availbale... stay tuned for the official OffSeason release 🤟🏿⚡️",isPresented: $showAlert) {
-                        Button ("Ok", role: .cancel) {}
-                        
-                    }
-                    .alert("Are you sure you want to delete this event ?",isPresented: $confirmDelete) {
-                        Button ("No", role: .cancel) {}
-                        Button ("Yes", role: .destructive) {}
-                }
+                }.padding()
+               
               
             }
+            // TODO: finish adding images here 
+            ZStack{
+                VStack{
+                    Spacer()
+
+                    photoPicker
+                }
+            }
+    
+            .toolbar{
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button{
+                        
+                    }label: {
+                        filterButton
+                    }
+                }
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button{
+                        
+                    }label: {
+                        postButton
+                    }
+                    
+                   
+                    
+                }
+                
+                
+                
+                
+               
+        }
+            .navigationTitle("Confirm Details")
+                .alert("This feature is not yet available... stay tuned for the  OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert) {
+                    Button ("Ok", role: .cancel) {}
+                    
+                }
+                .alert("Are you sure you want to delete this game?",isPresented: $confirmDelete) {
+                    Button ("No", role: .cancel) {}
+                    Button ("Yes", role: .destructive) {
+                        Task{
+                            let success =
+                            await  gameVm.deleteReview(game: game)
+                            if success {
+                                dismiss()
+                            }
+                        }
+                    }
+                    
+            }
+                .sheet(item: $gameVm.selectedGame){game in
+                    NavigationStack{
+                        GameDetailsView(game: game, player: Player())
+                        
+                    }
+                }
+
 
         }
        
