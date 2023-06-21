@@ -61,6 +61,7 @@
 		7864CD1B2A26E11800251105 /* Mygames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7864CD1A2A26E11800251105 /* Mygames.swift */; };
 		7864CD1D2A26E17A00251105 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7864CD1C2A26E17A00251105 /* ProfilePage.swift */; };
 		789B16C82A292654007C1AC0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B16C72A292654007C1AC0 /* ImagePicker.swift */; };
+		78BCF2F82A43733A00B6B923 /* PP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BCF2F72A43733A00B6B923 /* PP2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		7864CD1A2A26E11800251105 /* Mygames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mygames.swift; sourceTree = "<group>"; };
 		7864CD1C2A26E17A00251105 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		789B16C72A292654007C1AC0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		78BCF2F72A43733A00B6B923 /* PP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PP2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				091C623D2A24DD1100AA5981 /* LoginView.swift */,
 				7864CD162A26DFD700251105 /* ContentView.swift */,
 				7864CD1C2A26E17A00251105 /* ProfilePage.swift */,
+				78BCF2F72A43733A00B6B923 /* PP2.swift */,
 				7864CD1A2A26E11800251105 /* Mygames.swift */,
 				09C75A0E2A3262830001BF22 /* PhotoView.swift */,
 				7864CD182A26E0A700251105 /* ExplorePage.swift */,
@@ -446,6 +449,7 @@
 				09A4E3142A30FB1500C8C764 /* ExploreCard .swift in Sources */,
 				091C62902A24EE3C00AA5981 /* Testadding data view.swift in Sources */,
 				090090EC2A26640000DB4D40 /* NotificationPage.swift in Sources */,
+				78BCF2F82A43733A00B6B923 /* PP2.swift in Sources */,
 				090090E42A2660CD00DB4D40 /* WeatherViewModel.swift in Sources */,
 				091C62962A25154000AA5981 /* PlaceLookupView.swift in Sources */,
 				090090DD2A25362E00DB4D40 /* MapsViewModel.swift in Sources */,
@@ -630,7 +634,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OffSeason3/Preview Content\"";
-				DEVELOPMENT_TEAM = Q883HJGNY5;
+				DEVELOPMENT_TEAM = 73U243ADJK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OffSeason3/Info.plist;
@@ -647,7 +651,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Twomuchcode.OffSeason3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.academy.OffSeason3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

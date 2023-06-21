@@ -110,7 +110,7 @@ struct LoginView: View {
                 }
             }
             .fullScreenCover(isPresented: $presentSheet){
-                MapView(player: Player())
+                ContentView()
                 
         }
         }
