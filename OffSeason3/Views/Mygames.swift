@@ -102,7 +102,7 @@ private extension Mygames {
                     
                     NavigationLink{
                         MapView(player: Player())
-                        
+//                        showGames.toggle()
                     } label: {
                         Text("See games")
                             .frame(width: 150,height:50)
@@ -113,7 +113,7 @@ private extension Mygames {
                         
                         // have some one fix shadow here
 //                          .shadow(color: .black.opacity(0.6), radius: 7,x:14,y:-2)
-                    }
+                    }.disabled()
 //                    .offset(y:250)
                     
                 }

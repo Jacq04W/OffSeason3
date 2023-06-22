@@ -44,7 +44,7 @@ struct ContentView: View {
                              Label("My Games",systemImage: "flag.2.crossed.circle.fill")
                             }
                      
-              ProfilePage()
+                     ProfilePage(player:Player())
                      
                      .tabItem{
                              Label("Profile",systemImage: "person.crop.circle")

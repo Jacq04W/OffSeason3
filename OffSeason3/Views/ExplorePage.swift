@@ -26,7 +26,7 @@ struct ExplorePage: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Text("Explore alll the events near you")
+                Text("Explore all the events near you")
                     .lineLimit(2)
                 HStack{
                     Image(systemName: "mappin")
