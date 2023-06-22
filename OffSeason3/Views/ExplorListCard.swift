@@ -28,22 +28,18 @@ struct ExplorListCard: View {
             Image("cover2")
                 .resizable()
                 .cornerRadius(30)
-                .scaledToFit()
-            VStack(alignment: .leading){
+                .aspectRatio(3/3, contentMode: .fit)
+                .frame(width: 200, height: 200)
+            
+                       VStack(alignment: .leading){
                 Text("game.name")
-                .font(Font.custom("SportSpiritAf", size: 40))
+                .font(Font.custom("SportSpiritAf", size: 30))
                 .lineLimit(1)
             }
-            .frame(width: 394,height: 70)
+            .frame(width: 200,height: 50)
             .background(.ultraThinMaterial)
-            .cornerRadius(40)
-            .offset(y:175)
-            
-            
-            
-           
-            
-            
+            .cornerRadius(20)
+            .offset(y:85)
         }
         .onTapGesture {
             

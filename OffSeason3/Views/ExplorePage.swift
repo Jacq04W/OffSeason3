@@ -16,45 +16,97 @@ import WeatherKit
 
 struct ExplorePage: View {
     @FirestoreQuery(collectionPath: "games") var games : [Game]
+    
+    let columns: [GridItem] = [
+        GridItem(.flexible(),spacing: nil,alignment: nil),
+        GridItem(.flexible(),spacing: nil,alignment: nil)
+
+        
+    ]
     var body: some View {
-        NavigationView
-        { ZStack{
-            List {
-                Section(header: Text("Categories")){
-                    
-                    filterspage23()
-                    
+        NavigationStack{
+            VStack{
+                Text("Explore alll the events near you")
+                    .lineLimit(2)
+                HStack{
+                    Image(systemName: "mappin")
+                        .font(.system(size: 30))
+                        .foregroundColor(.blue)
+
+                    Text("Detroit")
+                        .foregroundColor(.orange)
                 }
-                
-                Section(header: Text("Near Me")){
-                    ScrollView(.horizontal){ HStack{
-                        Imagecard()
-                        
-                        Imagecard()
-                    }
-                        
-                    }
-                }.padding()
-                
-                Section(header: Text("Upcoming")){
-                    
-                    ScrollView(.horizontal){ HStack{
-                        Imagecard()
-                        
-                        Imagecard()
-                    }
-                        
-                    }
-                    
-                }
-                
-                .padding()
-                
-            }.headerProminence(.increased)
+        
+            }
+            .padding()
+            .font(Font.custom("SportSpiritAf",
+                              size: 40)).frame(width:400,height: 300)
             
-                .navigationTitle("Explore")
+                .cornerRadius(30)
+                            .background(.ultraThinMaterial)
+                        
+            ScrollView{
+                        LazyVGrid(columns: columns) {
+                            ForEach(games) { game in
+                            ExplorListCard(game: game)
+                                    .frame(width: 200, height: 200)
+
+                            }
+ 
+                        
+//                            ForEach(1..<100){ item in
+//                                Rectangle()
+//                                    .aspectRatio(3/3, contentMode: .fit)
+//
+////                                    .frame(height: 200)
+//
+//                            }
+//
+                            
+                            
+                        }
+                    }
+                  
             
-        }
+                
+             
+//        { ZStack{
+//            List {
+//                Section(header: Text("Categories")){
+//
+//                    filterspage23()
+//
+//                }
+//
+//                Section(header: Text("Near Me")){
+//                    ScrollView(.horizontal){ HStack{
+//                        Imagecard()
+//
+//                        Imagecard()
+//                    }
+//
+//                    }
+//                }.padding()
+//
+//                Section(header: Text("Upcoming")){
+//
+//                    ScrollView(.horizontal){ HStack{
+//                        Imagecard()
+//
+//                        Imagecard()
+//                    }
+//
+//                    }
+//
+//                }
+//
+//                .padding()
+//
+//            }.headerProminence(.increased)
+//
+//                .navigationTitle("Explore")
+//
+//        }
             
             
             
