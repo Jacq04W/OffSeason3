@@ -44,145 +44,143 @@ struct GameDetailsView: View {
 var 😎 = "OKKKK"
     var body: some View {
             
-        ZStack {
-        ScrollView{
-                    VStack {
-                        gameName
-                        VStack(alignment:.leading){
-                            locationName
-                            startDate
-                             hostName
-                    
-                            VStack(spacing: 20) {
-                                HStack(spacing:25){
-                                    directionsButton
-                                    hoursButton
-                                    moneyButton
-                                }
-                                .foregroundColor(.white)
-                                .padding(.horizontal)
-                                Divider()
-                                
-                                // images here
-//
-//                                SpotDetailPhotosScrollView(photos: photos, event: event, player: player)
+        NavigationStack {
+            ZStack {
+            ScrollView{
+                        VStack {
+                            gameName
+                            VStack(alignment:.leading){
+                                locationName
+                                startDate
+                                 hostName
+                        
+                                VStack(spacing: 20) {
+                                    HStack(spacing:25){
+                                        directionsButton
+                                        hoursButton
+                                        moneyButton
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal)
+                                    Divider()
+                                    
+                                    // images here
+    //
+    //                                SpotDetailPhotosScrollView(photos: photos, event: event, player: player)
 
-                                ScrollView(.horizontal) {
-                                    HStack{
-                                        Image("cover2")
-                                            .resizable()
-                                        .scaledToFill ()
-                                            .frame(width: 120, height:120)
-                                            .clipped()
-                                        
-                                        Image("cover2")
-                                            .resizable()
+                                    ScrollView(.horizontal) {
+                                        HStack{
+                                            Image("cover2")
+                                                .resizable()
                                             .scaledToFill ()
-                                            .frame(width: 120, height:120)
-                                            .clipped()
-                                        
-                                        Image("cover2")
-                                            .resizable()
-                                            .scaledToFill ()
-                                            .frame(width: 120, height:120)
-                                            .clipped()
-                                        Image("cover2")
-                                            .resizable()
-                                            .scaledToFill ()
-                                            .frame(width: 120, height:120)
-                                            .clipped()
-                                        
-                                        
+                                                .frame(width: 120, height:120)
+                                                .clipped()
+                                            
+                                            Image("cover2")
+                                                .resizable()
+                                                .scaledToFill ()
+                                                .frame(width: 120, height:120)
+                                                .clipped()
+                                            
+                                            Image("cover2")
+                                                .resizable()
+                                                .scaledToFill ()
+                                                .frame(width: 120, height:120)
+                                                .clipped()
+                                            Image("cover2")
+                                                .resizable()
+                                                .scaledToFill ()
+                                                .frame(width: 120, height:120)
+                                                .clipped()
+                                        }
+                                    }
+                                    .cornerRadius(10)
+                                }
+                                
+                        
+                                Text("Details")
+                                    .bold()
+                                    .font(.title)
+                                    Divider()
+                                
+                                Text(game.description)
+                                .padding()
+                                .frame(width: 360,alignment: .topLeading)
+                                .background(.ultraThinMaterial)
+                                .cornerRadius(20)
+                                    
+                                
+                                Text("Joined Players")
+                                    .bold()
+                                    .font(.title)
+                                Divider()
+                                //TODO: GOOD TO KNOW FORM
+                                ForEach(players) { player in
+                                    //TODO: fix the freame on this when ther are no players
+                                    
+                                    VStack{
+                                        Text(player.userName)
+                                            .padding()
+                                            .frame(height: 360,alignment: .topLeading)
+                                            
+                                            .background(.ultraThinMaterial)
+                                            .cornerRadius(20)
                                     }
                                 }
-                                .cornerRadius(10)
-                            }
-                            
+                                
+                                
                     
-                            Text("Details")
-                                .bold()
-                                .font(.title)
+                            }.padding(.leading)
+                            
+                            VStack{
+                                Text("Ratings & Reviews")
+                                    .bold()
+                                    .font(.title)
                                 Divider()
-                            
-                            Text(game.description)
-                            .padding()
-                            .frame(width: 360,alignment: .topLeading)
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(20)
-                                
-                            
-                            Text("Joined Players")
-                                .bold()
-                                .font(.title)
-                            Divider()
-                            //TODO: GOOD TO KNOW FORM
-                            ForEach(players) { player in
-                                //TODO: fix the freame on this when ther are no players
-                                
-                                VStack{
-                                    Text(player.userName)
-                                        .padding()
-                                        .frame(height: 360,alignment: .topLeading)
-                                        
-                                        .background(.ultraThinMaterial)
-                                        .cornerRadius(20)
-                                }
+       //TODO: Joined player cards
+    //                            Text("ok")
+    //                            .padding()
+    //                            .frame(width: 360, height: 250,alignment: .topLeading)
+    //                            .background(.ultraThinMaterial)
+    //                            .cornerRadius(20)
                             }
-                            
-                            
-                
-                        }.padding(.leading)
-                        
-                        VStack{
-                            Text("Ratings & Reviews")
-                                .bold()
-                                .font(.title)
-                            Divider()
-   //TODO: Joined player cards 
-//                            Text("ok")
-//                            .padding()
-//                            .frame(width: 360, height: 250,alignment: .topLeading)
-//                            .background(.ultraThinMaterial)
-//                            .cornerRadius(20)
+                               
                         }
-                           
-                    }
-                    .alert("This feature is not yet available on this version... stay tuned for the  OffSeason V1.1 update 🤟🏿⚡️",isPresented: $showAlert){
-                        Button ("Ok", role: .cancel) {}
+                        .alert("This feature is not yet available on this version... stay tuned for the  OffSeason V1.1 update 🤟🏿⚡️",isPresented: $showAlert){
+                            Button ("Ok", role: .cancel) {}
+                            
+                        }
+                        .alert("Can not join an event you created ma baby 🤟🏿⚡️ ",isPresented: $noJoin){
+                            Button ("Ok", role: .cancel) {}
+                            
+                        }
+                        .toolbar{
+    //                        if postedByThisUser{
+    //
+    //
+    //
+    //
+    //                        }
+                    ToolbarItemGroup(placement: .confirmationAction) {
+                              favoriteButton
+                                xButton
+                                }
+                        }
                         
+        
                     }
-                    .alert("Can not join an event you created ma baby 🤟🏿⚡️ ",isPresented: $noJoin){
-                        Button ("Ok", role: .cancel) {}
-                        
+                    ZStack{
+                        VStack {
+                        Spacer()
+                           joinGame
                     }
-                    .toolbar{
-//                        if postedByThisUser{
-//
-//
-//
-//
-//                        }
-                ToolbarItemGroup(placement: .confirmationAction) {
-                          favoriteButton
-                            xButton
-                            }
-                    }
-                    
-    
-                }
-                ZStack{
-                    
-                    VStack {
-                    
-                    Spacer()
-                       joinGame
                 }
             }
         }
-             //   .onAppear{
+//                .onAppear{
 //            // if crash ch8.12 @ 7min
 //    $games.path = "games/\(game.id ?? "")/players"
-//            print("The games Path \(games.path)")
+//                    print("The games Path \($games.path)")
 //        }
             
        
@@ -355,14 +353,12 @@ private extension GameDetailsView {
     // new code⚡️
     var joinGame : some View {
         Button{
-            if Auth.auth().currentUser?.email == game.posterEmail {
-                noJoin.toggle()
+        //    if Auth.auth().currentUser?.email == game.posterEmail {
+        //        noJoin.toggle()
             
-            }
-            else {
+        //    }
+        //    else {
                 withAnimation {
-                    gameVm.isJoiningGame.toggle()
-                    
                     
                     //TODO: if the current user match the use rwho psoted the event disable the button
                     Task{
@@ -370,15 +366,15 @@ private extension GameDetailsView {
                         if success {
                             dismiss()
                         } else {
-                    
                             print("🤬 Error: joining game")
-                            
                         }
                     }
+                    
+                    gameVm.isJoiningGame.toggle()
                 }
                
                 
-            }
+            //}
           
             
         }
@@ -391,7 +387,7 @@ private extension GameDetailsView {
             .clipShape(Capsule())
         
     }
-    .disabled(Auth.auth().currentUser?.email == player.email)
+//    .disabled(Auth.auth().currentUser?.email == player.email)
     }
     
     // new code⚡️

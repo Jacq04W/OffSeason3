@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PP2: View {
     var body: some View {
-   
                 ScrollView {
                     VStack(spacing: 20) {
                         ProfileCoverImage()

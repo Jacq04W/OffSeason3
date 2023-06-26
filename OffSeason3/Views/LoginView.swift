@@ -91,7 +91,7 @@ struct LoginView: View {
                 // how to properly naviaget to a new view
                 .navigationDestination(for: String.self){ view in
                     if view == "MapView"{
-                        MapView( player: Player())
+                        MapView(player: Player())
                     }
                 }
             }// nav stack

@@ -31,12 +31,12 @@ struct ContentView: View {
                  Group{
                      MapView(player: Player())
                          .tabItem{
-                             Label("Home",systemImage: "house.circle")
+                             Label("Home",systemImage: "house")
                             
                          }
                    ExplorePage()
                          .tabItem{
-                             Label("Explore",systemImage: "magnifyingglass.circle")
+                             Label("Explore",systemImage: "magnifyingglass")
                              Image(systemName: "")
                          }
                      Mygames()
@@ -54,8 +54,7 @@ struct ContentView: View {
                      
                  }
                 
-             }
-             
+             }.background(Color.clear)
             
 
         }

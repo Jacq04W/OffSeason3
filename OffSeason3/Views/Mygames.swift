@@ -15,8 +15,10 @@ import PhotosUI
 import WeatherKit
 
 struct Mygames: View {
+    var value : String?
     @State var choice = 3
     @FirestoreQuery(collectionPath: "games") var games : [Game]
+    
      var body: some View {
              NavigationStack {
                 VStack {
@@ -113,7 +115,7 @@ private extension Mygames {
                         
                         // have some one fix shadow here
 //                          .shadow(color: .black.opacity(0.6), radius: 7,x:14,y:-2)
-                    }.disabled()
+                    }.disabled(true)
 //                    .offset(y:250)
                     
                 }

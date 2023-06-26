@@ -20,17 +20,25 @@ struct ExploreCard: View {
             VStack(alignment: .center){
                 
                 Text("Thats wassup! You joined an event \n Continue to explore or go to my Events ")
-                
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .bold()
                 
                 ExploreButton
-                Button("My Events"){
-                    
-                    dismiss()
-                }
                 
+                
+                NavigationLink(value: "MyGames") {
+                    Button("My Events"){
+                        print("Button pressed hh")
+                    }
+                }
+               
+                
+            }
+            .navigationDestination(for: String.self){ view  in
+                if view == "MyGames" {
+                    Mygames(value:view)
+                }
             }
             .foregroundColor(.black)
             .padding()
@@ -44,9 +52,13 @@ struct ExploreCard: View {
     // code 
     
     var ExploreButton : some View {
-    Button(action: {
-        gameVm.isJoiningGame = false
-    }) {
+    Button {
+        withAnimation{
+            gameVm.isJoiningGame.toggle()
+               
+        }
+ 
+    }label:{
         Text("Explore")
             .font(Font.custom("SportSpiritAf", size: 30))
             .frame(width: 133, height: 50)

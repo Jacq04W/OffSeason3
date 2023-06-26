@@ -57,6 +57,10 @@ struct MapView: View {
                     .offset(x:140,y:310)
                 }
             }
+            .task {
+                // make map region shows user lo
+                mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+            }
             .onAppear{
                 mapVm.mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locationVm.location?.coordinate.latitude ?? 00 , longitude: locationVm.location?.coordinate.longitude ?? 00 ), span:MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
                 
