@@ -45,7 +45,7 @@ struct LoginView: View {
                         Task {
                             do {
                                 try await googleVm.signInGoogle()
-                                presentSheet = false
+                                presentSheet = true
                             } catch {
                                 print(error)
                             }
