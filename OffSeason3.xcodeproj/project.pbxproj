@@ -52,6 +52,7 @@
 		09C2E3E72A29348E0099FC03 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C2E3E62A29348E0099FC03 /* Player.swift */; };
 		09C75A0D2A324B6E0001BF22 /* TestPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C75A0C2A324B6E0001BF22 /* TestPhotos.swift */; };
 		09C75A0F2A3262830001BF22 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C75A0E2A3262830001BF22 /* PhotoView.swift */; };
+		5E3915802A4B4D2600B9848D /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39157F2A4B4D2600B9848D /* Cards.swift */; };
 		5ED5B2472A43C34800428FBB /* ExplorListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5B2462A43C34800428FBB /* ExplorListCard.swift */; };
 		6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */; };
 		6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
@@ -118,6 +119,7 @@
 		09C2E3E62A29348E0099FC03 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		09C75A0C2A324B6E0001BF22 /* TestPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPhotos.swift; sourceTree = "<group>"; };
 		09C75A0E2A3262830001BF22 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		5E39157F2A4B4D2600B9848D /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		5ED5B2462A43C34800428FBB /* ExplorListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorListCard.swift; sourceTree = "<group>"; };
 		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		091C622F2A24DD1100AA5981 = {
 			isa = PBXGroup;
 			children = (
+				5E39157F2A4B4D2600B9848D /* Cards.swift */,
 				091C62652A24DD9F00AA5981 /* GoogleService-Info.plist */,
 				091C623B2A24DD1100AA5981 /* OffSeason3App.swift */,
 				091C623A2A24DD1100AA5981 /* OffSeason3 */,
@@ -455,6 +458,7 @@
 				78BCF2F82A43733A00B6B923 /* PP2.swift in Sources */,
 				090090E42A2660CD00DB4D40 /* WeatherViewModel.swift in Sources */,
 				091C62962A25154000AA5981 /* PlaceLookupView.swift in Sources */,
+				5E3915802A4B4D2600B9848D /* Cards.swift in Sources */,
 				090090DD2A25362E00DB4D40 /* MapsViewModel.swift in Sources */,
 				090090EA2A2663FA00DB4D40 /* WeatherPage.swift in Sources */,
 				7864CD192A26E0A700251105 /* ExplorePage.swift in Sources */,

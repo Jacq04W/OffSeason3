@@ -13,10 +13,15 @@ import SwiftUI
 import MapKit
 import PhotosUI
 import WeatherKit
+ 
 
 struct ExplorePage: View {
     @FirestoreQuery(collectionPath: "games") var games : [Game]
     
+    var tests = [Player( firstName: "MIke", lastName: "The Rec Center", userName: "HBLHJB", email: "", age: Date(), gender: ""),
+                 Player( firstName: "Jacq", lastName: "The Rec Center", userName: "HBLHJB", email: "", age: Date(), gender: "")
+    
+    ]
     let columns: [GridItem] = [
         GridItem(.flexible(),spacing: 6,alignment: nil),
         GridItem(.flexible(),spacing: 6,alignment: nil),
@@ -24,37 +29,43 @@ struct ExplorePage: View {
     ]
     
     @State private var filters: [Filter] = [
+        Filter(name: "All", image: "basketball.fill"),
+
     Filter(name: "Basketball", image: "basketball.fill"),
     Filter(name: "Football", image: "football.fill")
 ,    Filter(name: "Chess", image: "basketball.fill")
 ,    Filter(name: "Soccer", image: "basketball.fill")
     ]
     
-    
+      
     var body: some View {
         NavigationStack{
             ScrollView {
-                            VStack(alignment: .leading){
-                    
+            VStack(alignment: .leading){
                     Text("Categories")
                         .font(.title2)
                         .bold()
-                    HStack{
-                        ForEach(filters,id: \.name) { filter in
+              
+                ScrollView(.horizontal){HStack {
+           
                             
-                            Button{}
-                        label:{
-                            Text(filter.name)
-                                .lineLimit(1)
-                                .font(.caption)
-                                .bold()
-                                .padding()
-                                .background(.ultraThinMaterial)
-                                .cornerRadius(30)
-                        }.foregroundColor(.black)
-                            
-                        }
+                            ForEach(filters,id: \.name) { filter in
+                                
+                                Button{}
+                            label:{
+                                Text(filter.name)
+                                    .lineLimit(1)
+                                    .font(.caption)
+                                    .bold()
+                                    .padding()
+                                    .background(.ultraThinMaterial)
+                                    .cornerRadius(30)
+                            }.foregroundColor(.black)
+                                
+                            }
                     }
+                 }
+                
                     Spacer()
                     
                 }.padding()
@@ -74,10 +85,21 @@ struct ExplorePage: View {
                         {
                             
                             ForEach(games){ game in
-                                Text(game.name)
-                                    .frame(width: 100, height: 100)
-                                    .background(.red)
-                                    .cornerRadius(5)
+//                                VStack{
+//                                    Text(game.firstName)
+//
+//                                    Text(game.lastName)
+//
+//
+//
+//                                } .frame(width: 300, height: 150)
+//                                    .bold()
+//                                    .background(.red)
+//                                    .cornerRadius(5)
+//
+                                VStack{
+                                    Cards(game: game)
+                                }
                                 
                                 
                                 

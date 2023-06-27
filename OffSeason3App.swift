@@ -38,6 +38,8 @@ struct Snacktacku_arApp: App {
 
     var body: some Scene {
         WindowGroup {
+//            Cards(game: Game( name: "Test Run", hostName: "Mike.F", locationName: "LA Fitness", address: "660 Woodward ", category: "BAsketball", summary: "MY kickback come turnuo", description: "This is a pickup game. we are playing 4v4 so make sure yiu have your sqaud with you or find other people to play with spns[dib[sehin]ofewinf]oief]oiwehnf]owhenf]oihwnefoije'ofje]ofj]oefj]eoifh]oeifj[owefjho[weijio]ewhjoiefhjehiw", startDate: Date(), startTime: "12.pm", endTime: "1am`", phoneNumber: "313-472-3545", latitude: 0.0, longitude: 0.0)
+//                             )
 //            TestPhotos(uiImage: UIImage(named: "temp1") ?? UIImage(), game: Game(), player: Player(), photo: .constant(Photo()))
 //            PlaceLookupView(Game:Game())
             LoginView(player: Player())
