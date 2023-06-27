@@ -8,6 +8,10 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseCore
+import GoogleSignIn
+import GoogleSignInSwift
+
+
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
@@ -18,6 +22,7 @@ struct LoginView: View {
     @FocusState private var focusFiel : Field?
 
     var player: Player
+//    @State private var googleVm = AuthenticationViewModel()
 
     enum Field{
         case email,password
@@ -35,6 +40,17 @@ struct LoginView: View {
                     
                 }
                 Group{
+                    GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
+//                        Task {
+//                            do {
+//                                try await viewModel.signInGoogle()
+//                                showSignInView = false
+//                            } catch {
+//                                print(error)
+//                            }
+//                        }
+                    }
+                    
                     TextField("Email", text:$email)
                         .keyboardType (.emailAddress)
                         .autocorrectionDisabled()
