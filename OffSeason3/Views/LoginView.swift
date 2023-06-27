@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseCore
+//if i want to create my own google button i would delte these and the actual button below and create it myself
 import GoogleSignIn
 import GoogleSignInSwift
 
@@ -22,7 +23,7 @@ struct LoginView: View {
     @FocusState private var focusFiel : Field?
 
     var player: Player
-//    @State private var googleVm = AuthenticationViewModel()
+    @EnvironmentObject var googleVm : AuthenticationViewModel
 
     enum Field{
         case email,password
@@ -41,14 +42,14 @@ struct LoginView: View {
                 }
                 Group{
                     GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
-//                        Task {
-//                            do {
-//                                try await viewModel.signInGoogle()
-//                                showSignInView = false
-//                            } catch {
-//                                print(error)
-//                            }
-//                        }
+                        Task {
+                            do {
+                                try await googleVm.signInGoogle()
+                                presentSheet = false
+                            } catch {
+                                print(error)
+                            }
+                        }
                     }
                     
                     TextField("Email", text:$email)
@@ -182,5 +183,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(player:Player())
+            .environmentObject(AuthenticationViewModel())
     }
 }

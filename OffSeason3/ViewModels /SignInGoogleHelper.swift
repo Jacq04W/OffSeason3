@@ -18,24 +18,25 @@ struct GoogleSignInResultModel {
 
 final class SignInGoogleHelper {
     
-//    @MainActor
-//    func signIn() async throws -> GoogleSignInResultModel {
-//        guard let topVC = Utilities.shared.topViewController() else {
-//            throw URLError(.cannotFindHost)
-//        }
+    @MainActor
+    func signIn() async throws -> GoogleSignInResultModel {
+        guard let topVC = Utilities.shared.topViewController() else {
+            throw URLError(.cannotFindHost)
+        }
+
+        let gidSignInResult = try await GIDSignIn.sharedInstance.signIn(withPresenting: topVC)
+
+        guard let idToken = gidSignInResult.user.idToken?.tokenString else {
+            throw URLError(.badServerResponse)
+        }
 //
-//        let gidSignInResult = try await GIDSignIn.sharedInstance.signIn(withPresenting: topVC)
-//
-//        guard let idToken = gidSignInResult.user.idToken?.tokenString else {
-//            throw URLError(.badServerResponse)
-//        }
-//
-//        let accessToken = gidSignInResult.user.accessToken.tokenString
-//        let name = gidSignInResult.user.profile?.name
-//        let email = gidSignInResult.user.profile?.email
-//
-//        let tokens = GoogleSignInResultModel(idToken: idToken, accessToken: accessToken, name: name, email: email)
-//        return tokens
-//    }
+        let accessToken = gidSignInResult.user.accessToken.tokenString
+        // this is how you get access to the users data we want to use in our app
+        let name = gidSignInResult.user.profile?.name
+        let email = gidSignInResult.user.profile?.email
+// make sure you update this fucntion to match the data your  fetching 
+        let tokens = GoogleSignInResultModel(idToken: idToken, accessToken: accessToken, name: name, email: email)
+        return tokens
+    }
     
 }

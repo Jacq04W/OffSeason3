@@ -35,6 +35,7 @@ struct Snacktacku_arApp: App {
 @StateObject var gameVm = GameViewModel()
 @StateObject var mapVm = MapViewModel()
 @StateObject var weatherVm = WeatherViewModel()
+    @StateObject var googleVm = AuthenticationViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -49,6 +50,7 @@ struct Snacktacku_arApp: App {
                 .environmentObject(mapVm)
                 .environmentObject(weatherVm)
                 .environmentObject(playerVm)
+                .environmentObject(googleVm)
 
 
 

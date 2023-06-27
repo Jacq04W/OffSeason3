@@ -55,10 +55,11 @@
 		5E6D5C792A4B71BA002C5BB0 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5E6D5C782A4B71BA002C5BB0 /* GoogleSignIn */; };
 		5E6D5C7B2A4B71BA002C5BB0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5E6D5C7A2A4B71BA002C5BB0 /* GoogleSignInSwift */; };
 		5E6D5C7D2A4B7277002C5BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E6D5C7C2A4B7277002C5BB0 /* GoogleService-Info.plist */; };
-		5E6D5C812A4B98D3002C5BB0 /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = 5E6D5C802A4B98D3002C5BB0 /* Utilities */; };
 		5E6D5C832A4B998C002C5BB0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */; };
 		5E6D5C852A4B9B29002C5BB0 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */; };
 		5E6D5C872A4B9C7F002C5BB0 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C862A4B9C7F002C5BB0 /* SignInGoogleHelper.swift */; };
+		5E6D5C892A4B9F6B002C5BB0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C882A4B9F6B002C5BB0 /* UserManager.swift */; };
+		5E6D5C8B2A4BA266002C5BB0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C8A2A4BA266002C5BB0 /* Utilities.swift */; };
 		5ED5B2472A43C34800428FBB /* ExplorListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5B2462A43C34800428FBB /* ExplorListCard.swift */; };
 		6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */; };
 		6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
@@ -126,10 +127,11 @@
 		09C75A0E2A3262830001BF22 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		5E39157F2A4B4D2600B9848D /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		5E6D5C7C2A4B7277002C5BB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "OffSeason3/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5E6D5C802A4B98D3002C5BB0 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utilities; sourceTree = "<group>"; };
 		5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		5E6D5C862A4B9C7F002C5BB0 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
+		5E6D5C882A4B9F6B002C5BB0 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		5E6D5C8A2A4BA266002C5BB0 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5ED5B2462A43C34800428FBB /* ExplorListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorListCard.swift; sourceTree = "<group>"; };
 		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
@@ -222,7 +224,6 @@
 			children = (
 				6C5D26C32A2E760C00951E79 /* Info.plist */,
 				7864CD152A26CD8E00251105 /* OffSeason3.entitlements */,
-				5E6D5C802A4B98D3002C5BB0 /* Utilities */,
 				090090E02A25375A00DB4D40 /* Components */,
 				091C628C2A24EA5400AA5981 /* Views */,
 				091C628E2A24EA6400AA5981 /* ViewModels  */,
@@ -300,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */,
+				5E6D5C8A2A4BA266002C5BB0 /* Utilities.swift */,
+				5E6D5C882A4B9F6B002C5BB0 /* UserManager.swift */,
 				5E6D5C862A4B9C7F002C5BB0 /* SignInGoogleHelper.swift */,
 				5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */,
 				091C62972A2515A600AA5981 /* PlaceViewModel.swift */,
@@ -440,7 +443,6 @@
 				091C62432A24DD1200AA5981 /* Preview Assets.xcassets in Resources */,
 				5E6D5C7D2A4B7277002C5BB0 /* GoogleService-Info.plist in Resources */,
 				091C62402A24DD1200AA5981 /* Assets.xcassets in Resources */,
-				5E6D5C812A4B98D3002C5BB0 /* Utilities in Resources */,
 				6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +473,7 @@
 				09C75A0D2A324B6E0001BF22 /* TestPhotos.swift in Sources */,
 				090090E22A25377100DB4D40 /* FootBallMapPin.swift in Sources */,
 				09AA70642A35C43B0095752D /* EditDeleteGame.swift in Sources */,
+				5E6D5C892A4B9F6B002C5BB0 /* UserManager.swift in Sources */,
 				091C62892A24E90A00AA5981 /* GameViewModel.swift in Sources */,
 				09A4E3142A30FB1500C8C764 /* ExploreCard .swift in Sources */,
 				091C62902A24EE3C00AA5981 /* Testadding data view.swift in Sources */,
@@ -505,6 +508,7 @@
 				789B16C82A292654007C1AC0 /* ImagePicker.swift in Sources */,
 				09C75A0F2A3262830001BF22 /* PhotoView.swift in Sources */,
 				090090E82A2663F200DB4D40 /* HelpPage.swift in Sources */,
+				5E6D5C8B2A4BA266002C5BB0 /* Utilities.swift in Sources */,
 				09A4E3162A311F7B00C8C764 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
