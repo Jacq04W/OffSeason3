@@ -56,6 +56,9 @@
 		5E6D5C7B2A4B71BA002C5BB0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5E6D5C7A2A4B71BA002C5BB0 /* GoogleSignInSwift */; };
 		5E6D5C7D2A4B7277002C5BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E6D5C7C2A4B7277002C5BB0 /* GoogleService-Info.plist */; };
 		5E6D5C812A4B98D3002C5BB0 /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = 5E6D5C802A4B98D3002C5BB0 /* Utilities */; };
+		5E6D5C832A4B998C002C5BB0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */; };
+		5E6D5C852A4B9B29002C5BB0 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */; };
+		5E6D5C872A4B9C7F002C5BB0 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D5C862A4B9C7F002C5BB0 /* SignInGoogleHelper.swift */; };
 		5ED5B2472A43C34800428FBB /* ExplorListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5B2462A43C34800428FBB /* ExplorListCard.swift */; };
 		6C5D26BE2A2E746A00951E79 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */; };
 		6C5D26C02A2E75DF00951E79 /* SportSpiritAf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */; };
@@ -124,6 +127,9 @@
 		5E39157F2A4B4D2600B9848D /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		5E6D5C7C2A4B7277002C5BB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "OffSeason3/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E6D5C802A4B98D3002C5BB0 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utilities; sourceTree = "<group>"; };
+		5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		5E6D5C862A4B9C7F002C5BB0 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		5ED5B2462A43C34800428FBB /* ExplorListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorListCard.swift; sourceTree = "<group>"; };
 		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
@@ -293,6 +299,9 @@
 		091C628E2A24EA6400AA5981 /* ViewModels  */ = {
 			isa = PBXGroup;
 			children = (
+				5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */,
+				5E6D5C862A4B9C7F002C5BB0 /* SignInGoogleHelper.swift */,
+				5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */,
 				091C62972A2515A600AA5981 /* PlaceViewModel.swift */,
 				090090DC2A25362E00DB4D40 /* MapsViewModel.swift */,
 				091C62882A24E90A00AA5981 /* GameViewModel.swift */,
@@ -483,10 +492,13 @@
 				091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */,
 				091C62942A25151D00AA5981 /* Place.swift in Sources */,
 				0931D8232A2D06B500780558 /* PlayerViewModel.swift in Sources */,
+				5E6D5C832A4B998C002C5BB0 /* AuthenticationViewModel.swift in Sources */,
 				098E7B332A3DA12000A53E9C /* GameDetailCard.swift in Sources */,
 				091C623C2A24DD1100AA5981 /* OffSeason3App.swift in Sources */,
 				5ED5B2472A43C34800428FBB /* ExplorListCard.swift in Sources */,
 				09C2E3E72A29348E0099FC03 /* Player.swift in Sources */,
+				5E6D5C852A4B9B29002C5BB0 /* AuthenticationManager.swift in Sources */,
+				5E6D5C872A4B9C7F002C5BB0 /* SignInGoogleHelper.swift in Sources */,
 				7864CD1D2A26E17A00251105 /* ProfilePage.swift in Sources */,
 				090090E62A2663C500DB4D40 /* filterspage.swift in Sources */,
 				091C62922A25061300AA5981 /* LocationViewModel.swift in Sources */,
