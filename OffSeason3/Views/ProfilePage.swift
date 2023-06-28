@@ -21,7 +21,7 @@ struct ProfilePage: View {
     @State private var showAlert = false
     @State private var showLogin = false
     
-
+    @EnvironmentObject var googleVm : AuthenticationViewModel
     var body: some View {
         NavigationStack{
             
@@ -39,8 +39,15 @@ struct ProfilePage: View {
                             .foregroundColor(.orange)
                             .offset(x:40, y:-20)
                         Button("sign out"){
-                            signOut()
-                        }
+                            Task {
+                                do {
+                                    try
+                                    signOut()
+//                                    showSignInView = true
+                                } catch {
+                                    print(error)
+                                }
+                            }                        }
                             .font(.system(size:20))
                             .foregroundColor(.red)
                             .offset(x:125, y:-35)
@@ -52,8 +59,10 @@ struct ProfilePage: View {
                            alignment:.leading)
 
                     VStack{
-                        Text("\(player.firstName) \(player.lastName)")
-                            .font(.title)
+                        Text("\(player.firstName)")
+                            .font(.title2)
+//                            .font(.system(size: 20))
+
                             .fontWeight(.bold)
                             .fontDesign(.monospaced)
                             .offset(x:145, y:-50)
@@ -121,6 +130,21 @@ struct ProfilePage: View {
 
 
     }
+        .onAppear{
+            Task{
+                do{
+                    
+                    let reusult = Auth.auth().currentUser?.displayName
+                    
+                    player.firstName = reusult ?? " erroorrrr   "
+                }
+                catch
+                {
+                    print("Error: can not find user name")
+                }
+                
+            }
+        }
         .navigationTitle("Profile")
         .alert("This feature is not yet available... Stay tuned for the OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert){
             Button ("Ok", role: .cancel) {}
@@ -129,20 +153,26 @@ struct ProfilePage: View {
     }
     
     
-    func signOut(){
-         do {
-             try Auth.auth().signOut()
-             // Handle successful sign-out
-             // For example, navigate to a login screen
-             showLogin.toggle()
-         } catch let signOutError as NSError {
-             // Handle sign-out error
-             print("Error signing out: \(signOutError.localizedDescription)")
-         }
-     }
+    
+    func signOut() throws {
+        try AuthenticationManager.shared.signOut()
+    }
+    
+//    func signOut(){
+//         do {
+//             try Auth.auth().signOut()
+//             // Handle successful sign-out
+//             // For example, navigate to a login screen
+//             showLogin.toggle()
+//         } catch let signOutError as NSError {
+//             // Handle sign-out error
+//             print("Error signing out: \(signOutError.localizedDescription)")
+//         }
+//     }
 }
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
         ProfilePage(player: Player( firstName: "Blade", lastName:"Icewood", userName: "@BWood", email: "BLadeIcewood@gmail.com", age: Date(), gender: "Male"))
+            .environmentObject(AuthenticationViewModel())
     }
 }
