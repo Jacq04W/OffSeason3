@@ -264,6 +264,7 @@
 			children = (
 				5E64C1CA2A5363AA00B8185E /* OnBoarding.swift */,
 				091C623D2A24DD1100AA5981 /* LoginView.swift */,
+				091C62822A24E40900AA5981 /* MapView .swift */,
 				7864CD162A26DFD700251105 /* ContentView.swift */,
 				7864CD1C2A26E17A00251105 /* ProfilePage.swift */,
 				78BCF2F72A43733A00B6B923 /* PP2.swift */,
@@ -272,7 +273,6 @@
 				7864CD182A26E0A700251105 /* ExplorePage.swift */,
 				5ED5B2462A43C34800428FBB /* ExplorListCard.swift */,
 				09AA70632A35C43B0095752D /* EditDeleteGame.swift */,
-				091C62822A24E40900AA5981 /* MapView .swift */,
 				091C628F2A24EE3C00AA5981 /* Testadding data view.swift */,
 				789B16C72A292654007C1AC0 /* ImagePicker.swift */,
 				091C62842A24E7AA00AA5981 /* GameDetailsView.swift */,

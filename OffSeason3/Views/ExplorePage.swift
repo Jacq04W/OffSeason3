@@ -46,7 +46,8 @@ struct ExplorePage: View {
                         .font(.title2)
                         .bold()
               
-                ScrollView(.horizontal){HStack {
+                ScrollView(.horizontal,showsIndicators: false){
+                    HStack {
            
                             
                             ForEach(filters,id: \.name) { filter in
@@ -72,8 +73,6 @@ struct ExplorePage: View {
                 
                 
                 VStack {
-             
-
                     LazyVGrid(columns: columns, alignment: .center, spacing: 4, pinnedViews: []) {
                         Section(header:
                                     HStack{Text("All Games")
