@@ -52,6 +52,7 @@
 		09C75A0D2A324B6E0001BF22 /* TestPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C75A0C2A324B6E0001BF22 /* TestPhotos.swift */; };
 		09C75A0F2A3262830001BF22 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C75A0E2A3262830001BF22 /* PhotoView.swift */; };
 		5E3915802A4B4D2600B9848D /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39157F2A4B4D2600B9848D /* Cards.swift */; };
+		5E64C1CB2A5363AA00B8185E /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1CA2A5363AA00B8185E /* OnBoarding.swift */; };
 		5E6D5C792A4B71BA002C5BB0 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5E6D5C782A4B71BA002C5BB0 /* GoogleSignIn */; };
 		5E6D5C7B2A4B71BA002C5BB0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5E6D5C7A2A4B71BA002C5BB0 /* GoogleSignInSwift */; };
 		5E6D5C7D2A4B7277002C5BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E6D5C7C2A4B7277002C5BB0 /* GoogleService-Info.plist */; };
@@ -126,6 +127,7 @@
 		09C75A0C2A324B6E0001BF22 /* TestPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPhotos.swift; sourceTree = "<group>"; };
 		09C75A0E2A3262830001BF22 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		5E39157F2A4B4D2600B9848D /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
+		5E64C1CA2A5363AA00B8185E /* OnBoarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoarding.swift; sourceTree = "<group>"; };
 		5E6D5C7C2A4B7277002C5BB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "OffSeason3/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E6D5C822A4B998C002C5BB0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		5E6D5C842A4B9B29002C5BB0 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -135,7 +137,6 @@
 		5ED5B2462A43C34800428FBB /* ExplorListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorListCard.swift; sourceTree = "<group>"; };
 		6C5D26BD2A2E746A00951E79 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		6C5D26BF2A2E75DF00951E79 /* SportSpiritAf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SportSpiritAf.ttf; sourceTree = "<group>"; };
-		6C5D26C32A2E760C00951E79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7864CD152A26CD8E00251105 /* OffSeason3.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OffSeason3.entitlements; sourceTree = "<group>"; };
 		7864CD162A26DFD700251105 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7864CD182A26E0A700251105 /* ExplorePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePage.swift; sourceTree = "<group>"; };
@@ -222,7 +223,6 @@
 		091C623A2A24DD1100AA5981 /* OffSeason3 */ = {
 			isa = PBXGroup;
 			children = (
-				6C5D26C32A2E760C00951E79 /* Info.plist */,
 				7864CD152A26CD8E00251105 /* OffSeason3.entitlements */,
 				090090E02A25375A00DB4D40 /* Components */,
 				091C628C2A24EA5400AA5981 /* Views */,
@@ -262,6 +262,7 @@
 		091C628C2A24EA5400AA5981 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E64C1CA2A5363AA00B8185E /* OnBoarding.swift */,
 				091C623D2A24DD1100AA5981 /* LoginView.swift */,
 				7864CD162A26DFD700251105 /* ContentView.swift */,
 				7864CD1C2A26E17A00251105 /* ProfilePage.swift */,
@@ -494,6 +495,7 @@
 				7864CD1B2A26E11800251105 /* Mygames.swift in Sources */,
 				091C623E2A24DD1100AA5981 /* LoginView.swift in Sources */,
 				091C62942A25151D00AA5981 /* Place.swift in Sources */,
+				5E64C1CB2A5363AA00B8185E /* OnBoarding.swift in Sources */,
 				0931D8232A2D06B500780558 /* PlayerViewModel.swift in Sources */,
 				5E6D5C832A4B998C002C5BB0 /* AuthenticationViewModel.swift in Sources */,
 				098E7B332A3DA12000A53E9C /* GameDetailCard.swift in Sources */,
@@ -686,7 +688,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JacqVersion.OffSeason3;
+				PRODUCT_BUNDLE_IDENTIFIER = theXcodes.OffSeason3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -720,7 +722,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JacqVersion.OffSeason3;
+				PRODUCT_BUNDLE_IDENTIFIER = theXcodes.OffSeason3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
