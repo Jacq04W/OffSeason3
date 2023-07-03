@@ -15,19 +15,14 @@ import WeatherKit
 
 
 struct ContentView: View {
-   
-   
     @EnvironmentObject var locationVm : LocationManager
     @EnvironmentObject var mapVm : MapViewModel
     @EnvironmentObject var gameVm : GameViewModel
     @EnvironmentObject private var weatherViewModel: WeatherViewModel
-
-
-    
-    
     var body: some View {
         NavigationView{
              TabView{
+                 
                  Group{
                      MapView(player: Player())
                          .tabItem{
@@ -53,6 +48,10 @@ struct ContentView: View {
                          }
                      
                  }
+                 
+                 
+                 
+                 
                 
              }.background(Color.clear)
             

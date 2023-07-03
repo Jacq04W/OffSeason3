@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+// onboarding steps \
+let onboardingCompletedKey = "isOnboardingCompleted"
 
 struct OnBoardingStep{
     let image : String
@@ -13,7 +15,6 @@ struct OnBoardingStep{
     let description : String
 
 }
-
 private let onBoardingSteps = [
 OnBoardingStep(image: "cover1", title: "Welcome to OffSeason", description: "Offseason is your platform for creating and joining exciting games in real life. Let's dive in and make the most of your gaming experience!"),
 OnBoardingStep(image: "cover2", title: "Create and Join Games", description: "Create your own games with custom rules or join thrilling challenges created by others. Experience the joy of competition and camaraderie on Offseason."),
@@ -24,7 +25,7 @@ OnBoardingStep(image: "cover1", title: "Connect and Play", description: "Connect
 struct OnBoarding: View {
     @State private var currentStep = 0
     @State private var playNow = false
-    @AppStorage("didCompleteOnboarding") var didCompleteOnboarding: Bool = false
+//    @AppStorage("didCompleteOnboarding") var didCompleteOnboarding: Bool = false
 
     init(){
         UIScrollView.appearance().bounces = false
@@ -97,7 +98,7 @@ struct OnBoarding: View {
                         if currentStep < onBoardingSteps.count - 1{
                             currentStep += 1
                         } else {
-                            didCompleteOnboarding = true 
+//                            didCompleteOnboarding = true 
                             playNow.toggle()
                             
                         }
