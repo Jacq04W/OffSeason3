@@ -19,12 +19,13 @@ struct LoginView: View {
     @State private var showingAlert = false
     @State private var alertMessage = ""
     @State private var presentSheet = false
+    @State private var showOnboard = false
+
     @State private var buttonsDisabled = false
     @FocusState private var focusFiel : Field?
-
+    
     var player: Player
     @EnvironmentObject var googleVm : AuthenticationViewModel
-
     enum Field{
         case email,password
     }
@@ -107,7 +108,7 @@ struct LoginView: View {
                     .padding(.top)
                     .navigationBarTitleDisplayMode(.inline)
                     // how to properly naviaget to a new view
-                    .navigationDestination(for: String.self){ view in
+            .navigationDestination(for: String.self){ view in
                         if view == "MapView"{
                             MapView(player: Player())
                         }
@@ -118,18 +119,43 @@ struct LoginView: View {
                          
                     }
                 }// alert
-                
+
                 .onAppear{
                     // if logged in when the app runs, navigate to the new screen
                     if Auth.auth().currentUser != nil {
                         print ("🪵 Login successful !")
-                       presentSheet = true
-                        
+                        presentSheet = true
+                     
                     }
+//                    else {
+//                        showOnboard.toggle()
+//                    }
                 }
                 .fullScreenCover(isPresented: $presentSheet){
-                    ContentView()
-                    
+                  ContentView()
+//                    if UserDefaults.standard.bool(forKey: onboardingCompletedKey) {
+//                        ContentView()
+//                    } else {
+//                        OnBoarding()
+//                        .onAppear {
+//
+//                            UserDefaults.standard.set(true, forKey: onboardingCompletedKey)
+//                                            }
+//                    }
+//
+            }
+                .fullScreenCover(isPresented: $showOnboard){
+                  OnBoarding()
+//                    if UserDefaults.standard.bool(forKey: onboardingCompletedKey) {
+//                        ContentView()
+//                    } else {
+//                        OnBoarding()
+//                        .onAppear {
+//
+//                            UserDefaults.standard.set(true, forKey: onboardingCompletedKey)
+//                                            }
+//                    }
+//
             }
             }
         }
@@ -146,6 +172,7 @@ struct LoginView: View {
         let passwordIsGood = password.count >= 6
         buttonsDisabled = !(emailIsGood && passwordIsGood)
     }
+    
     func register(){
         Auth.auth().createUser(withEmail:email,password:password){
             result,error in

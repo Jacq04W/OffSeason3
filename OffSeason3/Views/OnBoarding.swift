@@ -7,7 +7,6 @@
 
 import SwiftUI
 // onboarding steps \
-let onboardingCompletedKey = "isOnboardingCompleted"
 
 struct OnBoardingStep{
     let image : String
@@ -25,8 +24,7 @@ OnBoardingStep(image: "cover1", title: "Connect and Play", description: "Connect
 struct OnBoarding: View {
     @State private var currentStep = 0
     @State private var playNow = false
-//    @AppStorage("didCompleteOnboarding") var didCompleteOnboarding: Bool = false
-
+    @AppStorage ("isOnboarding") var isOnboarding: Bool?
     init(){
         UIScrollView.appearance().bounces = false
     }
@@ -98,7 +96,8 @@ struct OnBoarding: View {
                         if currentStep < onBoardingSteps.count - 1{
                             currentStep += 1
                         } else {
-//                            didCompleteOnboarding = true 
+                        
+                            isOnboarding = false
                             playNow.toggle()
                             
                         }

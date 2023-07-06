@@ -24,108 +24,111 @@ struct ProfilePage: View {
     @EnvironmentObject var googleVm : AuthenticationViewModel
     var body: some View {
         NavigationStack{
-            
-            if !showLogin {
-                ScrollView{
-                    HStack{
-                        Image(systemName:"person.circle.fill")
-                            .resizable()
-                            .frame(width:100, height:100)
-                            .offset(x:40, y:-10)
-
-                            .padding(.top, -0)
-                        Image(systemName: "checkmark.seal.fill")
-                            .font(.system(size:35))
-                            .foregroundColor(.orange)
-                            .offset(x:40, y:-20)
-                        Button("sign out"){
-                            Task {
-                                do {
-                                    try
-                                    signOut()
-//                                    showSignInView = true
-                                } catch {
-                                    print(error)
-                                }
-                            }                        }
+            VStack{
+                if !showLogin {
+                    ScrollView{
+                        HStack{
+                            Image(systemName:"person.circle.fill")
+                                .resizable()
+                                .frame(width:100, height:100)
+                                .offset(x:40, y:-10)
+                            
+                                .padding(.top, -0)
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size:35))
+                                .foregroundColor(.orange)
+                                .offset(x:40, y:-20)
+                            Button("sign out"){
+                                Task {
+                                    do {
+                                        try
+                                        signOut()
+                                        //                                    showSignInView = true
+                                    } catch {
+                                        print(error)
+                                    }
+                                }                        }
                             .font(.system(size:20))
                             .foregroundColor(.red)
                             .offset(x:125, y:-35)
                             .fontWeight(.bold)
-
-
-                    }
-                    .frame(maxWidth:.infinity, maxHeight:.infinity,
-                           alignment:.leading)
-
-                    VStack{
-                        Text("\(player.firstName)")
-                            .font(.title2)
-//                            .font(.system(size: 20))
-
-                            .fontWeight(.bold)
-                            .fontDesign(.monospaced)
-                            .offset(x:145, y:-50)
-                        Button("edit"){
-                            showAlert.toggle()
-
+                            
+                            
                         }
+                        .frame(maxWidth:.infinity, maxHeight:.infinity,
+                               alignment:.leading)
+                        
+                        VStack{
+                            Text("\(player.firstName)")
+                                .font(.title2)
+                            //                            .font(.system(size: 20))
+                            
+                                .fontWeight(.bold)
+                                .fontDesign(.monospaced)
+                                .offset(x:145, y:-50)
+                            Button("edit"){
+                                showAlert.toggle()
+                                
+                            }
                             .font(.subheadline)
                             .foregroundColor(.indigo)
                             .fontWeight(.thin)
                             .fontDesign(.monospaced)
                             .padding(-40)
                             .offset(x:75, y:-25)
-
-                        Text(Auth.auth().currentUser?.email ?? "")
-                            .font(.body)
-                            .fontDesign(.monospaced)
-                            .fontWeight(.semibold)
-                            .offset(x:70,y:2)
-                        Button("edit"){
-                            showAlert.toggle()
-
-                        }
+                            
+                            Text(Auth.auth().currentUser?.email ?? "")
+                                .font(.body)
+                                .fontDesign(.monospaced)
+                                .fontWeight(.semibold)
+                                .offset(x:70,y:2)
+                            Button("edit"){
+                                showAlert.toggle()
+                                
+                            }
                             .font(.subheadline)
                             .fontWeight(.thin)
                             .offset(x:70,y:4)
-                        Text("********")
-                            .font(.body)
-                            .fontDesign(.monospaced)
-                            .fontWeight(.semibold)
-                            .offset(x:70,y:20)
-                        Button("edit"){
-                            showAlert.toggle()
-                        }
+                            Text("********")
+                                .font(.body)
+                                .fontDesign(.monospaced)
+                                .fontWeight(.semibold)
+                                .offset(x:70,y:20)
+                            Button("edit"){
+                                showAlert.toggle()
+                            }
                             .font(.subheadline)
                             .fontWeight(.thin)
                             .offset(x:70,y:20)
-                        Text("(313) 333 3133")
-                            .font(.body)
-                            .fontDesign(.monospaced)
-                            .fontWeight(.semibold)
-                            .offset(x:70,y:40)
-                        Button("edit"){
-                            showAlert.toggle()
-                        }
+                            Text("(313) 333 3133")
+                                .font(.body)
+                                .fontDesign(.monospaced)
+                                .fontWeight(.semibold)
+                                .offset(x:70,y:40)
+                            Button("edit"){
+                                showAlert.toggle()
+                            }
                             .font(.subheadline)
                             .fontWeight(.thin)
                             .offset(x:70,y:40)
-
-
-
+                            
+                            
+                            
+                        }
+                        
+                        .frame(maxWidth:.infinity, maxHeight:.infinity,
+                               alignment:.leading)
+                        
                     }
-
-                    .frame(maxWidth:.infinity, maxHeight:.infinity,
-                           alignment:.leading)
-
+                    
+                } else {
+                    NavigationStack{
+                        LoginView(player: player)
+                    }
                 }
-
-            } else {
-                LoginView(player: player)
+                
             }
-            
-            
+            .navigationTitle("Profile")
            
 
 
@@ -145,7 +148,7 @@ struct ProfilePage: View {
                 
             }
         }
-        .navigationTitle("Profile")
+        
         .alert("This feature is not yet available... Stay tuned for the OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert){
             Button ("Ok", role: .cancel) {}
             

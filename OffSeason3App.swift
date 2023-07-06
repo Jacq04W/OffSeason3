@@ -35,27 +35,31 @@ struct Snacktacku_arApp: App {
 @StateObject var gameVm = GameViewModel()
 @StateObject var mapVm = MapViewModel()
 @StateObject var weatherVm = WeatherViewModel()
-    @StateObject var googleVm = AuthenticationViewModel()
-
+@StateObject var googleVm = AuthenticationViewModel()
+@AppStorage("isOnboarding" ) var isOnboarding = true
+    
     var body: some Scene {
         WindowGroup {
-            if UserDefaults.standard.bool(forKey: onboardingCompletedKey) {
-                LoginView(player: Player())
-                    .environmentObject(gameVm)
-                   .environmentObject(locationManager)
-                   .environmentObject(mapVm)
-                   .environmentObject(weatherVm)
-                   .environmentObject(playerVm)
-                   .environmentObject(googleVm)
-
-
-                       }
-            else{
+            
+            
+            if isOnboarding{
                 OnBoarding()
-                .onAppear {
-                                        UserDefaults.standard.set(true, forKey: onboardingCompletedKey)
-                                    }
+                
+            } else {
+                LoginView(player: Player())
+                   .environmentObject(gameVm)
+                  .environmentObject(locationManager)
+                  .environmentObject(mapVm)
+                  .environmentObject(weatherVm)
+                  .environmentObject(playerVm)
+                  .environmentObject(googleVm)
+
+                
+                
             }
+                
+
+                       
                 
 
 

@@ -27,21 +27,24 @@ struct Mygames: View {
 
                         // this should show all the events that i posted
                         if game.posterEmail == Auth.auth().currentUser?.email {
-                            GameDetailCard(game: game)
+                            NavigationStack{
+                                GameDetailCard(game: game)
+                            }.padding()
 
                         }
 
 
-                    }  .listStyle(PlainListStyle())
-                    .background(.clear)
+                    }
+                        .listStyle(PlainListStyle())
+                        
+                        
                     } else {
                         emptyTickets
                             .ignoresSafeArea()
                     }
-                       
-                    
-                   
+                        
                 }
+                .navigationTitle("My Games")
                 
             }
         
