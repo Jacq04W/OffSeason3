@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 import FirebaseCore
 import FirebaseFirestoreSwift
 import SwiftUI
@@ -22,19 +23,17 @@ struct Mygames: View {
      var body: some View {
              NavigationStack {
                  VStack {
-                     if game.posterEmail == Auth.auth().currentUser?.email{
+//                     if game.posterEmail == Auth.auth().currentUser?.email{
                          List{
                          ForEach(games) { game in
                            
-                                 GameDetailCard(game: game)
-                             
-                             }
+listRowView(game: game)                             }
                          }
-                     }
-                     else {
-                         emptyTickets
-                             .ignoresSafeArea()
-                     }
+//                     }
+//                     else {
+//                         emptyTickets
+//                             .ignoresSafeArea()
+//                     }
                      
                  }
                 .navigationTitle("My Games")
@@ -91,7 +90,7 @@ private extension Mygames {
                         .fontWeight(.bold)
                         .foregroundColor(Color.gray)
                     
-                    Text("Create or join an event of your own")
+                    Text("Join or create an event of your own")
                         .font(.callout)
                         .fontWeight(.bold)
                         .foregroundColor(Color.gray)
@@ -131,5 +130,67 @@ private extension Mygames {
         .navigationTitle("My Games")
         
     }
+    private func listRowView(game: Game) -> some View  {
+        HStack {
+//            if let imageName = game.imageNames.first {
+//                Image(imageName)
+//                    .resizable()
+//                    .scaledToFill()
+//            .frame(width: 95, height: 95)
+
+//                    .frame(width: 45, height: 45)
+//                    .cornerRadius(10)
+//            }
+            
+            
+          Image("cover1")
+                .resizable()
+                .frame(width: 95, height: 95)
+                .cornerRadius(15)
+
+            
+            VStack(alignment: .leading) {
+                Text(game.name)
+                    .font(Font.custom("SportSpiritAf", size: 30))
+
+//                    .font(.headline)
+                HStack(spacing: -1){
+                    Image(systemName: "mappin")
+                    Text(game.locationName)
+                        .font(.subheadline)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    
+    
+    
+    
+//    func fetchEvents() {
+//            let currentUserID = Auth.auth().currentUser?.uid
+//            
+//            Firestore.firestore().collection("events")
+//                .whereField("creatorID", isEqualTo: currentUserID)
+//                .getDocuments { (snapshot, error) in
+//                    if let error = error {
+//                        print("Error fetching events: \(error.localizedDescription)")
+//                        return
+//                    }
+//                    
+//                    guard let documents = snapshot?.documents else {
+//                        print("No events found")
+//                        return
+//                    }
+//                    
+//                    let fetchedEvents = documents.compactMap { snapshot in
+//                        try? snapshot.data(as: Event.self)
+//                    }
+//                    
+//                    self.events = fetchedEvents
+//                }
+//        }
+    
 
 }

@@ -20,7 +20,7 @@ struct LoginView: View {
     @State private var alertMessage = ""
     @State private var presentSheet = false
     @State private var showOnboard = false
-
+    @State private var showSignInView: Bool = false
     @State private var buttonsDisabled = false
     @FocusState private var focusFiel : Field?
     
@@ -32,8 +32,14 @@ struct LoginView: View {
     @FocusState private var focusField: Field?
     var body: some View {
         VStack {
+            
             NavigationStack {
     //            Color.black
+                if showSignInView{
+                    
+                }
+                
+                
                 VStack{
                     ZStack{
                         Image("logo1")

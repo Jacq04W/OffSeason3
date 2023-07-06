@@ -25,7 +25,7 @@ struct MapView: View {
 
 // maps
     @State private var mapRegion = MKCoordinateRegion ()
-    let regionSize = 500.0
+    let regionSize = 10000.0
 
     // showing sheets
     @State private var showAlert = false
@@ -59,13 +59,13 @@ struct MapView: View {
             }
             .task {
                 // make map region shows user lo
-                mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
+                mapVm.mapRegion = MKCoordinateRegion(center: locationVm.location?.coordinate  ?? CLLocationCoordinate2D(), latitudinalMeters: regionSize, longitudinalMeters: regionSize)
             }
-            .onAppear{
-                mapVm.mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locationVm.location?.coordinate.latitude ?? 00 , longitude: locationVm.location?.coordinate.longitude ?? 00 ), span:MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-                
-                print("appear on home page working ⚡️⚡️⚡️⚡️⚡️")
-            }
+//            .onAppear{
+//                mapVm.mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locationVm.location?.coordinate.latitude ?? 00 , longitude: locationVm.location?.coordinate.longitude ?? 00 ), span:MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+//                
+//                print("appear on home page working ⚡️⚡️⚡️⚡️⚡️")
+//            }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
                     VStack {

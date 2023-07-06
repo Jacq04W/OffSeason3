@@ -19,6 +19,8 @@ struct ContentView: View {
     @EnvironmentObject var mapVm : MapViewModel
     @EnvironmentObject var gameVm : GameViewModel
     @EnvironmentObject private var weatherViewModel: WeatherViewModel
+    @State private var showSignInView: Bool = false
+
     var body: some View {
         NavigationView{
              TabView{
@@ -39,7 +41,7 @@ struct ContentView: View {
                              Label("My Games",systemImage: "flag.2.crossed.circle.fill")
                             }
                      
-                     ProfilePage(player:Player())
+                     ProfilePage(player:Player(),showSignInView: $showSignInView)
                      
                      .tabItem{
                              Label("Profile",systemImage: "person.crop.circle")

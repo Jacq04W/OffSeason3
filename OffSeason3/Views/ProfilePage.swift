@@ -20,12 +20,12 @@ struct ProfilePage: View {
     @State var player: Player
     @State private var showAlert = false
     @State private var showLogin = false
-    
+    @Binding var showSignInView : Bool
     @EnvironmentObject var googleVm : AuthenticationViewModel
     var body: some View {
         NavigationStack{
             VStack{
-                if !showLogin {
+                 
                     ScrollView{
                         HStack{
                             Image(systemName:"person.circle.fill")
@@ -41,11 +41,10 @@ struct ProfilePage: View {
                             Button("sign out"){
                                 Task {
                                     do {
-                                        try
-                                        signOut()
-                                        //                                    showSignInView = true
+                            try signOut()
+                                    showSignInView = true
                                     } catch {
-                                        print(error)
+                                        print("Error: Can not sign out")
                                     }
                                 }                        }
                             .font(.system(size:20))
@@ -121,11 +120,7 @@ struct ProfilePage: View {
                         
                     }
                     
-                } else {
-                    NavigationStack{
-                        LoginView(player: player)
-                    }
-                }
+                
                 
             }
             .navigationTitle("Profile")
@@ -136,10 +131,8 @@ struct ProfilePage: View {
         .onAppear{
             Task{
                 do{
-                    
                     let reusult = Auth.auth().currentUser?.displayName
-                    
-                    player.firstName = reusult ?? " erroorrrr   "
+                    player.firstName = reusult ?? "Unkown Name  "
                 }
                 catch
                 {
@@ -152,6 +145,11 @@ struct ProfilePage: View {
         .alert("This feature is not yet available... Stay tuned for the OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert){
             Button ("Ok", role: .cancel) {}
             
+        }
+        .fullScreenCover(isPresented:$showSignInView) {
+            NavigationStack{
+                LoginView(player: Player())
+            }
         }
     }
     
@@ -175,7 +173,7 @@ struct ProfilePage: View {
 }
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePage(player: Player( firstName: "Blade", lastName:"Icewood", userName: "@BWood", email: "BLadeIcewood@gmail.com", age: Date(), gender: "Male"))
+        ProfilePage(player: Player( firstName: "Blade", lastName:"Icewood", userName: "@BWood", email: "BLadeIcewood@gmail.com", age: Date(), gender: "Male"), showSignInView: .constant(false))
             .environmentObject(AuthenticationViewModel())
     }
 }

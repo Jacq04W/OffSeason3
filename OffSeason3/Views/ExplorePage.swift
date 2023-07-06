@@ -30,14 +30,17 @@ struct ExplorePage: View {
     
     @State private var filters: [Filter] = [
         Filter(name: "All", image: "basketball.fill"),
-
     Filter(name: "Basketball", image: "basketball.fill"),
     Filter(name: "Football", image: "football.fill")
 ,    Filter(name: "Chess", image: "basketball.fill")
-,    Filter(name: "Soccer", image: "basketball.fill")
+,    Filter(name: "Boxing", image: "basketball.fill")
+    , Filter(name: "Soccer", image: "basketball.fill")
+        ,    Filter(name: "Pickle Ball", image: "basketball.fill"),
+
+ 
     ]
     
-      
+      @State var showAlert = false
     var body: some View {
         NavigationStack{
             ScrollView {
@@ -48,11 +51,12 @@ struct ExplorePage: View {
               
                 ScrollView(.horizontal,showsIndicators: false){
                     HStack {
-           
-                            
+    
                             ForEach(filters,id: \.name) { filter in
                                 
-                                Button{}
+                                Button{
+                                    showAlert.toggle()
+                                }
                             label:{
                                 Text(filter.name)
                                     .lineLimit(1)
@@ -113,15 +117,13 @@ struct ExplorePage: View {
                 }
                 
             }
-                
-                
-                
             .navigationTitle("Explore")
-            
+
+        }
+        .alert("This feature is not yet available... Stay tuned for the OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert){
+            Button ("Ok", role: .cancel) {}
             
         }
-        
-        
     }
  
 }
