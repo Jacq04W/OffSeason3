@@ -41,7 +41,7 @@ struct MapView: View {
     @State var createPlayerSheet = false
     @AppStorage("firstLogin") var firstLogin = true
 //    var player : Player
-    
+
     
     var body: some View {
         NavigationStack {
@@ -74,7 +74,7 @@ struct MapView: View {
                             Spacer()
                         }.padding(.bottom,30)
                     }
-                }
+                } 
                 
                 ToolbarItemGroup(placement: .cancellationAction) {
                     NotificationButton
@@ -243,7 +243,7 @@ private extension MapView {
                     .bold()
                 Text(weatherViewModel.currentTemperature.dropLast()).font(.system(size: 17))
                     .foregroundColor(.black)
-            }.foregroundColor(.black)
+            } 
                 .buttonStyle(.plain)
                 .padding()
                 .frame(maxWidth: .infinity)

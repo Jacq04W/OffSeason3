@@ -61,7 +61,7 @@ struct ExplorePage: View {
                                     .padding()
                                     .background(.ultraThinMaterial)
                                     .cornerRadius(30)
-                            }.foregroundColor(.black)
+                            }.buttonStyle(.plain)
                                 
                             }
                     }
