@@ -18,32 +18,23 @@ struct Mygames: View {
     var value : String?
     @State var choice = 3
     @FirestoreQuery(collectionPath: "games") var games : [Game]
-    
+    @State var game : Game
      var body: some View {
              NavigationStack {
-                VStack {
-                    if games.count >= 1 {
-                        List(games) { game in
-
-                        // this should show all the events that i posted
-                        if game.posterEmail == Auth.auth().currentUser?.email {
-                            NavigationStack{
-                                GameDetailCard(game: game)
-                            }.padding()
-
-                        }
-
-
-                    }
-                        .listStyle(PlainListStyle())
-                        
-                        
-                    } else {
-                        emptyTickets
-                            .ignoresSafeArea()
-                    }
-                        
-                }
+                 VStack {
+                     
+                     if game.posterEmail == Auth.auth().currentUser?.email{
+                         ForEach(games) { game in
+                             GameDetailCard(game: game)
+                             
+                         }
+                     }
+                     else {
+                         emptyTickets
+                             .ignoresSafeArea()
+                     }
+                     
+                 }
                 .navigationTitle("My Games")
                 
             }
@@ -54,7 +45,7 @@ struct Mygames: View {
 
 struct Mygames_Previews: PreviewProvider {
     static var previews: some View {
-        Mygames()
+        Mygames(game:Game())
     }
 }
 
@@ -65,11 +56,11 @@ private extension Mygames {
         VStack {
             ZStack {
                 
-                Color(red: 0.11, green: 0.11, blue: 0.114)
+//                Color(red: 0.11, green: 0.11, blue: 0.114)
                 // create graphics
                 ZStack{
                     Circle()
-                        .frame(width: 100, height: 100, alignment: .center)
+                        .frame(width: 150, height: 130, alignment: .center)
                         .foregroundColor(Color(red: 0.173, green: 0.173, blue: 0.177))
                         .padding(.bottom,90)
                     Image(systemName: "ticket")
@@ -84,7 +75,9 @@ private extension Mygames {
                 // words on the screen
                 VStack(spacing:10){
                     Text("No games yet")
-                        .font(.title)
+                        .font(Font.custom("SportSpiritAf", size: 40))
+                        .foregroundColor(.red)
+                        
                         .fontWeight(.bold)
                     Text("Make sure you're in the same account that")
                         .font(.callout)
@@ -102,6 +95,7 @@ private extension Mygames {
                 VStack{
                     // some live events
                     Text("See whats up with live games near you ")
+                        .foregroundColor(.gray)
                         .bold()
 //                        .offset(y:250)
                     
@@ -112,6 +106,7 @@ private extension Mygames {
                         Text("See games")
                             .frame(width: 150,height:50)
                             .background(Color(hue: 1.0, saturation: 0.929, brightness: 0.898) )
+                            .foregroundColor(.white)
                             .fontWeight(.bold)
                             .buttonStyle(.bordered)
                             .cornerRadius(10)
@@ -125,9 +120,7 @@ private extension Mygames {
                 .offset(y:220)
 
             }
-            
-            .foregroundColor(.white)
-        }
+                    }
         .navigationTitle("My Games")
         
     }

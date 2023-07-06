@@ -37,7 +37,7 @@ struct ExploreCard: View {
             }
             .navigationDestination(for: String.self){ view  in
                 if view == "MyGames" {
-                    Mygames(value:view)
+                    Mygames(value:view, game: game)
                 }
             }
             .foregroundColor(.black)

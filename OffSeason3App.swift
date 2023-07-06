@@ -44,7 +44,7 @@ struct Snacktacku_arApp: App {
             
             if isOnboarding{
                 OnBoarding()
-                
+
             } else {
                 LoginView(player: Player())
                    .environmentObject(gameVm)
@@ -56,7 +56,7 @@ struct Snacktacku_arApp: App {
 
                 
                 
-            }
+       }
                 
 
                        

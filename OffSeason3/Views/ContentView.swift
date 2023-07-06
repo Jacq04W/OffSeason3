@@ -34,7 +34,7 @@ struct ContentView: View {
                              Label("Explore",systemImage: "magnifyingglass")
                              Image(systemName: "")
                          }
-                     Mygames()
+                     Mygames(game:Game())
                          .tabItem{
                              Label("My Games",systemImage: "flag.2.crossed.circle.fill")
                             }
