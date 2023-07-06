@@ -36,6 +36,9 @@ struct Mygames: View {
                      
                  }
                 .navigationTitle("My Games")
+//                .navigationDestination(for: Game.self) { game in
+//                    mapView
+//                }
                 
             }
         
@@ -100,7 +103,7 @@ private extension Mygames {
 //                        .offset(y:250)
                     
                     NavigationLink{
-                        MapView(player: Player())
+                        MapView()
 //                        showGames.toggle()
                     } label: {
                         Text("See games")

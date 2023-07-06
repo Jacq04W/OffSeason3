@@ -40,7 +40,7 @@ struct MapView: View {
     @State var showSignUpSheet = false
     @State var createPlayerSheet = false
     @AppStorage("firstLogin") var firstLogin = true
-    var player : Player
+//    var player : Player
     
     
     var body: some View {
@@ -96,7 +96,7 @@ struct MapView: View {
         }
             .sheet(isPresented: $sheetIsPresented) {
                 NavigationStack{
-                    TestaddingDataView(game: Game(), player: player)
+                    TestaddingDataView(game: Game(), player: Player())
                     
                 }
             }
@@ -133,7 +133,7 @@ struct MapView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView( player: Player())
+        MapView()
             .environmentObject(LocationManager())
             .environmentObject(MapViewModel())
             .environmentObject(GameViewModel())

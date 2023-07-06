@@ -24,7 +24,7 @@ struct ContentView: View {
              TabView{
                  
                  Group{
-                     MapView(player: Player())
+                     MapView()
                          .tabItem{
                              Label("Home",systemImage: "house")
                             
