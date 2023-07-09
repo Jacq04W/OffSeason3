@@ -60,7 +60,7 @@ struct EditDeleteGame: View {
                                 Image(systemName: "x.circle.fill")
                                     .font(.system(size: 40))
                                     .foregroundColor(.black)
-                            }
+                                                      }
                             .offset(x:160,y:-130)
                         }
                         
@@ -69,6 +69,7 @@ struct EditDeleteGame: View {
                
               
             }
+
             // TODO: finish adding images here 
             ZStack{
                 VStack{
@@ -76,7 +77,7 @@ struct EditDeleteGame: View {
 
                     photoPicker
                 }
-            }
+            }  .navigationTitle("Confirm Details")
     
             .toolbar{
                 ToolbarItemGroup(placement: .primaryAction) {
@@ -93,17 +94,10 @@ struct EditDeleteGame: View {
                         postButton
                     }
                     
-                   
-                    
                 }
                 
-                
-                
-                
-               
         }
-            .navigationTitle("Confirm Details")
-                .alert("This feature is not yet available... stay tuned for the  OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert) {
+            .alert("This feature is not yet available... stay tuned for the  OffSeason V1.1 update \n 🤟🏿⚡️",isPresented: $showAlert) {
                     Button ("Ok", role: .cancel) {}
                     
                 }
@@ -203,7 +197,7 @@ private extension EditDeleteGame {
         ZStack{
             RoundedRectangle(cornerRadius: 9)
                 .frame(width: 72, height: 36)
-                .foregroundColor(.orange)
+                .foregroundColor(Color("purp"))
             VStack{
                 Text("Post")
                     .font(.headline)
@@ -241,13 +235,14 @@ private extension EditDeleteGame {
                             Text("Anyone")
                                 .font(.headline)
                                 .fontWeight(.bold)
-                                .foregroundColor(.black)
                             
-                        }
+                        }                        .foregroundColor(.black)
+
                     }
                 }
             }
-        }
+        }.buttonStyle(.plain)
+            
         }
     }
     // new code
@@ -278,10 +273,9 @@ private extension EditDeleteGame {
             
             Image(systemName: "calendar")
             Text("\(gameDay)")
-            
                 .font(.system(size: 25))
                 .lineLimit(1)
-            Text("✘12:00 PM")
+            Text("✘✘✘")
         }
         .font(.system(size: 25))
         
@@ -337,7 +331,7 @@ private extension EditDeleteGame {
                 .frame(width:350,height:60)
                 
                 .foregroundColor(.black)
-                .background(.orange)
+                .background(.thickMaterial)
                 .cornerRadius(10)
             }
         }

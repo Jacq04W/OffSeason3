@@ -19,8 +19,7 @@ struct ExploreCard: View {
         NavigationStack {
             VStack(alignment: .center){
                 
-                Text("Thats wassup! You joined an event \n Continue to explore or go to my Events ")
-                    .foregroundColor(.black)
+                Text("Thats wassup! You joined an event \n Continue to explore or go to my Events")
                     .multilineTextAlignment(.center)
                     .bold()
                 
@@ -30,7 +29,8 @@ struct ExploreCard: View {
                 NavigationLink(value: "MyGames") {
                     Button("My Events"){
                         print("Button pressed hh")
-                    }
+                    }.bold()
+                    .foregroundColor(.gray)
                 }
                
                 
@@ -40,8 +40,7 @@ struct ExploreCard: View {
                     Mygames(value:view, game: game)
                 }
             }
-            .foregroundColor(.black)
-            .padding()
+             .padding()
             .background(.thickMaterial)
         .cornerRadius(10)
         }

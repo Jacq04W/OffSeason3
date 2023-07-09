@@ -36,9 +36,10 @@ struct ContentView: View {
                              Label("Explore",systemImage: "magnifyingglass")
                              Image(systemName: "")
                          }
+                     
                      Mygames(game:Game())
                          .tabItem{
-                             Label("My Games",systemImage: "flag.2.crossed.circle.fill")
+                             Label("My Games",systemImage: "flag.2.crossed.circle")
                             }
                      
                      ProfilePage(player:Player(),showSignInView: $showSignInView)
@@ -55,7 +56,7 @@ struct ContentView: View {
                  
                  
                 
-             }.background(Color.clear)
+             }
             
 
         }

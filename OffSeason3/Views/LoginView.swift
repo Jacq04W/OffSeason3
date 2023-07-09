@@ -32,14 +32,7 @@ struct LoginView: View {
     @FocusState private var focusField: Field?
     var body: some View {
         VStack {
-            
             NavigationStack {
-    //            Color.black
-                if showSignInView{
-                    
-                }
-                
-                
                 VStack{
                     ZStack{
                         Image("logo1")
@@ -97,19 +90,21 @@ struct LoginView: View {
                             register()
                         } label : {
                             Text("Sign Up")
-                        }
+                            
+                        }  .tint(Color.red)
                         .padding(.trailing)
                         Button{
                             login()
                             
                         } label : {
                             Text("Log in")
-                        }
+                                
+                        }.tint(Color.red)
                         .padding(.leading)
                     }//Hstsack
                     .disabled(buttonsDisabled)
                     .buttonStyle(.borderedProminent)
-                    .tint(Color.orange)
+                  
                     .font(.title2)
                     .padding(.top)
                     .navigationBarTitleDisplayMode(.inline)
@@ -139,28 +134,9 @@ struct LoginView: View {
                 }
                 .fullScreenCover(isPresented: $presentSheet){
                   ContentView()
-//                    if UserDefaults.standard.bool(forKey: onboardingCompletedKey) {
-//                        ContentView()
-//                    } else {
-//                        OnBoarding()
-//                        .onAppear {
-//
-//                            UserDefaults.standard.set(true, forKey: onboardingCompletedKey)
-//                                            }
-//                    }
-//
             }
                 .fullScreenCover(isPresented: $showOnboard){
                   OnBoarding()
-//                    if UserDefaults.standard.bool(forKey: onboardingCompletedKey) {
-//                        ContentView()
-//                    } else {
-//                        OnBoarding()
-//                        .onAppear {
-//
-//                            UserDefaults.standard.set(true, forKey: onboardingCompletedKey)
-//                                            }
-//                    }
 //
             }
             }

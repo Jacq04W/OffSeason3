@@ -382,7 +382,7 @@ private extension TestaddingDataView {
     // new code⚡️
     var saveButton : some View
     {
-        Button("save"){
+        Button("Confirm"){
 //            if player.id == nil {
 //                isShowingCreateSheet.toggle()
 //                print("🤬Error: NO PLYER ID ")

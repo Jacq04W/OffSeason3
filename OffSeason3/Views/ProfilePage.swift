@@ -59,12 +59,12 @@ struct ProfilePage: View {
                         
                         VStack{
                             Text("\(player.firstName)")
-                                .font(.title2)
+                                .font(.title3)
                             //                            .font(.system(size: 20))
                             
                                 .fontWeight(.bold)
                                 .fontDesign(.monospaced)
-                                .offset(x:145, y:-50)
+                                .offset(x:125, y:-50)
                             Button("edit"){
                                 showAlert.toggle()
                                 

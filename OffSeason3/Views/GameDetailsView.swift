@@ -275,7 +275,8 @@ private extension GameDetailsView {
     // new code⚡️
     var favoriteButton : some View {
         Button(action: {
-            presentationMode.wrappedValue.dismiss()
+//            presentationMode.wrappedValue.dismiss()
+            showAlert.toggle()
         }, label: {
             Image(systemName: "heart")
                 .foregroundColor(.red)
@@ -299,8 +300,8 @@ private extension GameDetailsView {
     // new code⚡️
     var locationName : some View {
         HStack{
-            Image(systemName: "mappin")   .foregroundColor(.black)
-            
+            Image(systemName: "mappin")
+                .foregroundColor(.gray)
                 .font(.system(size: 20))
             
             Text(game.locationName)
@@ -309,20 +310,20 @@ private extension GameDetailsView {
                 .font(.title2)
                 .bold()
         }        .font(.system(size: 20))
-            .foregroundColor(.gray)
     }
     
     // new code⚡️
     var startDate : some View {
         HStack{
-            Image(systemName: "calendar")                                    .foregroundColor(.black)
+            Image(systemName: "calendar")            .foregroundColor(.gray)
+
             
             Text("\(game.startDate.formatted(date: .numeric, time: .omitted))")
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
             
             //                                    .font(.title2)
-        } .foregroundColor(.gray)
+        }
         
             .font(.system(size: 20))
     }
@@ -330,14 +331,13 @@ private extension GameDetailsView {
     // new code⚡️
     var hostName : some View {
         HStack{
-            Image(systemName: "person")
-                .foregroundColor(.black)
-            
+            Image(systemName: "person")            .foregroundColor(.gray)
+
+               
             //TODO: maybe change this to the player.name
             Text("\(game.hostName)")
         }.padding(.bottom)
             .bold()
-            .foregroundColor(.gray)
             .font(.system(size: 20))
     }
     
@@ -383,7 +383,7 @@ private extension GameDetailsView {
             .bold()
             .font(Font.custom("SportSpiritAf", size: 45))            .foregroundColor(.white)
             .frame(width: 350, height: 70)
-            .background(.orange)
+            .background(.red)
             .clipShape(Capsule())
         
     }
