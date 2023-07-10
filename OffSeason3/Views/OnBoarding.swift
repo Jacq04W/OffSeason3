@@ -18,7 +18,7 @@ private let onBoardingSteps = [
 OnBoardingStep(image: "cover1", title: "Welcome to OffSeason", description: "Offseason is your platform for creating and joining exciting games in real life. Let's dive in and make the most of your gaming experience!"),
 OnBoardingStep(image: "cover2", title: "Create and Join Games", description: "Create your own games with custom rules or join thrilling challenges created by others. Experience the joy of competition and camaraderie on Offseason."),
 OnBoardingStep(image: "cover1", title: "Connect and Play", description: "Connect with players, chat, and strategize with fellow gaming enthusiasts. Discover new friends, track your progress, and dominate the leaderboard."),
-OnBoardingStep(image: "logo1", title: "ThankYou", description: "  Thank you everyone for taking the time-out to download OffSeason Our App was created by 5 Black entrepreneurs rooted from the City of Detroit, This is out first experience with app development and bringing a tangible product to the app store. So Bare with us and ride along while we embark on a journey to make  OffSeason the number 1 sports app In the word. ")
+OnBoardingStep(image: "logo1", title: "Thank You", description: "To everyone who downloaded Off Season. Our app is the creation of 5 Black entrepreneurs rooted from Detroit.\n As newcomers to the app development world we are striving to put out our best work, we appreciate your patience and support as we embark on our journey to make Off Season the world's top sports app. Thank you for joining us as we achieve this goal together. 🤘🏿⚡️")
 
 ]
 
@@ -64,13 +64,15 @@ struct OnBoarding: View {
                                         .foregroundColor(.red)
                                     
                                     Text(onBoardingSteps[step].description)
+                                        .font(.system(size: 18))
                                         .multilineTextAlignment(.center)
                                         .padding(.horizontal)
-                                    
+                                     
                                     
                                 } else {
                                     Image(onBoardingSteps[step].image)
                                         .resizable()
+                                        .imageScale(.medium)
                                         .frame(width: 350, height: 350)
                                         .cornerRadius(30)
                                     
